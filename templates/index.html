@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Eulerian Hades</title>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="Math">
+    <meta name="author" content="{{ author }}">
+    <meta http-equiv="refresh" content="1800"> <!-- Refresh each 30mins --> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
+    
+    <link rel="stylesheet" href="../static/css/normalize.css">
+    <link rel="stylesheet" href="../static/css/fonts.css">
+    <link rel="stylesheet" href="../static/css/palettes.css">
+    <link rel="stylesheet" href="../static/css/indexStyle.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="../static/js/paletteSelector.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <div class = "nav">
+            <h1>Eulerian Hades</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Algebra / Calculus</a></li>
+                    <li><a href="/linealAlgebra">Lineal Algebra</a></li>
+                    <li><a href="/graphs">Graph Theory</a></li>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section>
+
+            <div class="paletteSelectorContainer">
+                <label for="paletteSelector">Palette:</label>
+                <select id="paletteSelector">
+                    <option value="palette1">Green Theme</option>
+                    <option value="palette2">Red Theme</option>
+                    <option value="palette3">Blue Theme</option>
+                </select>
+            </div>
+
+            {% if math_output %}
+                <div class="mathOutput" id="mathOutput">{{ math_output|safe }}</div>
+            {% endif %}
+
+            <form method="POST">                
+                <div class = "equationBar" id = "equationBar" >
+                    <label id = "equationBar_Title">Assign a Math Problem:</label>
+                    <input type="text" name="math_problem">
+                </div>
+                
+                <button type="submit">Send</button>
+            </form>
+
+        </section>
+    </main>
+    
+    <footer>
+        <p>Steven Mendoza &copy; 2024</p>
+    </footer>
+ 
+</body>
+</html>

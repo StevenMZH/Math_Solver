@@ -1,0 +1,218 @@
+@import url('palette.css');
+@import url('fonts.css');
+
+body {
+    background-color: var(--a1);
+    color: var(--a1);
+    font-family: 'Lora-Regular', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+header {
+    background-color: var(--a2);
+    width: 100%;
+    padding: 20px;
+    color: var(--b2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+}
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+nav {
+    margin-top: 10px;
+    margin-left: auto;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+}
+nav a {
+    text-decoration: none;
+    background-color: var(--a2);
+    color: var(--b3);
+    padding: 5px 10px;
+    border: 2px solid var(--a2);
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 0.75em;
+}
+nav a:hover {
+    background-color: var(--a1);
+    border: 2px solid var(--a1);
+    color: var(--a3);
+}
+
+main {
+    text-align: center;
+    color: var(--b3);
+    padding: 20px;
+    margin-top: 0px; 
+}
+
+.paletteSelectorContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    color: var(--a3);
+    font-size: 0.9em;
+}
+.paletteSelectorContainer label {
+    margin-right: 5px;
+}
+#paletteSelector {
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: var(--c3);
+    color: var(--b4);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+select {
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: var(--c3);
+    color: var(--c4);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.equationBar label {
+    margin-top: 60px; 
+    margin-bottom: 10px; 
+    display: block; 
+}
+
+input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 700px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--c3);
+    color: var(--c4);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button {
+    background-color: var(--c2);
+    color: var(--c4);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: var(--c1);
+    color: var(--c4);
+}
+
+.mathOutput {
+    margin-top: 120px;
+    margin-bottom: 60px;
+    font-size: 1.5em;
+    color: var(--b4);
+    text-align: left;
+    width: 100%;
+    max-width: 800px;
+    word-wrap: break-word;
+    display: block;
+}
+
+footer {
+    background-color: var(--a2);
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    color: var(--b2);
+    position: fixed;
+    bottom: 0;
+}
+
+/* Responsive Design for small devices */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 10px;
+        align-items: flex-start;
+    }
+    header h1 {
+        font-size: 1.2em;
+    }
+
+    nav {
+        align-self: flex-start;
+    }
+    nav a {
+        font-size: 0.7em;
+        padding: 5px;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    input {
+        width: 500px; /* Ajusta el ancho del input */
+    }
+
+    .paletteSelectorContainer {
+        top: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.2em;
+    }
+
+    nav a {
+        font-size: 0.7em;
+        padding: 5px;
+    }
+
+    input {
+        width: 400px; /* Ajusta el ancho del input */
+    }
+
+}
+
+@media (max-width: 500px) {
+    input {
+        width: 400px;
+    }
+
+}
+
+@media (max-width: 420px) {
+    input {
+        width: 300px;
+    }
+
+}

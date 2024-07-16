@@ -1,0 +1,29 @@
+de xws body {
+    font-family: Arial, sans-serif;
+}
+
+#diagram {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.node circle {
+    fill: var(--b1);
+    stroke: var(--a4);
+    stroke-width: 1.5px;
+}
+
+.node text {
+    font: 12px sans-serif;
+    pointer-events: none;
+    fill: var(--a4);
+}
+
+.link {
+    fill: none;
+    stroke: var(--a4);
+    stroke-width: 1.5px;
+}
