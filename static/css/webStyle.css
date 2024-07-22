@@ -1,0 +1,142 @@
+@import url('palette.css');
+
+body {
+    background-color: var(--a1);
+    color: var(--a1);
+    font-family: 'Lora-Regular', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+header {
+    background-color: var(--a2);
+    width: 100%;
+    padding: 20px;
+    color: var(--b2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+}
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+nav {
+    margin-top: 10px;
+    margin-left: auto;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+}
+nav a {
+    text-decoration: none;
+    background-color: var(--a2);
+    color: var(--b3);
+    padding: 5px 10px;
+    border: 2px solid var(--a2);
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 0.75em;
+}
+nav a:hover {
+    background-color: var(--a1);
+    border: 2px solid var(--a1);
+    color: var(--a3);
+}
+
+.paletteSelectorContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    color: var(--a3);
+    font-size: 0.9em;
+}
+.paletteSelectorContainer label {
+    margin-right: 5px;
+}
+#paletteSelector {
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: var(--c3);
+    color: var(--b4);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+select {
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: var(--c3);
+    color: var(--c4);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+footer {
+    background-color: var(--a2);
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    color: var(--b2);
+    position: fixed;
+    bottom: 0;
+}
+
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 10px;
+        align-items: flex-start;
+    }
+    header h1 {
+        font-size: 1.2em;
+    }
+
+    nav {
+        align-self: flex-start;
+    }
+    nav a {
+        font-size: 0.7em;
+        padding: 5px;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .paletteSelectorContainer {
+        top: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.2em;
+    }
+
+    nav a {
+        font-size: 0.7em;
+        padding: 5px;
+    }
+}

@@ -23,22 +23,5 @@ def index():
 def graphs():
     return render_template('graphs.html')
 
-@app.route('/data')
-def data():
-    data = {
-        "nodes": [
-            {"id": "A"},
-            {"id": "B"},
-            {"id": "C"},
-            {"id": "D"}
-        ],
-        "links": [
-            {"source": "A", "target": "B"},
-            {"source": "A", "target": "C"},
-            {"source": "B", "target": "D"}
-        ]
-    }
-    return jsonify(data)
-
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

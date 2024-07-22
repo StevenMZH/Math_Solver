@@ -1,29 +1,110 @@
-de xws body {
-    font-family: Arial, sans-serif;
+@import url('palette.css');
+
+.main-container {
+    display: flex;
+    justify-content: space-between; /* Distribuir el espacio entre los contenedores */
+    align-items: flex-start; /* Alinear los contenedores en la parte superior */
 }
 
-#diagram {
-    width: 100%;
-    height: 100vh;
+.input-container {
+    padding: 20px; /* Espaciado interno */
+    box-sizing: border-box; /* Incluir padding en el ancho total */
+    border-right: 1px solid var(--a4); /* Línea separadora opcional */
+}
+
+.input-container label {
+    color: var(--a4)
+}
+
+.diagram-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.node circle {
-    fill: var(--b1);
-    stroke: var(--a4);
-    stroke-width: 1.5px;
+input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+    height: 25px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--c3);
+    color: var(--c4);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.node text {
-    font: 12px sans-serif;
-    pointer-events: none;
-    fill: var(--a4);
+button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 40px;
+    height: 25px;
+
+    background-color: var(--c2);
+    color: var(--c4);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: var(--c1);
+    color: var(--c4);
+}
+
+.shortButton {
+    width: 40px;
+    height: 25px;
+}
+
+.highButton {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+    width: 40px;
+    height: 120px;
+    position: absolute;
+    top: 50%; /* Ajusta según sea necesario */
+    transform: translateY(-50%); /* Centra verticalmente */
+    z-index: 1;
+}
+
+.wideButton {
+    width: 245px;
+    height: 25px;
+    display: block; 
+}
+
+#graph-svg {
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--a4); /* Borde opcional para el SVG */
+}
+
+.node {
+    fill: var(--c1); /* Color de relleno */
+    stroke: var(--a4); /* Color del borde */
+    stroke-width: 2px; /* Ancho del borde */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el nodo */
 }
 
 .link {
-    fill: none;
-    stroke: var(--a4);
-    stroke-width: 1.5px;
+    stroke: var(--a4); /* Color del enlace */
+    stroke-width: 1.5px; /* Ancho del enlace */
+}
+
+.node-label {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    fill: var(--a4); /* Color del texto */
+    pointer-events: none; /* Evita que las etiquetas interfieran con los eventos de clic */
+}
+
+.link-label {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    fill: var(--a3); /* Color del texto */
+    pointer-events: none; /* Evita que las etiquetas interfieran con los eventos de clic */
 }
