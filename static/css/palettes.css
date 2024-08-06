@@ -1,36 +1,71 @@
 :root {
+    --a0: #090909;
     --a1: #17191a;
     --a2: #212125;
     --a3: #cfcfd7;
     --a4: #e7e7e7;
 
-    --b1: #1fbe42;
-    --b2: #74ff92;
-    --b3: #c7ffd3;
-    --b4: #daffe2;
+    --background: #090909;
+    --header: #17191a;
+    
+    --button: #17191a;
+    --button_hover: #212125;
+    
+    --bar: #e7e7e7;
 
-    --c1: #0b3915;
-    --c2: #074815;
-    --c3: #1b6329;
-    --c4: #fafffb;
+    --text: #e7e7e7;
+    --text2: #e7e7e7;
+
+    --graph_border: #e7e7e7;;
+    --graph_fill: #17191a;
+    --graph_link: #17191a;
 }
 
 
-.palette1 {
+.dark {
+    --a0: #090909;
     --a1: #17191a;
     --a2: #212125;
     --a3: #cfcfd7;
-    --a4: #e7e7e7;
+    --a4: #f7fcff;
 
-    --b1: #1fbe42;
-    --b2: #74ff92;
-    --b3: #c7ffd3;
-    --b4: #daffe2;
+    --background: #090909;
+    --header: #17191a;
+    
+    --button: #17191a;
+    --button_hover: #212125;
+    
+    --bar: #e7e7e7;
 
-    --c1: #0b3915;
-    --c2: #074815;
-    --c3: #1b6329;
-    --c4: #fafffb;
+    --text: #e7e7e7;
+    --text2: #0c0c0c;
+
+    --graph_border: #e7e7e7;;
+    --graph_fill: #212125;
+    --graph_link: #212125;
+}
+
+.light {
+    --a0: #090909;
+    --a1: #17191a;
+    --a2: #212125;
+    --a3: #cfcfd7;
+    --a4: #f7fcff;
+
+    --background: #a5c0c4;
+    --header: #f7fcff;
+    
+    --button: #f7fcff;
+    --button_hover: #d2dee4;
+    
+    --bar: #e7e7e7;
+
+    --text: #0c0c0c;
+    --text2: #0c0c0c;
+
+    --graph_border: #17191a;
+    --graph_fill: #17191a;
+    --graph_link: #17191a;
 }
 
 .palette2 {

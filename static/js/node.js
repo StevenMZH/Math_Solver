@@ -1,23 +1,7 @@
-function drawGraph() {
-    // Datos del grafo (ejemplo, puedes reemplazar esto con tus datos reales)
-    var nodes = [
-        { id: 1, label: 'Start' },
-        { id: 2, label: 'A' },
-        { id: 3, label: 'New' },
-        { id: 4, label: 'Graph' }
-    ];
-
-    var links = [
-        { source: 1, target: 2, weight: 0 },
-        { source: 2, target: 3, weight: 0 },
-        { source: 3, target: 4, weight: 0 }
-    ];
-
-    var width = 600;
-    var height = 300;
+function drawGraph(width, height, nodes, links) {
     var nodesRadius = 10;
     var nodesDistance = 50;
-    var strenghtRepulsion = -1000;
+    var strengthRepulsion = -1000;
 
     // Crear el lienzo SVG
     var svg = d3.select("#graph-svg")
@@ -27,8 +11,10 @@ function drawGraph() {
     // Definir la simulación de fuerza para el grafo
     var simulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links).id(d => d.id).distance(nodesDistance)) // Ajustar la distancia entre nodos aquí
-        .force("charge", d3.forceManyBody().strength(strenghtRepulsion))
-        .force("center", d3.forceCenter(width / 2, height / 2));
+        .force("charge", d3.forceManyBody().strength(strengthRepulsion))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("x", d3.forceX().strength(0.1).x(width / 2)) // Fuerza hacia el centro en el eje X
+        .force("y", d3.forceY().strength(0.1).y(height / 2)); // Fuerza hacia el centro en el eje Y
 
     // Crear los enlaces
     var link = svg.selectAll("line")
@@ -72,8 +58,8 @@ function drawGraph() {
         linkLabels.attr("x", d => (d.source.x + d.target.x) / 2)
                   .attr("y", d => (d.source.y + d.target.y) / 2 - 5); // Desplazar etiqueta de enlace
 
-        node.attr("cx", d => d.x)
-            .attr("cy", d => d.y);
+        node.attr("cx", d => d.x = Math.max(nodesRadius, Math.min(width - nodesRadius, d.x)))
+            .attr("cy", d => d.y = Math.max(nodesRadius, Math.min(height - nodesRadius, d.y)));
 
         label.attr('x', d => d.x + 15) // Desplazar etiqueta de nodo en x
             .attr('y', d => d.y + 5); // Desplazar etiqueta de nodo en y
@@ -97,5 +83,74 @@ function drawGraph() {
     }
 }
 
-// Llamar a la función para dibujar el grafo cuando se cargue la página
-document.addEventListener('DOMContentLoaded', drawGraph);
+function updateGraphSize() {
+    var width = window.innerWidth * 0.7;
+    var height = window.innerHeight * 0.6;
+    const nodes = JSON.parse(localStorage.getItem('nodes')) || [
+        { id: 1, label: 'Start' },
+        { id: 2, label: 'A' },
+        { id: 3, label: 'New' },
+        { id: 4, label: 'Graph' }
+    ];
+    const links = JSON.parse(localStorage.getItem('links')) || [
+        { source: 1, target: 2, weight: 0 },
+        { source: 2, target: 3, weight: 0 },
+        { source: 3, target: 4, weight: 0 }
+    ];
+    drawGraph(width, height, nodes, links);
+}
+
+
+function addNodeIfNotExist(nodes, label) {
+    let node = nodes.find(n => n.label === label);
+    if (!node) {
+        const id = nodes.length > 0 ? nodes[nodes.length - 1].id + 1 : 1;
+        node = { id, label };
+        nodes.push(node);
+    }
+    return node;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('newNode_Button').addEventListener('click', function() {
+        var nodes = JSON.parse(localStorage.getItem('nodes')) || [];
+        var last_nodeId = nodes.length > 0 ? nodes[nodes.length - 1].id : 0;
+        
+        var newNode_id = last_nodeId + 1;
+        var newNode_name = document.getElementById('newNode').value;
+        var newNode = { id: newNode_id, label: newNode_name };
+        nodes.push(newNode);
+
+        localStorage.setItem('nodes', JSON.stringify(nodes));
+        updateGraphSize();
+    });
+
+    document.getElementById('newIntersection_Button').addEventListener('click', function() {
+        var nodes = JSON.parse(localStorage.getItem('nodes')) || [];
+        var links = JSON.parse(localStorage.getItem('links')) || [];
+
+        var sourceLabel = document.getElementById('newNode_source').value;
+        var targetLabel = document.getElementById('newNode_target').value;
+        var weight = parseInt(document.getElementById('newNode_weight').value);
+
+        var sourceNode = addNodeIfNotExist(nodes, sourceLabel);
+        var targetNode = addNodeIfNotExist(nodes, targetLabel);
+
+        var newLink = { source: sourceNode.id, target: targetNode.id, weight };
+        links.push(newLink);
+
+        localStorage.setItem('nodes', JSON.stringify(nodes));
+        localStorage.setItem('links', JSON.stringify(links));
+        updateGraphSize();
+    });
+
+    document.getElementById('clear_Button').addEventListener('click', function() {
+        localStorage.setItem('nodes', JSON.stringify([]));
+        localStorage.setItem('links', JSON.stringify([]));
+        updateGraphSize();
+    });
+
+    updateGraphSize();
+});
+
+window.addEventListener('resize', updateGraphSize);

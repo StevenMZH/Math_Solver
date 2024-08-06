@@ -25,6 +25,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+
+
     <!-- JS -->
     <script src="../static/js/paletteSelector.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -52,12 +55,10 @@
         <section>
 
             <div class="paletteSelectorContainer">
-                <label for="paletteSelector">Palette:</label>
-                <select id="paletteSelector">
-                    <option value="palette1">Green Theme</option>
-                    <option value="palette2">Red Theme</option>
-                    <option value="palette3">Blue Theme</option>
-                </select>
+                <label for="Themes">Palette:</label>
+
+                <button name="darkTheme_Button" id="darkTheme_Button" class="roundButton" value="dark"></button>
+                <button name="lightTheme_Button" id="lightTheme_Button" class="roundButton" value="light"></button>
             </div>
 
             {% if math_output %}

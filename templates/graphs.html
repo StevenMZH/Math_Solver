@@ -20,11 +20,15 @@
     <link rel="stylesheet" href="../static/css/fonts.css">
     <link rel="stylesheet" href="../static/css/palettes.css">
 
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+
     <!-- JS -->
     <script src="../static/js/paletteSelector.js"></script>
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="../static/js/node.js"></script>
+    <script src="../static/js/get_graphData.js"></script>
 
 </head>
 
@@ -47,49 +51,53 @@
     
     <main>
         <div class="paletteSelectorContainer">
-            <label for="paletteSelector">Palette:</label>
-            <select id="paletteSelector">
-                <option value="palette1">Green Theme</option>
-                <option value="palette2">Red Theme</option>
-                <option value="palette3">Blue Theme</option>
-            </select>
+            <label for="Themes">Palette:</label>
+
+            <button name="darkTheme_Button" id="darkTheme_Button" class="roundButton" value="dark"></button>
+            <button name="lightTheme_Button" id="lightTheme_Button" class="roundButton" value="light"></button>
         </div>
 
         <section class="main-container">
 
             <div class="input-container">
 
+                <div> <label for="newNode">Add Nodes:</label> </div>
+
                 <div id="nodeInput">
-                    <label for="newNode">Add Nodes:</label>
                     <div id="nodeBar">
-                        <input type="text" name="newNode" id="newNode">
-                        <button name="newNode_Button" class="shortButton">+</button>
+                        <input type="text" placeholder="Node Name" name="newNode" id="newNode">
+                    </div>
+                    <div id="shortButton-container">
+                        <button name="newNode_Button" id="newNode_Button" class="shortButton">+</button>
                     </div>
                 </div>
 
+                <div> <label for="newIntersection">Add Intersection:</label> </div>
+
                 <div id="intersectionInput">
-                    <label for="newIntersection">Add Intersection:</label>
-                    <div id="sourceBar">
-                        <input type="text" value="Source Node"> 
-                        <button name="newIntersection_Button" class="highButton">+</button>
+                    <div id="intersectionInput-innerdiv">    
+                        <div> <input type="text" id="newNode_source" placeholder="Source Node"> </div>
+                        <div> <input type="text" id="newNode_target" placeholder="Target Node"> </div>
+                        <div> <input type="text" id="newNode_weight" placeholder="Intersection Weight"> </div>
                     </div>
-                    <div id="targetBar">
-                        <input type="text" value="Target Node">
+
+                    <div id="column_Button">
+                        <button name="newIntersection_Button" id="newIntersection_Button" class="highButton" >+</button>
                     </div>
-                    <div id="weightBar">
-                        <input type="text" value="Intersection Weight">
-                    </div>
-                    <button name="clearGraph_Button" class="wideButton">Clear Graph</button>
-                    <button name="download_Button" class="wideButton">Download Graph</button>
+                </div>
+
+                <div id="buttonsDiv">
+                    <button name="clearGraph_Button" class="wideButton" id="clear_Button">Clear Graph</button>
+                    <button name="download_Button" class="wideButton" id="download_Button">Download Graph</button>
                 </div>
             
             </div> 
             
-
-
             <div class="diagram-container">
                 <svg id="graph-svg"></svg>
             </div>
+
+            <div id="marginDiv"></div>
 
         </section>
     </main>
