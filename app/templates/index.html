@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Eulerian Hades</title>
+    
+        <meta charset="UTF-8">
+        <meta name="description" content="{{ description }}">
+        <meta name="keywords" content="Math">
+        <meta name="author" content="{{ author }}">
+        <meta http-equiv="refresh" content="1800"> <!-- Refresh each 30mins --> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
+        
+        <!-- Styles -->
+        <link rel="stylesheet" href="../static/css/normalize.css">
+        <link rel="stylesheet" href="../static/css/webStyle.css">
+        <link rel="stylesheet" href="../static/css/indexStyle.css">
+        <link rel="stylesheet" href="../static/css/palettes.css">
+    
+        <!-- Components Styles -->
+        <link rel="stylesheet" href="../static/css/components/nav.css">
+        <link rel="stylesheet" href="../static/css/components/paletteSelector.css">
+        <link rel="stylesheet" href="../static/css/components/footer.css">
+    
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    
+        <!-- JS -->
+        <script src="../static/js/paletteSelector.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    </head>
+
+<body>
+
+    <header>
+        {% include 'components/nav.html' %}
+        {% include 'components/paletteSelector.html' %}
+    </header>
+    
+    <main>
+        <section>
+
+            {% if math_output %}
+                <div class="mathOutput" id="mathOutput">{{ math_output|safe }}</div>
+            {% endif %}
+            
+            <form method="POST">                
+                <div class = "equationBar" id = "equationBar" >
+                    <label id = "equationBar_Title">Assign a Math Problem:</label>
+                    <input type="text" name="math_problem">
+                </div>
+                
+                <button type="submit">Send</button>
+            </form>
+
+        </section>
+    </main>
+    
+    {% include 'components/footer.html' %}
+
+</body>
+</html>

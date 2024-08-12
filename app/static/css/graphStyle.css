@@ -1,0 +1,234 @@
+@import url('palette.css');
+
+.main-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+    height: auto;
+}
+
+.input-container {
+    padding: 20px;
+    margin-right: 50px;
+    box-sizing: border-box; 
+    width: 30%;
+    height: 100%;
+}
+.input-container label {
+    color: var(--text)
+}
+
+.diagram-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; 
+    width: 70%;
+}
+
+#nodeInput, #intersectionInput {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#nodeBar, #intersectionInput-innerdiv  {
+    width: 100%; 
+}
+
+#shortButton-container, #column_Button{
+    width: 10%;
+    margin-left: 20px;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+}
+
+#buttonsDiv {
+    width: 100%;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    flex-direction: column;
+}
+
+input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 25px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: var(--bar);
+    color: var(--text2);
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.wideButton {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    width: 100%;
+    height: 25px;
+
+    background-color: var(--button);
+    color: var(--text);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.shortButton, .highButton {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 50px;
+    height: 25px;
+
+    background-color: var(--button);
+    color: var(--text);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--button_hover);
+    color: var(--text);
+}
+
+.shortButton {
+    width: 50px;
+    height: 25px;
+}
+
+.highButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 120px;
+    background-color: var(--button);
+    color: var(--text);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+#clear_Button {
+    background-color: var(--r);
+}
+#clear_Button:hover {
+    background-color: var(--r_hover);
+}
+
+#algorithms_Button {
+    background-color: var(--g);
+}
+#algorithms_Button:hover {
+    background-color: var(--g_hover);
+}
+
+#download_Button {
+    background-color: var(--b);
+}
+#download_Button:hover {
+    background-color: var(--b_hover);
+}
+
+
+#graph-svg {
+    margin: 15px;
+    margin-top: 25px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--graph_background);
+    border: 5px solid var(--graph_background);
+    border-radius: 20px;
+}
+
+.node {
+    fill: var(--graph_fill); 
+    stroke: var(--graph_border); 
+    stroke-width: 2px; 
+    cursor: pointer; 
+}
+
+.link {
+    stroke: var(--graph_link);
+    stroke-width: 1.5px;
+}
+
+.node-label {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 12px;
+    fill: var(--text); 
+    pointer-events: none; 
+}
+
+.link-label {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    fill: var(--text); 
+    pointer-events: none; 
+}
+
+@media (max-width: 1200px) {
+    .input-container {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .input-container {
+        margin-right: 0px;
+    }
+}
+
+@media (max-width: 900px) {
+    .main-container {
+        flex-direction: column; 
+        align-items: center; 
+        padding-top: 25vh;
+    }
+
+    .diagram-container {
+        order: 1;
+        width: 100%; 
+        padding-top: 50px;
+    }
+
+    .input-container {
+        order: 2;
+        width: 100%; 
+        padding: 20px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    #graph-svg {
+        margin-top: 150px;
+        margin-bottom: 20px;
+    }
+
+    #download_Button {
+        margin-bottom: 50px;
+    }
+}
+
+
+
+
+
+
