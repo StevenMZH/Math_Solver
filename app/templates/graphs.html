@@ -1,98 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Eulerian Hades</title>
+    <head>
+        <title>Eulerian Hades</title>
 
-    <meta charset="UTF-8">
-    <meta name="description" content="{{ description }}">
-    <meta name="keywords" content="Math">
-    <meta name="author" content="{{ author }}">
-    <meta http-equiv="refresh" content="1800"> <!-- Refresh each 30mins --> 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <meta name="description" content="{{ description }}">
+        <meta name="keywords" content="Math">
+        <meta name="author" content="{{ author }}">
+        <meta http-equiv="refresh" content="1800"> <!-- Refresh each 30mins --> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="../static/css/normalize.css">
-    <link rel="stylesheet" href="../static/css/webStyle.css">
-    <link rel="stylesheet" href="../static/css/graphStyle.css">
+        <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
+        
+        <!-- Styles -->
+        <link rel="stylesheet" href="../static/css/normalize.css">
+        <link rel="stylesheet" href="../static/css/webStyle.css">
+        <link rel="stylesheet" href="../static/css/palettes.css">
+        <link rel="stylesheet" href="../static/css/components/graphMaker.css">
 
-    <!-- Components Styles -->
-    <link rel="stylesheet" href="../static/css/components/nav.css">
-    <link rel="stylesheet" href="../static/css/components/paletteSelector.css">
-    <link rel="stylesheet" href="../static/css/components/footer.css">
-    <link rel="stylesheet" href="../static/css/components/panels.css">
+        <!-- Components Styles -->
+        <link rel="stylesheet" href="../static/css/components/nav.css">
+        <link rel="stylesheet" href="../static/css/components/paletteSelector.css">
+        <link rel="stylesheet" href="../static/css/components/footer.css">
+        <link rel="stylesheet" href="../static/css/components/panels.css">
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
 
-    <!-- JS -->
-    <script src="../static/js/paletteSelector.js"></script>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script src="../static/js/node.js"></script>
-    <script src="../static/js/graphPanels.js"></script>
+    </head>
 
-</head>
+    <body>
+        
+        <header>
+            {% include 'components/nav.html' %}
+            {% include 'components/paletteSelector.html' %}
+            {% include 'components/languageSelector.html' %}
+        </header>
+        
+        <main>
+            <div class="graphMaker-container">
 
-<body>
-    
-    <header>
-        {% include 'components/nav.html' %}
-        {% include 'components/paletteSelector.html' %}
-    </header>
-    
-    <main>
-        <div class="main-container">
-
-            <div class="input-container">
-
-                <div> <label for="newNode">Add Nodes:</label> </div>
-
-                <div id="nodeInput">
-                    <div id="nodeBar">
-                        <input type="text" placeholder="Node Name" name="newNode" id="newNode">
+                <div class="inputGetter-container">
+            
+                    <div> <label for="newNode" data-lang-key="Graphs.addNode" >Add Nodes:</label> </div>
+            
+                    <div id="inputGetter-node">
+                        <div id="nodeBar">
+                            <input type="text" placeholder="Node Name" name="newNode" id="newNode">
+                        </div>
+                        <div id="shortButton-container">
+                            <button name="newNode_Button" id="newNode_Button" class="shortButton">+</button>
+                        </div>
                     </div>
-                    <div id="shortButton-container">
-                        <button name="newNode_Button" id="newNode_Button" class="shortButton">+</button>
+            
+                    <div> <label for="newIntersection" data-lang-key="Graphs.addLink">Add Intersection:</label> </div>
+            
+                    <div id="inputGetter-link">
+                        <div id="inputGetter-link-innerdiv">    
+                            <div> <input type="text" id="newNode_source" placeholder="Source Node"> </div>
+                            <div> <input type="text" id="newNode_target" placeholder="Target Node"> </div>
+                            <div> <input type="text" id="newNode_weight" placeholder="Link Weight"> </div>
+                        </div>
+            
+                        <div id="columnButton">
+                            <button name="newIntersection_Button" id="newIntersection_Button" class="highButton" >+</button>
+                        </div>
                     </div>
-                </div>
-
-                <div> <label for="newIntersection">Add Intersection:</label> </div>
-
-                <div id="intersectionInput">
-                    <div id="intersectionInput-innerdiv">    
-                        <div> <input type="text" id="newNode_source" placeholder="Source Node"> </div>
-                        <div> <input type="text" id="newNode_target" placeholder="Target Node"> </div>
-                        <div> <input type="text" id="newNode_weight" placeholder="Intersection Weight"> </div>
+            
+                    <div id="buttonsDiv">
+                        <button class="wideButton" id="clear_Button" data-lang-key="Graphs.clear" >Clear Graph</button>
+                        <button class="wideButton" id="algorithms_Button" data-lang-key="Graphs.applyAlgorithm" >Apply Algorithm</button>
+                        <button class="wideButton" id="download_Button" data-lang-key="Graphs.download" >Download Graph</button>
                     </div>
-
-                    <div id="column_Button">
-                        <button name="newIntersection_Button" id="newIntersection_Button" class="highButton" >+</button>
-                    </div>
-                </div>
-
-                <div id="buttonsDiv">
-                    <button name="clearGraph_Button" class="wideButton" id="clear_Button">Clear Graph</button>
-                    <button name="algorithms_Button" class="wideButton" id="algorithms_Button">Apply Algorithm</button>
-                    <button name="download_Button" class="wideButton" id="download_Button">Download Graph</button>
+                
+                </div> 
+                
+                <div class="diagram-container">
+                    <svg id="graph-svg"></svg>
                 </div>
             
-            </div> 
-            
-            <div class="diagram-container">
-                <svg id="graph-svg"></svg>
             </div>
+        </main>
+        
+        {% include 'components/Panel_graphAlgorithm.html' %}
+        {% include 'components/Panel_graphDownload.html' %}
+        
+        {% include 'components/footer.html' %}
 
-            <div id="marginDiv"></div>
-
-        </div>
-    </main>
+        <!-- JS -->
+        <script src="../static/js/paletteSelector.js"></script>
+        <script src="../static/js/languageManager.js"></script>
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <script src="../static/js/graphMaker.js"></script>
+        <script src="../static/js/graphPanels.js"></script>
     
-    {% include 'components/Panel_graphAlgorithm.html' %}
-    {% include 'components/Panel_graphDownload.html' %}
-    
-    
-    {% include 'components/footer.html' %}
- 
-</body>
+    </body>
 </html>

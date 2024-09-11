@@ -8,6 +8,18 @@ author = "Steven Mendoza"
 description = "Math"
 math_output = ""
 
+@app.route('/math')
+def math():
+    return render_template('math.html')
+
+@app.route('/cs')
+def cs():
+    return render_template('cs.html')
+
+@app.route('/electronics')
+def electronics():
+    return render_template('electronics.html')
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     math_output = ""
@@ -23,9 +35,17 @@ def index():
 def graphs():
     return render_template('graphs.html')
 
+@app.route('/linealAlgebra')
+def linealAlgebra():
+    return render_template('linealAlgebra.html')
+
 @app.route('/graphResult')
 def graphResult():
     return render_template('graphResult.html')
+
+@app.route('/sortingAlgorithms')
+def sortingAlgorithms():
+    return render_template('sortingAlgorithms.html')
 
 @app.route('/template')
 def template():

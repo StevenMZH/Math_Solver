@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Eulerian Hades</title>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="Math">
+    <meta name="author" content="{{ author }}">
+    <meta http-equiv="refresh" content="1800"> <!-- Refresh each 30mins --> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../static/css/normalize.css">
+    <link rel="stylesheet" href="../static/css/webStyle.css">
+    <link rel="stylesheet" href="../static/css/components/graphSolver.css">
+
+    <!-- Components Styles -->
+    <link rel="stylesheet" href="../static/css/components/nav.css">
+    <link rel="stylesheet" href="../static/css/components/paletteSelector.css">
+    <link rel="stylesheet" href="../static/css/components/footer.css">
+    <link rel="stylesheet" href="../static/css/components/panels.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="../static/js/paletteSelector.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="../static/js/graphSolver.js"></script>
+    <script src="../static/js/graphPanels.js"></script>
+
+</head>
+
+<body>
+    
+    <header>
+        {% include 'components/nav.html' %}
+        {% include 'components/paletteSelector.html' %}
+    </header>
+    
+    <main>
+        <div class="graphSolver-container">
+            <div class="diagram-container">
+                <svg id="graphSolver-svg"></svg>
+            </div>
+            <div class="optionColumn-container">
+        
+            </div>
+        </div>
+    </main>
+    
+    {% include 'components/Panel_graphAlgorithm.html' %}
+    {% include 'components/Panel_graphDownload.html' %}
+    
+    
+    {% include 'components/footer.html' %}
+ 
+</body>
+</html>

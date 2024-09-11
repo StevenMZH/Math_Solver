@@ -9,26 +9,76 @@ html, body {
 body {
     background-color: var(--background);
     color: var(--text);
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
     margin: 0;
     position: relative; 
-
+    display: flex;
     font-family: 'Comfortaa', sans-serif;
     font-optical-sizing: auto;
 }
 
 main {
+    display: block;
     flex: 1;
-    display: flex;
     text-align: center;
-    justify-content: center;  /* Centra horizontalmente */
-    align-items: center;      /* Centra verticalmente */
+    justify-content: center;  
+    align-items: center;      
     width: 100%;
     color: var(--text);
     padding: 20px;
     margin-top: 60px;
 }
+
+
+button {
+    background-color: var(--button);
+    color: var(--text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: var(--button_hover);
+    color: var(--text);
+}
+.normalButton {
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+
+select {
+    background-color: var(--button);
+    color: var(--text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+input {
+    background-color: var(--button);
+    color: var(--text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+#language-selector {
+    position: relative;
+    bottom: 8px;
+    right: 60px;
+    padding: 0 3px;
+    margin-right: 5px;
+    border: 1px;
+    border-color: var(--a4);
+}
+

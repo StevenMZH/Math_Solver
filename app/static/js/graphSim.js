@@ -4,7 +4,7 @@ function drawGraph(width, height, nodes, links) {
     var strengthRepulsion = -1000;
 
     // Crear el lienzo SVG
-    var svg = d3.select("#graph-svg")
+    var svg = d3.select("#graphMaker-svg")
                 .attr("width", width)
                 .attr("height", height);
 
@@ -89,19 +89,24 @@ function drawGraph(width, height, nodes, links) {
 function updateGraphSize() {
     var width = window.innerWidth * 0.7;
     var height = window.innerHeight * 0.6;
+
+
     const nodes = JSON.parse(localStorage.getItem('nodes')) || [
         { id: 1, label: 'Start' },
         { id: 2, label: 'A' },
         { id: 3, label: 'New' },
         { id: 4, label: 'Graph' }
     ];
+
     const links = JSON.parse(localStorage.getItem('links')) || [
         { source: 1, target: 2, weight: 0 },
         { source: 2, target: 3, weight: 0 },
         { source: 3, target: 4, weight: 0 }
     ];
-    drawGraph(width, height, nodes, links);
+
+    drawGraph(width, height, nodes, links, );
 }
+
 
 function addNodeIfNotExist(nodes, label) {
     let node = nodes.find(n => n.label === label);
@@ -113,46 +118,4 @@ function addNodeIfNotExist(nodes, label) {
     return node;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('newNode_Button').addEventListener('click', function() {
-        var nodes = JSON.parse(localStorage.getItem('nodes')) || [];
-        var last_nodeId = nodes.length > 0 ? nodes[nodes.length - 1].id : 0;
-
-        var newNode_id = last_nodeId + 1;
-        var newNode_name = document.getElementById('newNode').value;
-        var newNode = { id: newNode_id, label: newNode_name };
-        nodes.push(newNode);
-
-        localStorage.setItem('nodes', JSON.stringify(nodes));
-        updateGraphSize();
-    });
-
-    document.getElementById('newIntersection_Button').addEventListener('click', function() {
-        var nodes = JSON.parse(localStorage.getItem('nodes')) || [];
-        var links = JSON.parse(localStorage.getItem('links')) || [];
-
-        var sourceLabel = document.getElementById('newNode_source').value;
-        var targetLabel = document.getElementById('newNode_target').value;
-        var weight = parseInt(document.getElementById('newNode_weight').value);
-
-        var sourceNode = addNodeIfNotExist(nodes, sourceLabel);
-        var targetNode = addNodeIfNotExist(nodes, targetLabel);
-
-        var newLink = { source: sourceNode.id, target: targetNode.id, weight };
-        links.push(newLink);
-
-        localStorage.setItem('nodes', JSON.stringify(nodes));
-        localStorage.setItem('links', JSON.stringify(links));
-        updateGraphSize();
-    });
-
-    document.getElementById('clear_Button').addEventListener('click', function() {
-        localStorage.setItem('nodes', JSON.stringify([]));
-        localStorage.setItem('links', JSON.stringify([]));
-        updateGraphSize();
-    });
-
-    updateGraphSize();
-});
-
-window.addEventListener('resize', updateGraphSize);
+export { updateGraphSize, addNodeIfNotExist };

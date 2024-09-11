@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="../static/css/webStyle.css">
         <link rel="stylesheet" href="../static/css/indexStyle.css">
         <link rel="stylesheet" href="../static/css/palettes.css">
-    
+
         <!-- Components Styles -->
         <link rel="stylesheet" href="../static/css/components/nav.css">
         <link rel="stylesheet" href="../static/css/components/paletteSelector.css">
@@ -26,40 +26,41 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
     
-        <!-- JS -->
-        <script src="../static/js/paletteSelector.js"></script>
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    
     </head>
 
-<body>
+    <body>
 
-    <header>
-        {% include 'components/nav.html' %}
-        {% include 'components/paletteSelector.html' %}
-    </header>
-    
-    <main>
-        <section>
+        <header>
+            {% include 'components/nav.html' %}
+            {% include 'components/paletteSelector.html' %}
+            {% include 'components/languageSelector.html' %}
+        </header>
+        
+        <main>
+            <section>
 
-            {% if math_output %}
-                <div class="mathOutput" id="mathOutput">{{ math_output|safe }}</div>
-            {% endif %}
-            
-            <form method="POST">                
-                <div class = "equationBar" id = "equationBar" >
-                    <label id = "equationBar_Title">Assign a Math Problem:</label>
-                    <input type="text" name="math_problem">
-                </div>
+                {% if math_output %}
+                    <div class="mathOutput" id="mathOutput">{{ math_output|safe }}</div>
+                {% endif %}
                 
-                <button type="submit">Send</button>
-            </form>
+                <form method="POST">                
+                    <div id="equationBar-container" >
+                        <label id = "equationBar-title" data-lang-key="Algebra_Calculus.title">Assign a Math Problem:</label>
+                        <input type="text" name="math_problem" id="equationBar">
+                    </div>
+                    
+                    <button type="submit" id="equationBar-submit" data-lang-key="Algebra_Calculus.send">Send</button>
+                </form>
 
-        </section>
-    </main>
-    
-    {% include 'components/footer.html' %}
+            </section>
+        </main>
+        
+        {% include 'components/footer.html' %}
 
-</body>
+        <!-- JS -->
+        <script src="../static/js/paletteSelector.js"></script>
+        <script src="../static/js/languageManager.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
 </html>

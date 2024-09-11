@@ -1,0 +1,44 @@
+{
+    "title": "Eulerian Hades",
+    "description": "A math project",
+    "author": "Author Name",
+    "nav": {
+        "Algebra_Calculus": "Algebra / Calculus",
+        "Graph Theory": "Graph Theory",
+        "Sorting Algorithms": "Sorting Algorithms"
+    },
+    "paletteSelector": {
+        "selectPalette": "Select Palette"
+    },
+    "languageSelector": {
+        "selectLanguage": "Select Language",
+        "english": "en",
+        "spanish": "es"
+    },
+    "Algebra_Calculus":{
+        "title": "Assign a Math Problem:",
+        "send": "Send"
+    },
+    "Graphs":{
+        "addNode": "Add Node:",
+        "addLink": "Add Intersection:",
+        "clear": "Clear Graph",
+        "applyAlgorithm": "Apply Algorithm",
+        "download": "Download Graph"
+    },
+    "sortingAlgorithm": {
+        "title": "Sort Algorithms:",
+        "bubbleSort": "Bubble Sort",
+        "selectionSort": "Selection Sort",
+        "insertionSort": "Insertion Sort",
+        "bars": "Bars:",
+        "speed": "Speed (ms):",
+        "sortButton": "Sort",
+        "resetButton": "Reset",
+        "info": "Sorting Algorithm Info",
+        "code": "Sorting Algorithm Code"
+    },
+    "footer": {
+        "rights": "© 2024 Eulerian Hades. All rights reserved."
+    }
+}

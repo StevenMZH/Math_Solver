@@ -1,37 +1,7 @@
 @import url('palette.css');
 
-.equationBar label {
-    margin-top: 60px; 
-    margin-bottom: 10px; 
-    display: block; 
-}
-
-input {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 700px;
-    height: 40px;
-    padding: 10px;
-    border-radius: 20px;
-    background-color: var(--bar);
-    color: var(--text2);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-button {
-    background-color: var(--button);
-    color: var(--text);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-button:hover {
-    background-color: var(--button_hover);
-    color: var(--text);
+main {
+    display: flex;
 }
 
 .mathOutput {
@@ -46,27 +16,51 @@ button:hover {
     display: block;
 }
 
+#equationBar-title {
+    margin-top: 60px; 
+    margin-bottom: 10px; 
+    display: block; 
+}
+
+#equationBar {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 700px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: var(--bar);
+    color: var(--text2);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#equationBar-submit {
+    padding: 10px 20px;
+}
+
 
 @media (max-width: 768px) {
-    input {
+    #equationBar {
         width: 500px;
     }
 }
 
 @media (max-width: 600px) {
-    input {
+    #equationBar {
         width: 400px;
     }
 }
 
 @media (max-width: 500px) {
-    input {
+    #equationBar {
         width: 400px;
     }
 }
 
 @media (max-width: 420px) {
-    input {
+    #equationBar {
         width: 300px;
     }
 

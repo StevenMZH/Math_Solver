@@ -15,6 +15,8 @@
         <!-- Styles -->
         <link rel="stylesheet" href="../static/css/normalize.css">
         <link rel="stylesheet" href="../static/css/webStyle.css">
+        <link rel="stylesheet" href="../static/css/palettes.css">
+
     
         <!-- Components Styles -->
         <link rel="stylesheet" href="../static/css/components/nav.css">
@@ -24,23 +26,25 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
     
-        <!-- JS -->
-        <script src="../static/js/paletteSelector.js"></script>
-    
     </head>
 
-<body>
+    <body>
 
-    <header>
-        {% include 'components/nav.html' %}
-        {% include 'components/paletteSelector.html' %}
-    </header>
-    
-    <main>
+        <header>
+            {% include 'components/nav.html' %}
+            {% include 'components/paletteSelector.html' %}
+            {% include 'components/languageSelector.html' %}
+        </header>
         
-    </main>
-    
-    {% include 'components/footer.html' %}
+        <main>
+            
+        </main>
+        
+        {% include 'components/footer.html' %}
 
-</body>
+        <!-- JS -->
+        <script src="../static/js/paletteSelector.js"></script>
+        <script src="../static/js/languageManager.js"></script>
+
+    </body>
 </html>

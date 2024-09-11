@@ -1,0 +1,45 @@
+.graphSolver-container {
+    display: none;
+    justify-content: space-between; 
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+#graph-svg {
+    margin: 15px;
+    margin-top: 25px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--graph_background);
+    border: 5px solid var(--graph_background);
+    border-radius: 20px;
+}
+
+.node {
+    fill: var(--graph_fill); 
+    stroke: var(--graph_border); 
+    stroke-width: 2px; 
+    cursor: pointer; 
+}
+
+.link {
+    stroke: var(--graph_link);
+    stroke-width: 1.5px;
+}
+
+.node-label {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 12px;
+    fill: var(--text); 
+    pointer-events: none; 
+}
+
+.link-label {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    fill: var(--text); 
+    pointer-events: none; 
+}
