@@ -44,13 +44,14 @@
                 {% endif %}
                 
                 <form method="POST">                
-                    <div id="equationBar-container" >
-                        <label id = "equationBar-title" data-lang-key="Algebra_Calculus.title">Assign a Math Problem:</label>
+                    {% csrf_token %}
+                    <div id="equationBar-container">
+                        <label id="equationBar-title" data-lang-key="Algebra_Calculus.title">Assign a Math Problem:</label>
                         <input type="text" name="math_problem" id="equationBar">
                     </div>
-                    
                     <button type="submit" id="equationBar-submit" data-lang-key="Algebra_Calculus.send">Send</button>
                 </form>
+                
 
             </section>
         </main>
