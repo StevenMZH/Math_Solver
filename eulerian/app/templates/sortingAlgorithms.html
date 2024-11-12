@@ -29,9 +29,9 @@
 <body>
 
     <header>
-        {% include 'components/nav.html' %}
-        {% include 'components/paletteSelector.html' %}
-        {% include 'components/languageSelector.html' %}
+        {% include 'components/globals/nav.html' %}
+        {% include 'components/globals/paletteSelector.html' %}
+        {% include 'components/globals/languageSelector.html' %}
     </header>
 
     <main>
@@ -41,13 +41,13 @@
         </div>
 
         <!-- Bar Graph -->
-        <div id="barGraph-container">
+        <div id="barGraph-container" class="divPanel">
             <div id="barGraph"></div>    
         </div>
 
         <div id="sortingAlgorithm-more">
             <!-- Controls for Bar Graph -->
-            <div id="barGraph-controls">
+            <div id="barGraph-controls" class="divPanel">
                 <select id="sortingAlgorithm-selector">
                     <option value="bubbleSort" data-lang-key="sortingAlgorithm.bubbleSort">Bubble Sort</option>
                     <option value="selectionSort" data-lang-key="sortingAlgorithm.selectionSort">Selection Sort</option>
@@ -84,7 +84,7 @@
     
     </main>
     
-    {% include 'components/footer.html' %}
+    {% include 'components/globals/footer.html' %}
 
     <script src="../static/js/paletteSelector.js"></script>
     <script src="../static/js/barGraph.js"></script>

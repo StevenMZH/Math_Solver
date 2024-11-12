@@ -82,3 +82,67 @@ input {
     border-color: var(--a4);
 }
 
+.divPanel {
+    background-color: var(--graph_background);
+    border-radius: 20px;
+    text-align: center;
+    justify-content: center;  
+    align-items: center;   
+}
+
+.sideNav_content{
+    display: flex;
+    height: 100%;
+}
+.sideNav_content .content{
+    width: 100%;
+    height: 100%;
+    margin: 20px;
+}
+.sideNav {
+    padding-top: 50px;
+    height: 100%;
+    justify-content: left;
+    width: 90px;
+    position: fixed;
+    background-color: var(--graph_background);
+}
+.sideNav nav {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--graph_background);
+    text-align: center;
+    justify-content: center;  
+    align-items: center;   
+    width: 100%;
+}
+.sideNav nav ul {
+    list-style: none;
+    width: 100%;
+}
+.sideNav nav ul li {
+    width: 100%;
+    padding: 10px;
+}
+.sideNav nav ul li a {
+    width: 100%;
+    background-color: #00000000;
+    border: none;
+}
+.sideNav nav ul li:hover {
+    background-color: var(--button);
+}
+
+.sideNav-collider {
+    display: flex;
+    height: 100%;
+    justify-content: left;
+    width:100px;
+    z-index: -1;
+    margin-right: 10px;
+}
+
+.divHorizontal {
+    padding: 0px;
+    padding-top: 15px;
+}

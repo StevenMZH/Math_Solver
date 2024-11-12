@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="../static/css/normalize.css">
         <link rel="stylesheet" href="../static/css/webStyle.css">
         <link rel="stylesheet" href="../static/css/palettes.css">
-        <link rel="stylesheet" href="../static/css/components/graphMaker.css">
+        <link rel="stylesheet" href="../static/css/graphTheory.css">
 
         <!-- Components Styles -->
         <link rel="stylesheet" href="../static/css/components/nav.css">
@@ -32,9 +32,9 @@
     <body>
         
         <header>
-            {% include 'components/nav.html' %}
-            {% include 'components/paletteSelector.html' %}
-            {% include 'components/languageSelector.html' %}
+            {% include 'components/globals/nav.html' %}
+            {% include 'components/globals/paletteSelector.html' %}
+            {% include 'components/globals/languageSelector.html' %}
         </header>
         
         <main>
@@ -75,23 +75,20 @@
                 
                 </div> 
                 
-                <div class="diagram-container">
-                    <svg id="graph-svg"></svg>
-                </div>
+                {% include 'components/dataStructs/graph.html' %}
             
             </div>
         </main>
         
-        {% include 'components/Panel_graphAlgorithm.html' %}
-        {% include 'components/Panel_graphDownload.html' %}
+        {% include 'components/panels/Panel_graphAlgorithm.html' %}
+        {% include 'components/panels/Panel_graphDownload.html' %}
         
-        {% include 'components/footer.html' %}
+        {% include 'components/globals/footer.html' %}
 
         <!-- JS -->
         <script src="../static/js/paletteSelector.js"></script>
         <script src="../static/js/languageManager.js"></script>
         <script src="https://d3js.org/d3.v6.min.js"></script>
-        <script src="../static/js/graphMaker.js"></script>
         <script src="../static/js/graphPanels.js"></script>
     
     </body>

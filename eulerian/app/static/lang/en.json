@@ -38,6 +38,13 @@
         "info": "Sorting Algorithm Info",
         "code": "Sorting Algorithm Code"
     },
+    "dataStructures": {
+        "title": "Data Structures: ",
+        "list": "List",
+        "dict": "Hash Map",
+        "sort": "Sort",
+        "search": "Search"
+    },
     "footer": {
         "rights": "© 2024 Eulerian Hades. All rights reserved."
     }

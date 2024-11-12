@@ -38,6 +38,13 @@
         "info": "Información del Algoritmo de Ordenamiento",
         "code": "Código del Algoritmo de Ordenamiento"
     },
+    "dataStructures": {
+        "title": "Estructura de Datos: ",
+        "list": "Lista",
+        "dict": "Hash Map",
+        "sort": "Ordenar",
+        "search": "Buscar"
+    },
     "footer": {
         "rights": "© 2024 Eulerian Hades. Todos los derechos reservados."
     }

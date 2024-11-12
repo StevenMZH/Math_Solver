@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="../static/css/normalize.css">
         <link rel="stylesheet" href="../static/css/webStyle.css">
         <link rel="stylesheet" href="../static/css/palettes.css">
+        <link rel="stylesheet" href="../static/css/underConstruction.css">
 
     
         <!-- Components Styles -->
@@ -37,7 +38,11 @@
         </header>
         
         <main>
-            
+            <h2>{{ pageTitle }}</h2>
+            <h3>Work In Progress...</h3>
+            <div class="divPanel">
+                <img src="../static/images/work-in-progress.png" alt="Under Construction" id="underConstruction-img">
+            </div>
         </main>
         
         {% include 'components/globals/footer.html' %}

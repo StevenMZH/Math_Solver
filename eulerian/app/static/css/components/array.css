@@ -1,0 +1,40 @@
+.array-container {
+    display: flex;
+    margin: 5px 0px;
+    padding: 5px;
+}
+
+.list-container {
+    display: block;
+    margin: 5px 0px;
+    padding: 5px;
+}
+
+.list-item {
+    display:inline-block;
+    align-items: center;
+    margin: 5px 2px;
+}
+
+.list-input {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0;
+    font-size: 10px;
+    text-align: center;
+}
+
+.plusButton {
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.plusButton:hover {
+    background-color: #0056b3;
+}

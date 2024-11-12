@@ -82,7 +82,7 @@ class Graph:
         self.numberOfNodes = len(self.nodesID)
         self.weighted = weighted   
 
-    def add_Link(self, root: Node, target: Node, weight: str, bidirectional: bool = False) -> None:
+    def add_Link(self, root: str, target: str, weight: str, bidirectional: bool = False) -> None:
         """
         Adds a directed link between two nodes with an optional weight.
         
@@ -98,11 +98,11 @@ class Graph:
             If True, adds a link in the opposite direction as well (default is False).
         """
 
-        if (root.id not in self.nodesID) or (target.id not in self.nodesID):
+        if (root not in self.nodesID) or (target not in self.nodesID):
             return 
-        root.link[target.id] = weight
+        self.nodes[root].link[target] = weight
         if bidirectional:
-            target.link[root.id] = weight
+            self.nodes[target].link[root] = weight
 
     def add_Links(self, links: list[list]) -> None:
         """
@@ -245,8 +245,21 @@ class Graph:
 
         plt.show()
 
+    
 
-def Dijkstra(graph: Graph, root: Node, target: Node) -> tuple[float, list]:
+def graphRequest(nodes: list[str], links: list[list], function: str, parameters: list):
+    g = Graph([Node(id) for id in nodes])
+    print(links)
+    g.add_Links(links)
+
+    r = Dijkstra(g, parameters[0], parameters[1])
+
+    return r
+
+
+
+
+def Dijkstra(graph: Graph, root: str, target: str) -> tuple[float, list]:
     """
     Implements Dijkstra's algorithm to find the shortest path in a graph.
 
@@ -264,6 +277,9 @@ def Dijkstra(graph: Graph, root: Node, target: Node) -> tuple[float, list]:
     tuple[float, list]
         A tuple containing the shortest distance and the path as a list of node IDs.
     """
+
+    root = graph.nodes[root]
+    target = graph.nodes[target]
 
     distances = {node_id: float('inf') for node_id in graph.nodesID}
     predecessors = {node_id: None for node_id in graph.nodesID}
@@ -296,19 +312,24 @@ def Dijkstra(graph: Graph, root: Node, target: Node) -> tuple[float, list]:
 
 
 if __name__ == '__main__':
-    """
-    # Creación de nodos
-    q1 = Node('q1')
-    q2 = Node('q2')
-    q3 = Node('q3')
+
+    # # Creación de nodos
+    # q1 = Node('q1')
+    # q2 = Node('q2')
+    # q3 = Node('q3')
+
+    # # Creación del grafo ponderado
+    # G2 = Graph([q1, q2, q3])
+
+    # # Agregar transiciones al grafo
+    # G2.add_Links([ ['q1', 'q2', 3], ['q2', 'q1', 2], ['q1', 'q3', 1, True], ['q2', 'q3', 4] ])
+    # print(Dijkstra(G2, q2, q3))
+    # print(G2.toDict())
+    # # Dibujar el grafo
+    # G2.localDraw()
+
 
     # Creación del grafo ponderado
-    G2 = Graph([q1, q2, q3])
+    r = graphRequest(['q1', 'q2', 'q3'], [ ['q1', 'q2', 3], ['q2', 'q1', 2], ['q1', 'q3', 1, True], ['q2', 'q3', 4] ], 'Dijkstra', ['q1', 'q3'])
+    print(r)
 
-    # Agregar transiciones al grafo
-    G2.add_Links([ [q1, q2, 3], [q2, q1, 2], [q1, q3, 1, True], [q2, q3, 4] ])
-    print(Dijkstra(G2, q2, q3))
-    print(G2.toDict())
-    # Dibujar el grafo
-    G2.localDraw()
-    """

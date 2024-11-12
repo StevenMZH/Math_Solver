@@ -1,13 +1,3 @@
-.graphSolver-container {
-    display: none;
-    justify-content: space-between; 
-    height: 100%;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    z-index: 200;
-}
-
 #graph-svg {
     margin: 15px;
     margin-top: 25px;
@@ -42,4 +32,24 @@
     font-size: 10px;
     fill: var(--text); 
     pointer-events: none; 
+}
+
+
+@media (max-width: 900px) {
+    .graphMaker-container {
+        flex-direction: column; 
+        align-items: center; 
+        padding-top: 25vh;
+    }
+
+    .diagram-container {
+        order: 1;
+        width: 100%; 
+        padding-top: 50px;
+    }
+
+    #graph-svg {
+        margin-top: 150px;
+        margin-bottom: 20px;
+    }
 }
