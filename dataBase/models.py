@@ -42,13 +42,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 # API_Request Model
 class API_Request(models.Model):
     type = models.CharField(max_length=255)
-    content = models.CharField(max_length=500)  # Ajustar según la necesidad
+    content = models.CharField(max_length=500)
     operation = models.CharField(max_length=255)
     time = models.DateTimeField(auto_now_add=True)
 
 # API_Response Model
 class API_Response(models.Model):
     type = models.CharField(max_length=255)
-    request = models.ForeignKey(API_Request, on_delete=models.SET_NULL, null=True, blank=True)  # Ajustado
-    content = models.CharField(max_length=500)  # Agregado max_length
+    request = models.ForeignKey(API_Request, on_delete=models.SET_NULL, null=True, blank=True)
+    content = models.CharField(max_length=500)
     time = models.DateTimeField(auto_now_add=True)
