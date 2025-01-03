@@ -1,0 +1,18 @@
+h2 {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+h3 {
+    font-size: 1em;
+}
+
+#underConstruction-img {
+    width: 300px;
+    height: 300px;
+}
+
+main div {
+    padding: 20px;
+    margin: 20px;
+}

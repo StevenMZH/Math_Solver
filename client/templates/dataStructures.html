@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Eulerian Hades</title>
+    
+    <meta charset="UTF-8">
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="Math">
+    <meta name="author" content="{{ author }}">
+    <meta http-equiv="refresh" content="1800"> <!-- Refresh each 30mins --> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../static/css/normalize.css">
+    <link rel="stylesheet" href="../static/css/webStyle.css">
+    <link rel="stylesheet" href="../static/css/palettes.css">
+    <link rel="stylesheet" href="../static/css/dataStructures.css">
+
+    <!-- Components Styles -->
+    <link rel="stylesheet" href="../static/css/components/nav.css">
+    <link rel="stylesheet" href="../static/css/components/paletteSelector.css">
+    <link rel="stylesheet" href="../static/css/components/footer.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    
+</head>
+
+<body>
+
+    <header>
+        {% include 'components/globals/nav.html' %}
+        {% include 'components/globals/paletteSelector.html' %}
+        {% include 'components/globals/languageSelector.html' %}
+    </header>
+    
+    <main class="divHorizontal">
+
+        <div class="sideNav_content">
+
+            <div class="sideNav-collider"></div>
+
+            <div class="sideNav">
+                <nav>
+                    <ul>
+                        <li><a href="/dataStructures?struct=arrays">Array</a></li>
+                        <li><a href="/dataStructures?struct=matrixs">Matrix</a></li>
+    
+                        <li><a href="/dataStructures?struct=linkedLists">Linked-List</a></li>
+                        <li><a href="/dataStructures?struct=stacks">Stack</a></li>
+                        <li><a href="/dataStructures?struct=queques">Queque</a></li>
+    
+                        <li><a href="/dataStructures?struct=trees">Trees</a></li>
+                        <li><a href="/dataStructures?struct=heaps">Heaps</a></li>
+                        <li><a href="/dataStructures?struct=tries">Tries</a></li>
+    
+                        <li><a href="/dataStructures?struct=graphs">Graphs</a></li>
+                        <li><a href="/dataStructures?struct=sets">Sets</a></li>
+                        <li><a href="/dataStructures?struct=hashMaps">Hash-Maps</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="content">
+                <label>Data Structures: </label>
+    
+                {% if selected_struct == 'arrays' %}
+                    {% include 'components/dataStructs/array.html' %}
+
+                    <div class="divPanel contractableMenu"> 
+                        <button class="menuButton">Info</button>
+                        <div class="menuContent article">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                    </div>
+        
+                    <div class="options divPanel contractableMenu">
+                        <button class="menuButton">Methods </button>
+
+                        <div class="menuContent arrayMethods">
+                            <div class="divMethod">
+                                <button id="appendButton">Append</button> <input type="text" placeholder="value" id="appendInput">
+                            </div>
+                            <div class="divMethod">
+                                <button id="insertButton" >Insert</button> <input type="text" placeholder="index" id="insertIndex"> <input type="text" placeholder="value" id="insertInput">
+                            </div>
+                            <div class="divMethod">
+                                <button id="popButton">Pop</button> <input type="text" placeholder="index" id="popIndex">
+                            </div>                            
+                            <div class="divMethod">
+                                <button id="searchButton">Search</button> <input type="text" placeholder="value" id="searchInput">
+                            </div>
+                            <div class="divMethod">
+                                <button id="sortButton">Sort</button>
+                            </div>
+                            <div class="divMethod">
+                                <button id="clearButton">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                        
+                {% elif selected_struct == 'matrixs' %}
+                    <div>
+                        <div class="contractableMenu"> 
+                            <button class="menuButton">Info</button>
+                            <div class="menuContent">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contractableMenu"> 
+                            <button class="menuButton">Methods</button>
+                            <div class="menuContent">
+                                
+                            </div>
+                        </div>
+
+                    </div>
+
+                {% elif selected_struct == 'graphs' %}
+                    {% include 'components/dataStructs/graph.html' %}
+
+
+                {% else %}
+                    <p>Structure not found!</p>
+                {% endif %}
+
+        
+
+            </div>
+
+        </div>
+
+        
+    </main>
+    
+    {% include 'components/globals/footer.html' %}
+
+    <!-- JS -->
+    <script src="../static/js/paletteSelector.js"></script>
+    <script src="../static/js/languageManager.js"></script>
+    <script src="../static/js/dataStructures.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          document.querySelectorAll('.menuButton').forEach(button => {
+            button.addEventListener('click', () => {
+              const menuContent = button.nextElementSibling;
+              if (menuContent.style.display === 'none' || menuContent.style.display === '') {
+                menuContent.style.display = 'block';
+              } else {
+                menuContent.style.display = 'none';
+              }
+            });
+          });
+        });
+    </script>        
+
+</body>
+</html>
