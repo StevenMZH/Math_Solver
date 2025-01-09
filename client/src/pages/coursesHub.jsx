@@ -1,66 +1,45 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import CourseReviewPanel from "../components/courses/courseReviewPanel";
-
 import PaletteSelector from '../components/global/paletteSelector';
 import LanguageSelector from '../components/global/languageSelector';
 import Footer from '../components/global/footer';
 import HomeNav from '../components/home/homeNav';
+import SearchBar from '../components/global/searchBar';
 
 export function CoursesHub() {
+    const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8000/dataBase/courses/')
+            .then(response => {
+                setCourses(response.data);
+            })
+            .catch(error => {
+                console.error("Hubo un error al obtener los cursos:", error);
+            });
+    }, []);
+
     return (
         <div className='pageContainer'>
             <header>
-                <HomeNav/>
+                <HomeNav />
                 <PaletteSelector />
-                <LanguageSelector />
             </header>
 
             <main>
-                <div className='Filtro'>
-
-                </div>
                 <div className="coursesGrid">
+                {courses.map(course => (
                     <CourseReviewPanel
-                        id="mathFundaments"
-                        title="Fundamentos Matematicos"
-                        type="math"
-                        description="evonnnjveonveov eoveveoiveoehvjejv ev jeivjeiovejvioev efivjeov eoive"
-                        topics={["Aritmetica", "Algebra", "Trigonometria","Aritmetica", "Algebra", "Trigonometria","Aritmetica", "Algebra", "Trigonometria","Aritmetica", "Algebra", "Trigonometria","Aritmetica", "Algebra", "Trigonometria","Aritmetica", "Algebra", "Trigonometria","Aritmetica", "Algebra", "Trigonometria","Aritmetica", "Algebra", "Trigonometria","Aritmetica", "Algebra", "Trigonometria"]}
+                        key={course.id}
+                        id={course.id}
+                        title={course.name}
+                        type={course.field}
+                        description={course.description}
+                        units={course.units} // Pasamos las unidades del curso
                     />
+                ))}
 
-                    <CourseReviewPanel
-                        id="linealAlgebra"
-                        title="Algebra Lineal"
-                        type="math"
-                        description="efefef ejfejfefke fkefjkefj ekfje owfiwjfh wfhwufhwofhwof wf wofhwfohwfh wo bnowc wf"
-                        topics={["Vectores", "Matrices", "Espacio Vectorial"]}
-                    />
-
-                    <CourseReviewPanel
-                        id="discreteMath"
-                        title="Matematicas Discretas"
-                        type="math"
-                        description="eff ef efefvgbevbev"
-                        topics={["Combinatoria", "Conjuntos", "Algebra Booleana"]}
-                    />
-
-                    <CourseReviewPanel
-                        id="programmingFundaments"
-                        title="Fundamentos de Programacion"
-                        type="cs"
-                        description="Compatibilidad: La técnica de -webkit-line-clamp no funciona en Firefox, por lo que es recomendable probar la apariencia en diferentes navegadores.
-Soluciones alternativas: Si necesitas algo más avanzado y compatible con todos los navegadores, puedes usar JavaScript para calcular dinámicamente el truncamiento.
-Compatibilidad: La técnica de -webkit-line-clamp no funciona en Firefox, por lo que es recomendable probar la apariencia en diferentes navegadores.
-Soluciones alternativas: Si necesitas algo más avanzado y compatible con todos los navegadores, puedes usar JavaScript para calcular dinámicamente el truncamiento.`````"
-                        topics={["defvdv", "eveve"]}
-                    />
-
-                    <CourseReviewPanel
-                        id="dataStructures"
-                        title="Estructura de Datos"
-                        type="cs"
-                        description="eff ef efefvgbevbev"
-                        topics={["eef ef", "feeffe", "ef efefefe", "dfefef efef", "dffefe"]}
-                    />
                 </div>
 
                 <style>{`
@@ -75,11 +54,25 @@ Soluciones alternativas: Si necesitas algo más avanzado y compatible con todos 
                         gap: 10px;
                     }
 
+                    @media (max-width: 1200px) {
+                        .coursesGrid {
+                            grid-template-columns: repeat(3, 1fr);
+                        }
+                    }
+                    @media (max-width: 900px) {
+                        .coursesGrid {
+                            margin-top: 60px;
+                            grid-template-columns: repeat(1, 1fr);
+                        }
+                        .panel-container {
+                            height: auto;
+                            margin: 0;
+                        }
+                    }
                 `}</style>
-
             </main>
 
-            <Footer/>
+            <Footer />
         </div>
     );
 }

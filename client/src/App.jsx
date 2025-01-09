@@ -1,8 +1,14 @@
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+
 import Home from './pages/home';
+
 import CoursesHub from './pages/coursesHub';
-import Exercises from './pages/exercises';
+import Course from './pages/course';
+
+import Class from './pages/class';
 import Articles from './pages/articles';
+import Exercises from './pages/exercises';
+
 
 import Algebra from './pages/algebra';
 
@@ -15,6 +21,8 @@ function App() {
                 <Route path="/home" element={<Home/>}/>
 
                 <Route path='/courses' element={<CoursesHub/>}/>
+                <Route path="/courses/:courseId" element={<Course />} />
+                <Route path="/courses/:courseId/:classId" element={<Class/>} />
                 <Route path='/exercises' element={<Exercises/>}/>
                 <Route path='/articles' element={<Articles/>}/>
 

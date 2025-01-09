@@ -52,3 +52,48 @@ class API_Response(models.Model):
     request = models.ForeignKey(API_Request, on_delete=models.SET_NULL, null=True, blank=True)
     content = models.CharField(max_length=500)
     time = models.DateTimeField(auto_now_add=True)
+
+from django.db import models
+
+class Course(models.Model):
+    id = models.CharField(primary_key=True, max_length=64, unique=True)
+    name = models.CharField(max_length=100)
+    field = models.CharField(max_length=100, choices=[
+        ('math', 'Mathematics'),
+        ('cs', 'Computer Science'),
+        ('physics', 'Physics'),
+        ('electronics', 'Electronics'),
+    ])
+    description = models.CharField(max_length=255)
+    formulas = models.JSONField(blank=True, default=list)
+
+    def __str__(self):
+        return f"Course {self.id}: {self.name}"
+
+
+class CourseUnit(models.Model):
+    id = models.CharField(primary_key=True, max_length=64, unique=True)
+    name = models.CharField(max_length=100)
+    course = models.ForeignKey(Course, related_name='units', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Unit {self.id}: {self.name}"
+
+
+class CourseClass(models.Model):
+    id = models.CharField(primary_key=True, max_length=64, unique=True)
+    name = models.CharField(max_length=100)
+    class_type = models.CharField(max_length=50, choices=[
+        ('theory', 'Theory'),
+        ('practice', 'Practice'),
+        ('test', 'Test'),
+    ])
+    content = models.TextField()  # El contenido en formato HTML puede ser almacenado como texto
+    order = models.IntegerField()  # Este campo permitirá ordenar las clases dentro de la unidad
+    units = models.ManyToManyField(CourseUnit, related_name='classes')  # Relación de muchas unidades a muchas clases
+
+    def __str__(self):
+        return f"Class {self.id}: {self.name}"
+
+    class Meta:
+        ordering = ['order']  # Ordena las clases por el campo 'order' por defecto

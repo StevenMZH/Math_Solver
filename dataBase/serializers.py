@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, API_Request, API_Response
+from .models import User, API_Request, API_Response, Course, CourseUnit, CourseClass
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -33,3 +33,25 @@ class APIResponseSerializer(serializers.ModelSerializer):
         if not API_Request.objects.filter(id=data['request'].id).exists():
             raise serializers.ValidationError("The referenced API Request does not exist.")
         return data
+
+
+class CourseClassSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseClass
+        fields = ['id', 'name', 'class_type', 'content', 'order']
+
+
+class CourseUnitSerializer(serializers.ModelSerializer):
+    classes = CourseClassSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = CourseUnit
+        fields = ['id', 'name', 'course', 'classes']
+
+
+class CourseSerializer(serializers.ModelSerializer):
+    units = CourseUnitSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Course
+        fields = ['id', 'name', 'field', 'description', 'formulas', 'units']

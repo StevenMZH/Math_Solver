@@ -1,11 +1,10 @@
 @import url('./css/palettes.css');
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
 
-html, body, #root, .pageContainer {
+html, body {
     height: 100%;
     margin: 0;
 }
-
 body, .pageContainer {
     background-color: var(--background);
     color: var(--text);
@@ -19,7 +18,6 @@ body, .pageContainer {
     font-family: 'Comfortaa', sans-serif;
     font-optical-sizing: auto;
 }
-
 main {
     display: block;
     flex: 1;
@@ -32,7 +30,6 @@ main {
     margin-top: 60px;
 }
 
-
 button {
     background-color: var(--button);
     color: var(--text);
@@ -43,10 +40,6 @@ button {
 button:hover {
     background-color: var(--button_hover);
     color: var(--text);
-}
-.normalButton {
-    padding: 5px 15px;
-    border-radius: 20px;
 }
 
 
@@ -62,196 +55,75 @@ select {
 }
 
 input {
-    background-color: var(--button);
-    color: var(--text);
+    padding: 5px 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
+    color: var(--text);
+    background-color: var(--button);
     cursor: pointer;
     transition: background-color 0.3s;
-    padding: 5px 10px;
-    border-radius: 20px;
 }
 
-#language-selector {
-    position: relative;
-    bottom: 8px;
-    right: 60px;
-    padding: 0 3px;
-    margin-right: 5px;
-    border: 1px;
-    border-color: var(--a4);
-}
-
-.divPanel {
-    background-color: var(--graph_background);
-    border-radius: 20px;
-    text-align: center;
-    justify-content: center;  
-    align-items: center;   
-}
-
-.sideNav_content{
-    display: flex;
-    height: 100%;
-}
-.sideNav_content .content{
-    width: 100%;
-    height: 100%;
-    margin: 20px;
-}
-.sideNav {
-    padding-top: 50px;
-    height: 100%;
-    justify-content: left;
-    width: 90px;
-    position: fixed;
-    background-color: var(--graph_background);
-}
-.sideNav nav {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--graph_background);
-    text-align: center;
-    justify-content: center;  
-    align-items: center;   
-    width: 100%;
-}
-.sideNav nav ul {
-    list-style: none;
-    width: 100%;
-}
-.sideNav nav ul li {
-    width: 100%;
-    padding: 10px;
-}
-.sideNav nav ul li a {
-    width: 100%;
-    background-color: #00000000;
-    border: none;
-}
-.sideNav nav ul li:hover {
-    background-color: var(--button);
-}
-
-.sideNav-collider {
-    display: flex;
-    height: 100%;
-    justify-content: left;
-    width:100px;
-    z-index: -1;
-    margin-right: 10px;
-}
-
-.divHorizontal {
-    padding: 0px;
-    padding-top: 15px;
-}
-
-
-header {
-    background-color: var(--header);
-    width: 100%;
+/* Panels */
+.panelContainer {
     padding: 20px;
-    padding-bottom: 15px;
-    color: var(--text);
+    margin: 10px 0;
+    border: 5px solid var(--panel1);
+    border-radius: 10px;
+    background-color: var(--panel1);
+    text-align: center;
+    position: relative;
+}
+.panel-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    position: fixed;
-    top: 0;
-    z-index: 1000; 
-}
-header h1 {
-    margin: 0;
-    font-size: 1em;
-    font-family: Comfortaa;
+    margin-bottom: 10px;
 }
 
-.nav-container nav {
-    margin-top: 5px;
-    margin-left: auto;
-}
-.main-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 8px;
-}
-a {
-    text-decoration: none;
-    background-color: var(--button);
-    color: var(--text);
-    padding: 3px 5px;
-    border: 2px solid var(--button);
-    border-radius: 25px;
-    transition: background-color 0.3s, color 0.3s;
-    font-size: 0.65em;
-}
-a:hover {
-    background-color: var(--button_hover);
-    border: 2px solid var(--button_hover);
-    color: var(--text);
+/* Images */
+.circleImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 
-
-.main-menu li {
-    display: block;
+/* Special Funtions */
+.overflowScrollBar_yPanel {
+    max-height: 90px; /* Max height of the panel */
+    list-style-type: disc;
+    overflow-y: auto; /* Adds a scrollbar if the content is exceed the max height */
+    overflow-x: hidden;
+}
+.overflowScrollBar_yPanel::-webkit-scrollbar {
+    width: 6px;
+}
+.overflowScrollBar_yPanel::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 10px;
+}
+.overflowScrollBar_yPanel::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+.overflowScrollBar_yPanel::-webkit-scrollbar-thumb:hover {
+    background: #444;
 }
 
-.main-menu li a {
-    text-decoration: none;
+/* ScrollBar */
+::-webkit-scrollbar {
+    width: 12px;
+    height:12px;
+  }  
+::-webkit-scrollbar-track {
+    background: var(--scrollBar_bg);
 }
-
-.submenu {
-    display: none;
-    position: absolute;
-    top: 25px;
-    padding: 10px;
-    border: solid var(--button_hover);
-    border-radius: 5px;
-    background-color: var(--graph_background);
-    top: 70px;
-    width: 200px;
+::-webkit-scrollbar-thumb {
+    background: var(--scrollBar);
+    border-radius: 10px;
+} 
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollBar_hover);
 }
-
-.submenu li{
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.main-menu li:hover > .submenu {
-    display: absolute;
-}
-
-
-
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        padding: 10px;
-        align-items: flex-start;
-    }
-    header h1 {
-        font-size: 1.2em;
-    }
-    
-    .nav-container nav {
-        align-self: flex-start;
-    }
-    .nav-container nav ul li a {
-        font-size: 0.7em;
-        margin: 0;
-        padding: 2px 5px;
-    }
-    .nav-container nav ul {
-        flex-direction: column;
-        gap: 5px;
-    }
-}
-
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 1em;
-    }
-}
+  

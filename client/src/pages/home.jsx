@@ -1,10 +1,5 @@
 import {Link} from 'react-router-dom';
-
-import '../css/normalize.css';
-import '../css/webStyle.css';
-import '../css/indexStyle.css';
 import '../css/components/nav.css';
-import '../css/components/paletteSelector.css';
 import PaletteSelector from '../components/global/paletteSelector';
 import LanguageSelector from '../components/global/languageSelector';
 import Footer from '../components/global/footer';
@@ -16,7 +11,6 @@ export function Home() {
             <header>
                 <HomeNav/>
                 <PaletteSelector />
-                <LanguageSelector />
             </header>
             <main>
                 <div className='sectionsDiv'>
