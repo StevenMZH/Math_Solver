@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 export function CourseReviewPanel({ id, title, type, description, units }) {
 
     const topicImages = {
-        math: { src: "../../../images/defaultImage.png", alt: "Math" },
+        math: { src: "../../../images/integral.svg", alt: "Math" },
         physics: { src: "../../../images/defaultImage.png", alt: "Physics" },
-        cs: { src: "../../../images/defaultImage.png", alt: "Computer Science" },
+        cs: { src: "../../../images/cs.png", alt: "Computer Science" },
         electronics: { src: "../../../images/defaultImage.png", alt: "Electronics" },
     };
-    const defaultImage = { src: "images/example5.jpg", alt: "" };
+    const defaultImage = { src: "../../../images/defaultImage.png", alt: "" };
     const topicImage = topicImages[type] || defaultImage;
     const topics = units.map(unit => unit.name);
 
@@ -50,6 +50,7 @@ export function CourseReviewPanel({ id, title, type, description, units }) {
                     width: 50px;
                     height: 50px;
                     margin-right: 10px;
+                    background-color: var(--imageBg);
                 }
 
                 .panel-body {

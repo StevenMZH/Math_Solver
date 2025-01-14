@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CourseReviewPanel from "../components/courses/courseReviewPanel";
-import PaletteSelector from '../components/global/paletteSelector';
-import LanguageSelector from '../components/global/languageSelector';
 import Footer from '../components/global/footer';
-import HomeNav from '../components/home/homeNav';
-import SearchBar from '../components/global/searchBar';
+import HomeNav from '../components/nav/homeNav';
 
 export function CoursesHub() {
     const [courses, setCourses] = useState([]);
@@ -24,21 +21,20 @@ export function CoursesHub() {
         <div className='pageContainer'>
             <header>
                 <HomeNav />
-                <PaletteSelector />
             </header>
 
             <main>
                 <div className="coursesGrid">
-                {courses.map(course => (
-                    <CourseReviewPanel
-                        key={course.id}
-                        id={course.id}
-                        title={course.name}
-                        type={course.field}
-                        description={course.description}
-                        units={course.units} // Pasamos las unidades del curso
-                    />
-                ))}
+                    {courses.map(course => (
+                        <CourseReviewPanel
+                            key={course.id}
+                            id={course.id}
+                            title={course.name}
+                            type={course.field}
+                            description={course.description}
+                            units={course.units} // Pasamos las unidades del curso
+                        />
+                    ))}
 
                 </div>
 
@@ -61,12 +57,17 @@ export function CoursesHub() {
                     }
                     @media (max-width: 900px) {
                         .coursesGrid {
-                            margin-top: 60px;
+                            margin-top: 10px;
                             grid-template-columns: repeat(1, 1fr);
                         }
                         .panel-container {
                             height: auto;
                             margin: 0;
+                        }
+                    }
+                    @media (max-width: 768px) {
+                        .coursesGrid {
+                            margin-top: 40px;
                         }
                     }
                 `}</style>

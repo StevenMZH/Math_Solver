@@ -78,6 +78,7 @@ TEMPLATES = [
 
 AUTH_USER_MODEL = 'dataBase.User'
 
+
 WSGI_APPLICATION = 'eulerian.wsgi.application'
 
 

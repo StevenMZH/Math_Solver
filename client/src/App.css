@@ -18,6 +18,10 @@ body, .pageContainer {
     font-family: 'Comfortaa', sans-serif;
     font-optical-sizing: auto;
 }
+body.theme-changing * {
+    transition: none;
+}
+
 main {
     display: block;
     flex: 1;
@@ -64,6 +68,13 @@ input {
     transition: background-color 0.3s;
 }
 
+/* Inputs */
+.searchBar {
+    background-color: var(--bar);
+    color: var(--text2);                
+    border-radius: 20px;
+}
+
 /* Panels */
 .panelContainer {
     padding: 20px;
@@ -89,7 +100,13 @@ input {
     flex-shrink: 0;
 }
 
-/* Special Funtions */
+/* Funtion Adder's Classes */
+.flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .overflowScrollBar_yPanel {
     max-height: 90px; /* Max height of the panel */
     list-style-type: disc;

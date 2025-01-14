@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import PaletteSelector from '../components/global/paletteSelector';
-import LanguageSelector from '../components/global/languageSelector';
 import Footer from '../components/global/footer';
-import HomeNav from '../components/home/homeNav';
+import HomeNav from '../components/nav/homeNav';
 import CourseUnit from '../components/courses/courseUnits';
 import CourseProgress from '../components/courses/courseProgress';
 import FormulaSheet from '../components/courses/formulaSheet';
@@ -31,7 +29,6 @@ export function Course() {
         <div className='pageContainer'>
             <header>
                 <HomeNav />
-                <PaletteSelector />
             </header>
 
             <main>
@@ -100,16 +97,12 @@ export function Course() {
                         .progress-formula {
                             position: static;
                         }
-                        .progress-container, .sheet-container {
-                            width: 70vw;
+                        .progress-container, .sheet-container, .unit-container {
+                            width: 90vw;
                         }
                     }
 
                     @media (max-width: 600px) {
-                        .progress-container, .sheet-container, .unit-container {
-                            width: 90vw;
-                        }
-
                         .class-container a {
                             width: 70%;
                         }

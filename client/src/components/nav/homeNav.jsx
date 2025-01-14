@@ -1,43 +1,89 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Logo0 from "./logos/logo0";
+import Logo1 from "./logos/logo1";
+import Logo2 from "./logos/logo2";
+import Logo3 from "./logos/logo3";
+import Logo4 from "./logos/logo4";
+import SearchBar from './searchBar';
+import PaletteSelector from './paletteSelector';
+import UserPanel from './userPanel';
 
 export function HomeNav() {
     return (
-        <div className="nav-container">
-            <h1>Eulerian Hades</h1>
-            <nav>
-                <ul className="main-menu">
-                    <li>
-                        <Link to="/articles">Articles</Link>
-                    </li>
-                    <li>
-                        <Link to="/courses">Courses</Link>
-                    </li>
-                    <li>
-                        <Link to="/exercises">Exercises</Link>
-                    </li>
-                </ul>
-            </nav>
+        <div className="flexCenter nav-container">
+            <div className='leftNav'>
+                <Logo4 />
+
+                <nav>
+                    <ul className="main-menu">
+                        <li>
+                            <Link to="/articles">Articles</Link>
+                        </li>
+                        <li>
+                            <Link to="/courses">Courses</Link>
+                        </li>
+                        <li>
+                            <Link to="/exercises">Exercises</Link>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div className='flexCenter centerNav'>
+                <SearchBar />
+            </div>
+
+            <div className='flexCenter rightNav'>
+                <div className='logInButtons-container'>
+                    <Link to={`/login`}>Log In</Link>
+                    <Link to={`/sign_up`}>Sign Up</Link>
+                </div>
+                <PaletteSelector />
+                <UserPanel />
+            </div>
+
             <style>{`
                 header {
                     background-color: var(--header);
                     width: 100%;
-                    padding: 20px;
-                    padding-bottom: 15px;
+                    padding: 15px 20px;
                     color: var(--text);
                     justify-content: space-between;
                     align-items: center;
                     top: 0;
-                }
-                header h1 {
-                    margin: 0;
-                    font-size: 1em;
                     font-family: Comfortaa;
                 }
-
+                .nav-container {
+                    display: flex;
+                    width: 100%;
+                    justify-content: start;
+                }
                 .nav-container nav {
                     margin-top: 5px;
                     margin-left: auto;
                 }
+
+                .leftNav {
+                    width: 100%;
+                    justify-content: start;
+                }
+                .centerNav {
+                    width: 100%;
+                    justify-content: center;
+                }
+                .rightNav {
+                    width: 100%;
+                    justify-content: end;
+                }
+
+                .logInButtons-container {
+                    margin-right: 5px;
+                }
+                .logInButtons-container a {
+                    padding: 10px;
+                }
+
+
                 .main-menu {
                     list-style: none;
                     padding: 0;

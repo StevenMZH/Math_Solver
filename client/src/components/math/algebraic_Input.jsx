@@ -13,7 +13,7 @@ function AlgebraicInput() {
         setOutput('');
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/simplify/', { equation: input});
+            const response = await axios.post('http://127.0.0.1:8000/api/simplify/', { equation: input });
             setOutput(response.data.simplified_equation);
             setInputLatex(response.data.inputLatex);
         } catch (err) {
@@ -42,11 +42,15 @@ function AlgebraicInput() {
             {error && <p style={{ color: 'red' }}>{error}</p>}
 
             <form onSubmit={handleSubmit}>
-                <div id="equationBar-container">
-                    <label id="equationBar-title" data-lang-key="Algebra_Calculus.title"> Assign a Math Problem: </label>
-                    <input type="text" name="math_problem" id="equationBar" placeholder="Type equation here" value={input} onChange={(e) => setInput(e.target.value)} />
+                <label id="equationBar-title" data-lang-key="Algebra_Calculus.title"> Assign a Math Problem: </label>
+                <div id="equationBar-container" className='flexCenter'>
+                    <input type="text" name="math_problem" className='searchBar' id="equationBar" placeholder="Type equation here" value={input} onChange={(e) => setInput(e.target.value)} />
+                    <div className='button-container'>
+                        <button type="submit" className='searchButton' id="equationBar-submit" data-lang-key="Algebra_Calculus.send">
+                            <img className='searchIcon' src='../../../public/images/search_Icon.png' alt="search" />
+                        </button>
+                    </div>
                 </div>
-                <button type="submit" id="equationBar-submit" data-lang-key="Algebra_Calculus.send"> Send </button>
             </form>
 
         </div>

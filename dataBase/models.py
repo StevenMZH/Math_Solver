@@ -53,7 +53,7 @@ class API_Response(models.Model):
     content = models.CharField(max_length=500)
     time = models.DateTimeField(auto_now_add=True)
 
-from django.db import models
+
 
 class Course(models.Model):
     id = models.CharField(primary_key=True, max_length=64, unique=True)

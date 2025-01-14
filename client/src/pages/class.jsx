@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import PaletteSelector from '../components/global/paletteSelector';
-import LanguageSelector from '../components/global/languageSelector';
-import HomeNav from '../components/home/homeNav';
+import HomeNav from '../components/nav/homeNav';
 import Footer from '../components/global/footer';
 
 
@@ -37,7 +35,6 @@ export function Class() {
         <div className="pageContainer">
             <header>
                 <HomeNav />
-                <PaletteSelector />
             </header>
             <main>
                 <div className="panelContainer class-header">

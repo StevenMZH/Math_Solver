@@ -5,6 +5,11 @@
     --a3: #cfcfd7;
     --a4: #f7fcff;
     --alpha: #00000000;
+    
+    --logoBg: #4040ff;
+    --logoFont: #f7fcff;
+
+    --imageBg: #e7e7e7;
 
     --background: #090909;
     --header: #17191a;
@@ -36,6 +41,10 @@
     --scrollBar: #777;
     --scrollBar_hover: #555;
     --scrollBar_bg: #f1f1f1;
+
+    --scrollBar2: #777;
+    --scrollBar2_hover: #555;
+    --scrollBar2_bg: #f1f1f1;
 }
 
 
@@ -46,6 +55,11 @@
     --a3: #cfcfd7;
     --a4: #f7fcff;
     --alpha: #00000000;
+
+    --logoBg: #4040ff;
+    --logoFont: #f7fcff;
+
+    --imageBg: #e7e7e7;
 
     --background: #090909;
     --header: #17191a;
@@ -77,6 +91,10 @@
     --scrollBar: #777;
     --scrollBar_hover: #555;
     --scrollBar_bg: #f1f1f1;
+ 
+    --scrollBar2: #777;
+    --scrollBar2_hover: #555;
+    --scrollBar2_bg: #f1f1f1;
 }
 
 .light {
@@ -86,6 +104,11 @@
     --a3: #cfcfd7;
     --a4: #f7fcff;
     --alpha: #00000000;
+
+    --logoBg: #4040ff;
+    --logoFont: #f7fcff;
+
+    --imageBg: #a5c0c4;
 
     --background: #a5c0c4;
     --header: #f7fcff;
@@ -117,4 +140,8 @@
     --scrollBar: #999;
     --scrollBar_hover: #777;
     --scrollBar_bg: #ccc;
+
+    --scrollBar2: #777;
+    --scrollBar2_hover: #555;
+    --scrollBar2_bg: #f1f1f1;
 }

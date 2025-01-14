@@ -6,34 +6,37 @@ export function PaletteSelector() {
     );
 
     useEffect(() => {
+        document.body.classList.add('theme-changing');
         document.body.classList.remove('dark', 'light');
         document.body.classList.add(theme);
         localStorage.setItem('theme', theme);
+
+        const timeout = setTimeout(() => {
+            document.body.classList.remove('theme-changing');
+        }, 50);
+
+        return () => clearTimeout(timeout);
     }, [theme]);
 
     const handleThemeChange = (selectedTheme) => {
         console.log(`Selected theme: ${selectedTheme}`);
         setTheme(selectedTheme);
     };
-
     return (
         <div className="paletteSelectorContainer">
             <button name="darkTheme_Button" id="darkTheme_Button" className="roundButton" onClick={() => handleThemeChange('dark')}></button>
             <button name="lightTheme_Button" id="lightTheme_Button" className="roundButton" onClick={() => handleThemeChange('light')}></button>
-            
+
             <style>{`
                 .paletteSelectorContainer {
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
                     display: flex;
                     align-items: center;
                     color: var(--text);
-                    font-size: 0.9em;
+                    margin-right: 5px;
                 }
 
                 .roundButton {
-                    margin-left: 5px;
+                    margin: 0 2px;
                     padding: 10px;
                     border-radius: 30px;
                     border: 2px solid;

@@ -1,15 +1,12 @@
 import AlgebraicInput from '../components/math/algebraic_Input';
 import Nav from '../components/global/nav';
-import { PaletteSelector } from '../components/global/paletteSelector';
-import { LanguageSelector } from '../components/global/languageSelector';
-import { Footer } from '../components/global/footer';
+import Footer from '../components/global/footer';
 
 export function Algebra() {
     return (
         <div className='pageContainer'>
             <header>
                 <Nav />
-                <PaletteSelector />
             </header>
             <main>
                 <section>
@@ -17,7 +14,7 @@ export function Algebra() {
                 </section>
             </main>
             <Footer />
-            
+
             <style>{`
                 @import url('palettes.css');
                 main {
@@ -42,24 +39,61 @@ export function Algebra() {
                     display: block; 
                 }
 
-                #equationBar {
+                #equationBar-container {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    position: relative;
+                    width: fit-content; /* Ajusta el ancho al contenido */
                     margin-top: 10px;
                     margin-bottom: 10px;
+                }
+                
+                #equationBar {
+
                     width: 700px;
                     height: 40px;
                     padding: 10px;
-                    border-radius: 20px;
-                    background-color: var(--bar);
-                    color: var(--text2);
                     border: none;
                     cursor: pointer;
                     transition: background-color 0.3s, color 0.3s;
                     font-size: 13px;
                 }
 
-                #equationBar-submit {
-                    padding: 10px 20px;
+                .button-container {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    display: flex;
+                    justify-content: end;
+                    align-items: center;
                 }
+
+                .searchButton {
+                    top: 0;
+                    position: absolute;
+                    margin-top: 2px;
+                    margin-right: 3px;
+                    border: none;
+                    background-color: #00000000;
+                    border-radius: 50%;
+                    padding: 10px;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;    
+                }
+                .searchButton:hover {
+                    background-color: #00000022;
+                }
+                .searchIcon {
+                    width: 16px;
+                    height: 16px;
+                    flex-shrink: 0;
+                }
+
 
                 @media (max-width: 768px) {
                     #equationBar {
