@@ -1,4 +1,8 @@
-env/
+env/ 
 __pycache__/
 *.pyc
 *.pyo
+.vscode/
+db.sqlite3
+
+.codegpt

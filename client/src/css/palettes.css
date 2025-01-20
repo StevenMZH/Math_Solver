@@ -1,0 +1,147 @@
+:root {
+    --a0: #090909;
+    --a1: #17191a;
+    --a2: #212125;
+    --a3: #cfcfd7;
+    --a4: #f7fcff;
+    --alpha: #00000000;
+    
+    --logoBg: #4040ff;
+    --logoFont: #f7fcff;
+
+    --imageBg: #e7e7e7;
+
+    --background: #090909;
+    --header: #17191a;
+    
+    --button: #17191a;
+    --button_hover: #212125;
+
+    --bar: #e7e7e7;
+
+    --panel1: #111;
+    --panel2: #333;
+    --panel3: #555;
+
+    --text: #e7e7e7;
+    --text2: #0c0c0c;
+
+    --graph_background: #111111;
+    --graph_border: #e7e7e7;
+    --graph_fill: #212125;
+    --graph_link: #212125;
+
+    --r: #a2574f;
+    --g: #4fa259;
+    --b: #4f88a2;
+    --r_hover: #e18a81;
+    --g_hover: #78d783;
+    --b_hover: #88c1db;
+
+    --scrollBar: #777;
+    --scrollBar_hover: #555;
+    --scrollBar_bg: #f1f1f1;
+
+    --scrollBar2: #777;
+    --scrollBar2_hover: #555;
+    --scrollBar2_bg: #f1f1f1;
+}
+
+
+.dark {
+    --a0: #090909;
+    --a1: #17191a;
+    --a2: #212125;
+    --a3: #cfcfd7;
+    --a4: #f7fcff;
+    --alpha: #00000000;
+
+    --logoBg: #4040ff;
+    --logoFont: #f7fcff;
+
+    --imageBg: #e7e7e7;
+
+    --background: #090909;
+    --header: #17191a;
+    
+    --button: #17191a;
+    --button_hover: #212125;
+    
+    --bar: #e7e7e7;
+
+    --panel1: #111;
+    --panel2: #333;
+    --panel3: #555;
+
+    --text: #e7e7e7;
+    --text2: #0c0c0c;
+
+    --graph_background: #111111;
+    --graph_border: #e7e7e7;;
+    --graph_fill: #212125;
+    --graph_link: #212125;
+
+    --r: #a2574f;
+    --g: #4fa259;
+    --b: #4f88a2;
+    --r_hover: #e18a81;
+    --g_hover: #78d783;
+    --b_hover: #88c1db;
+
+    --scrollBar: #777;
+    --scrollBar_hover: #555;
+    --scrollBar_bg: #f1f1f1;
+ 
+    --scrollBar2: #777;
+    --scrollBar2_hover: #555;
+    --scrollBar2_bg: #f1f1f1;
+}
+
+.light {
+    --a0: #090909;
+    --a1: #17191a;
+    --a2: #212125;
+    --a3: #cfcfd7;
+    --a4: #f7fcff;
+    --alpha: #00000000;
+
+    --logoBg: #4040ff;
+    --logoFont: #f7fcff;
+
+    --imageBg: #a5c0c4;
+
+    --background: #a5c0c4;
+    --header: #f7fcff;
+    
+    --button: #f7fcff;
+    --button_hover: #d2dee4;
+    
+    --bar: #e7e7e7;
+
+    --panel1: #f7fcff;
+    --panel2: #bbb;
+    --panel3: #ddd;
+
+    --text: #0c0c0c;
+    --text2: #0c0c0c;
+
+    --graph_background: #c8dcdf;
+    --graph_border: #17191a;
+    --graph_fill: #17191a;
+    --graph_link: #17191a;
+
+    --r: #a2574f;
+    --g: #4fa259;
+    --b: #4f88a2;
+    --r_hover: #8e473f;
+    --g_hover: #409048;
+    --b_hover: #3d748e;
+
+    --scrollBar: #999;
+    --scrollBar_hover: #777;
+    --scrollBar_bg: #ccc;
+
+    --scrollBar2: #777;
+    --scrollBar2_hover: #555;
+    --scrollBar2_bg: #f1f1f1;
+}
