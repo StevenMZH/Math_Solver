@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 
 export function CourseClass({ courseId, classId, name, type }) {
     const topicImages = {
-        "theory": { src: "../../../public/images/user1.png", alt: "theory" },
-        "practice": { src: "../../../public/images/defaultImage.png", alt: "Practice" },
-        "test": { src: "../../../public/images/defaultImage.png", alt: "Test" },
+        "theory": { src: "/images/user1.png", alt: "theory" },
+        "practice": { src: "/images/defaultImage.png", alt: "Practice" },
+        "test": { src: "/images/defaultImage.png", alt: "Test" },
     };
-    const defaultImage = { src: "../../../public/images/defaultImage.png", alt: "" };
+    const defaultImage = { src: "/images/defaultImage.png", alt: "" };
     const topicImage = topicImages[type] || defaultImage;
 
     return (

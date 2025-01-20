@@ -2,7 +2,7 @@ export function UserPanel() {
     return (
         <div className="flexCenter userPanel-container">
             <button className="userButton">
-                <img className='circleImage userImage' src='../../../public/images/user2.png' alt="defaultUserImage" />
+                <img className='circleImage userImage' src='/images/user2.png' alt="defaultUserImage" />
             </button>
 
             <style>{`

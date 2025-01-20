@@ -30,7 +30,7 @@ const SearchBar = () => {
                 />
                 <div className="button-container">
                     <button type="submit" className="searchButton" onClick={handleSearch}>
-                        <img className='searchIcon' src='../../../public/images/search_Icon.png' alt="search" />
+                        <img className='searchIcon' src='/images/search_Icon.png' alt="search" />
                     </button>
                 </div>
             </div>
