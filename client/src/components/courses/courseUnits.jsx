@@ -1,4 +1,4 @@
-import CourseClass from "./courseClass";
+import CourseClass from "./courseClassLink";
 
 export function CourseUnit({ courseId, num, name, classes }) {
     return (

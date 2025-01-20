@@ -1,5 +1,4 @@
-import 'katex/dist/katex.min.css';
-import katex from 'katex';
+import KatexRenderer from "../global/katexRenderer";
 
 export function FormulaSheet({ formulas }) {
     return (
@@ -10,14 +9,10 @@ export function FormulaSheet({ formulas }) {
             <div className="sheet">
                 {formulas && formulas.length > 0 ? (
                     formulas.map((formula, index) => (
-                        <div
+                        <KatexRenderer
                             key={index}
                             className="formula-label"
-                            dangerouslySetInnerHTML={{
-                                __html: katex.renderToString(formula, {
-                                    throwOnError: false,
-                                }),
-                            }}
+                            expression={formula}
                         />
                     ))
                 ) : (

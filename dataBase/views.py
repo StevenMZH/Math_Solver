@@ -48,20 +48,20 @@ class CourseClassViewSet(viewsets.ModelViewSet):
     serializer_class = CourseClassSerializer
 
 # SearchBar
-def searchCourse_Class(request):
-    query = request.GET.get('q', '')  # Obtiene el parámetro `q`
-    if query:
-        results = Course.objects.filter(
-            Q(name__icontains=query) |
-            Q(description__icontains=query)
-        ).distinct()
-        data = [
-            {'id': course.id, 'name': course.name, 'description': course.description}
-            for course in results
-        ]
-    else:
-        data = []
-    return JsonResponse({'results': data})
+# def searchCourse_Class(request):
+#     query = request.GET.get('q', '')  # Obtiene el parámetro `q`
+#     if query:
+#         results = Course.objects.filter(
+#             Q(name__icontains=query) |
+#             Q(description__icontains=query)
+#         ).distinct()
+#         data = [
+#             {'id': course.id, 'name': course.name, 'description': course.description}
+#             for course in results
+#         ]
+#     else:
+#         data = []
+#     return JsonResponse({'results': data})
 
 def get_classDetails(request, course_id, class_id):
     try:
@@ -76,3 +76,31 @@ def get_classDetails(request, course_id, class_id):
         return JsonResponse(data)
     except CourseClass.DoesNotExist:
         return JsonResponse({"error": "Class not found"}, status=404)
+
+class SearchCourseClass_View(APIView):
+    """
+    Search for Courses and CourseClasses by name and other parameters.
+    """
+
+    def get(self, request):
+        query = request.query_params.get('q', '')  # El término de búsqueda
+        if not query:
+            return Response({"detail": "No search term provided"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Buscar en los modelos `Course` y `CourseClass`
+        courses = Course.objects.filter(
+            Q(name__icontains=query) | Q(field__icontains=query) | Q(description__icontains=query) | Q(keywords__icontains=query)
+        )
+        course_classes = CourseClass.objects.filter(
+            Q(name__icontains=query) | Q(class_type__icontains=query) | Q(keywords__icontains=query)
+        )
+
+        # Serializar los resultados
+        course_data = CourseSerializer(courses, many=True).data
+        class_course_data = CourseClassSerializer(course_classes, many=True).data
+
+        # Retornar la respuesta combinada
+        return Response({
+            "courses": course_data,
+            "course_classes": class_course_data
+        }, status=status.HTTP_200_OK)

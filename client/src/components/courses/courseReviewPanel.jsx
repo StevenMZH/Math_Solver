@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 export function CourseReviewPanel({ id, title, type, description, units }) {
 
     const topicImages = {
-        math: { src: "../../../images/integral.svg", alt: "Math" },
-        physics: { src: "../../../images/defaultImage.png", alt: "Physics" },
-        cs: { src: "../../../images/cs.png", alt: "Computer Science" },
-        electronics: { src: "../../../images/defaultImage.png", alt: "Electronics" },
+        math: { src: "/images/integral.svg", alt: "Math" },
+        physics: { src: "/images/defaultImage.png", alt: "Physics" },
+        cs: { src: "/images/cs.png", alt: "Computer Science" },
+        electronics: { src: "/images/defaultImage.png", alt: "Electronics" },
     };
-    const defaultImage = { src: "../../../images/defaultImage.png", alt: "" };
+    const defaultImage = { src: "/images/defaultImage.png", alt: "" };
     const topicImage = topicImages[type] || defaultImage;
     const topics = units.map(unit => unit.name);
 

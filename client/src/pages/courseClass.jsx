@@ -6,8 +6,8 @@ import HomeNav from '../components/nav/homeNav';
 import Footer from '../components/global/footer';
 
 
-export function Class() {
-    const { courseId, classId } = useParams();
+export function CourseClass() {
+    const { courseId, classId } = useParams(); // Obtén los parámetros de la URL
     const [classData, setClassData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -15,7 +15,7 @@ export function Class() {
     useEffect(() => {
         const fetchClassData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/dataBase/classes/${classId}`);
+                const response = await axios.get(`http://127.0.0.1:8000/dataBase/courses/${courseId}/${classId}`);
                 setClassData(response.data);
             } catch (err) {
                 setError(err.response ? err.response.data.message : err.message);
@@ -55,6 +55,26 @@ export function Class() {
                     font-size: 12px;
                     align-items: center;
                 }
+
+                .classPreview-Image {
+                    width: 50px;
+                    height: 50px;
+                    margin-right: 10px;
+                    background-color: var(--imageBg);
+                }
+
+                .image {
+                    width: 30vw;
+                }
+
+                .sideDiv {
+                    width: 30vw;
+                }
+
+                .paragraph {
+                    margin: 0 20px;
+                }
+
                 
                 @media (max-width: 768px) {
                     .class-header {
@@ -66,4 +86,4 @@ export function Class() {
     );
 }
 
-export default Class;
+export default CourseClass;

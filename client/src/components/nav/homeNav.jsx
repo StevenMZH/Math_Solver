@@ -17,7 +17,7 @@ export function HomeNav() {
                 <nav>
                     <ul className="main-menu">
                         <li>
-                            <Link to="/articles">Articles</Link>
+                            <Link to="/solver">Solvers</Link>
                         </li>
                         <li>
                             <Link to="/courses">Courses</Link>

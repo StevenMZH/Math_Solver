@@ -64,6 +64,7 @@ class Course(models.Model):
         ('physics', 'Physics'),
         ('electronics', 'Electronics'),
     ])
+    keywords = models.CharField(max_length=255, blank=True, default='')
     description = models.CharField(max_length=255)
     formulas = models.JSONField(blank=True, default=list)
 
@@ -88,6 +89,7 @@ class CourseClass(models.Model):
         ('practice', 'Practice'),
         ('test', 'Test'),
     ])
+    keywords = models.CharField(max_length=255, blank=True, default='')
     content = models.TextField()  # El contenido en formato HTML puede ser almacenado como texto
     order = models.IntegerField()  # Este campo permitirá ordenar las clases dentro de la unidad
     units = models.ManyToManyField(CourseUnit, related_name='classes')  # Relación de muchas unidades a muchas clases

@@ -5,8 +5,10 @@ import Home from './pages/home';
 import CoursesHub from './pages/coursesHub';
 import Course from './pages/course';
 
+import CourseClass from './pages/courseClass';
 import Class from './pages/class';
-import Articles from './pages/articles';
+
+import Solver from './pages/solver';
 import Exercises from './pages/exercises';
 
 import Algebra from './pages/algebra';
@@ -24,9 +26,11 @@ function App() {
 
                 <Route path='/courses' element={<CoursesHub />} />
                 <Route path="/courses/:courseId" element={<Course />} />
-                <Route path="/courses/:courseId/:classId" element={<Class />} />
+                <Route path="/courses/:courseId/:classId" element={<CourseClass />} />
+                <Route path="/classes/:classId" element={<Class />} />
+
                 <Route path='/exercises' element={<Exercises />} />
-                <Route path='/articles' element={<Articles />} />
+                <Route path='/solver' element={<Solver />} />
 
                 <Route path='/algebra' element={<Algebra />} />
             </Routes>
