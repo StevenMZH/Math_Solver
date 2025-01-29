@@ -1,12 +1,12 @@
 import AlgebraicInput from '../components/math/algebraic_Input';
-import Nav from '../components/global/nav';
+import HomeNav from '../components/nav/homeNav';
 import Footer from '../components/global/footer';
 
 export function Algebra() {
     return (
         <div className='pageContainer'>
             <header>
-                <Nav />
+                <HomeNav />
             </header>
             <main>
                 <section>

@@ -40,6 +40,7 @@ export function Class() {
                 <div className="panelContainer class-header">
                     <label>{classData.name}</label>
                 </div>
+
                 <div className="panelContainer class-content" dangerouslySetInnerHTML={{ __html: classData.content }} />
             </main>
             <Footer />

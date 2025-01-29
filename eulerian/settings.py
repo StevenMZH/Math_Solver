@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -41,6 +45,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'coreapi',
+
+    'cloudinary',
+    'cloudinary_storage',
 
     'frontend',
     'backend',
@@ -140,3 +147,20 @@ CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dryq8jqqb',
+    'API_KEY': '574384248391251',
+    'API_SECRET': 'TA_3J7bBA78DwIyewH_TmS6EGRY'
+}
+
+cloudinary.config(
+    cloud_name='dryq8jqqb',
+    api_key='574384248391251',     
+    api_secret='TA_3J7bBA78DwIyewH_TmS6EGRY'
+)
+
+# Usar Cloudinary como el almacenamiento predeterminado para archivos multimedia
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+MEDIA_URL = '/media/'

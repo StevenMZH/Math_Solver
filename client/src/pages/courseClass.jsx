@@ -4,6 +4,8 @@ import axios from "axios";
 
 import HomeNav from '../components/nav/homeNav';
 import Footer from '../components/global/footer';
+import Exercise from "../components/class/exercise";
+import { ClassImage, ClassText, ClassVideo, SideContent } from "../components/class/classAssets";
 
 
 export function CourseClass() {
@@ -40,7 +42,31 @@ export function CourseClass() {
                 <div className="panelContainer class-header">
                     <label>{classData.name}</label>
                 </div>
-                <div className="panelContainer class-content" dangerouslySetInnerHTML={{ __html: classData.content }} />
+
+                {classData.content && classData.content.map((item, index) => {
+                    switch (item.type) {
+                        case "image":
+                            return <ClassImage key={index} url={item.content} />;
+                        case "video":
+                            return <ClassVideo key={index} url={item.content} />;
+                        case "text":
+                            return <ClassText key={index} text={item.content} />;
+                        case "sideContent":
+                            return (
+                                <SideContent
+                                    key={index}
+                                    left={item.left}
+                                    right={item.right}
+                                    leftContent={item.leftContent}
+                                    rightContent={item.rightContent}
+                                />
+                            );
+                        default:
+                            return null;
+                    }
+                })}
+
+
             </main>
             <Footer />
 
@@ -51,28 +77,48 @@ export function CourseClass() {
                 }
 
                 .class-content {
-                    width: 95vw;
-                    font-size: 12px;
+                    width: 100%;
+                    font-size : 12px;
                     align-items: center;
                 }
 
-                .classPreview-Image {
-                    width: 50px;
-                    height: 50px;
-                    margin-right: 10px;
-                    background-color: var(--imageBg);
+                .rowMargin {
+                    margin: 20px 0;
                 }
 
-                .image {
-                    width: 30vw;
+                .videoContainer {
+                    margin: 10px 0;
+                }
+                video, .imageClass {
+                    width: 80vw;
+                    max-width: 800px;
+                    border-radius: 10px;
+                    margin: 10px 0;
+                }
+                
+                .contentFlexBox {
+                    display: flex;
+                    width: 100%;
+                    justify-items: center;
+                    gap: 20px;
+                }
+                .contentFlexBox .panelContainer {
+                    width: auto;
+                    padding: 15px;
+                }
+                .contentFlexBox video, .contentFlexBox .imageClass {
+                    height: auto;
+                    width: 40vw;
                 }
 
-                .sideDiv {
-                    width: 30vw;
+                .panelContainer {
+                    margin: 10px 0;
                 }
-
+                
                 .paragraph {
-                    margin: 0 20px;
+                    margin: 10 20px;
+                    font-size: 12px;
+                    text-align: justify; 
                 }
 
                 
