@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import User, API_Request, API_Response, Course, CourseUnit, CourseClass
+from .models import User, API_Request, API_Response, Course, CourseUnit, CourseClass, ClassExercise
+import base64
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -55,3 +56,8 @@ class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = ['id', 'name', 'field', 'description', 'formulas', 'units']
+
+class ClassExerciseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClassExercise
+        fields = ['id', 'name', 'problemText', 'image', 'problem', 'solution']

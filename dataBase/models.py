@@ -90,7 +90,7 @@ class CourseClass(models.Model):
         ('test', 'Test'),
     ])
     keywords = models.CharField(max_length=255, blank=True, default='')
-    content = models.TextField()  # El contenido en formato HTML puede ser almacenado como texto
+    content = models.JSONField(blank=True, default=list)
     order = models.IntegerField()  # Este campo permitirá ordenar las clases dentro de la unidad
     units = models.ManyToManyField(CourseUnit, related_name='classes')  # Relación de muchas unidades a muchas clases
 
@@ -99,3 +99,14 @@ class CourseClass(models.Model):
 
     class Meta:
         ordering = ['order']  # Ordena las clases por el campo 'order' por defecto
+
+class ClassExercise(models.Model):
+    id = models.CharField(primary_key=True, max_length=64, unique=True)
+    name = models.CharField(max_length=100)
+    problemText = models.CharField(max_length=511)
+    image = models.URLField(max_length=200, blank=True, null=True)
+    problem = models.CharField(max_length=511)
+    solution = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"ClassExercise {self.id}: {self.name}"

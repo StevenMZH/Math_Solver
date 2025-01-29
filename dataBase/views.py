@@ -5,8 +5,8 @@ from rest_framework.exceptions import NotFound
 from django.http import JsonResponse
 from django.db.models import Q
 
-from .serializers import UserSerializer, APIRequestSerializer, APIResponseSerializer, CourseSerializer, CourseUnitSerializer, CourseClassSerializer
-from .models import User, API_Request, API_Response, Course, CourseUnit, CourseClass
+from .serializers import UserSerializer, APIRequestSerializer, APIResponseSerializer, CourseSerializer, CourseUnitSerializer, CourseClassSerializer, ClassExerciseSerializer
+from .models import User, API_Request, API_Response, Course, CourseUnit, CourseClass, ClassExercise
 
 
 # User CRUD
@@ -47,6 +47,22 @@ class CourseClassViewSet(viewsets.ModelViewSet):
     queryset = CourseClass.objects.all()
     serializer_class = CourseClassSerializer
 
+class ClassExerciseViewSet(viewsets.ModelViewSet):
+    queryset = ClassExercise.objects.all()
+    serializer_class = ClassExerciseSerializer
+
+    def create(self, request, *args, **kwargs):
+        # Obtener la URL de la imagen directamente desde la solicitud
+        image_url = request.data.get('image')
+
+        # Si la URL de la imagen es válida, crear el objeto
+        if image_url:
+            data = request.data.copy()
+            data['image'] = image_url  # Asignar la URL de la imagen al campo 'image'
+
+        # Continuar con el proceso de creación del objeto
+        return super().create(request, *args, **kwargs)
+
 # SearchBar
 # def searchCourse_Class(request):
 #     query = request.GET.get('q', '')  # Obtiene el parámetro `q`
@@ -76,6 +92,7 @@ def get_classDetails(request, course_id, class_id):
         return JsonResponse(data)
     except CourseClass.DoesNotExist:
         return JsonResponse({"error": "Class not found"}, status=404)
+    
 
 class SearchCourseClass_View(APIView):
     """
