@@ -39,7 +39,7 @@ class APIResponseSerializer(serializers.ModelSerializer):
 class CourseClassSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseClass
-        fields = ['id', 'name', 'class_type', 'content', 'order']
+        fields = ['id', 'name', 'class_type', 'keywords', 'content', 'order']
 
 
 class CourseUnitSerializer(serializers.ModelSerializer):
@@ -55,7 +55,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ['id', 'name', 'field', 'description', 'formulas', 'units']
+        fields = ['id', 'name', 'field', 'keywords', 'description', 'formulas', 'units']
 
 class ClassExerciseSerializer(serializers.ModelSerializer):
     class Meta:

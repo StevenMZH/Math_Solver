@@ -42,9 +42,9 @@
     --scrollBar_hover: #555;
     --scrollBar_bg: #f1f1f1;
 
-    --scrollBar2: #777;
+    --scrollBar2: #222;
     --scrollBar2_hover: #555;
-    --scrollBar2_bg: #f1f1f1;
+    --scrollBar2_bg: #444;
 }
 
 
@@ -92,9 +92,9 @@
     --scrollBar_hover: #555;
     --scrollBar_bg: #f1f1f1;
  
-    --scrollBar2: #777;
+    --scrollBar2: #222;
     --scrollBar2_hover: #555;
-    --scrollBar2_bg: #f1f1f1;
+    --scrollBar2_bg: #444;
 }
 
 .light {
@@ -143,5 +143,5 @@
 
     --scrollBar2: #777;
     --scrollBar2_hover: #555;
-    --scrollBar2_bg: #f1f1f1;
+    --scrollBar2_bg: #aaa;
 }

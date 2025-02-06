@@ -117,22 +117,22 @@ input {
     width: 6px;
 }
 .overflowScrollBar_yPanel::-webkit-scrollbar-track {
-    background: #222;
+    background: var(--scrollBar2_bg);
     border-radius: 10px;
 }
 .overflowScrollBar_yPanel::-webkit-scrollbar-thumb {
-    background: #555;
+    background: var(--scrollBar2);
     border-radius: 10px;
 }
 .overflowScrollBar_yPanel::-webkit-scrollbar-thumb:hover {
-    background: #444;
+    background: var(--scrollBar2_hover);
 }
 
 /* ScrollBar */
 ::-webkit-scrollbar {
     width: 12px;
     height:12px;
-  }  
+}  
 ::-webkit-scrollbar-track {
     background: var(--scrollBar_bg);
 }

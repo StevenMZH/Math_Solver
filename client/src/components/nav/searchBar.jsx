@@ -1,25 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import CourseClass from '../courses/courseClassLink';
-import SearchPreview_class from '../courses/searchPreview_class';
-import SearchPreview_course from '../courses/searchPreview_course';
+import SearchPreview_class from './searchPreview_class';
+import SearchPreview_course from './searchPreview_course';
 
 const SearchBar = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [results, setResults] = useState(null);
+    const searchBarRef = useRef(null);
 
-    const handleSearch = async () => {
-        try {
-            const response = await axios.get(`http://127.0.0.1:8000/dataBase/search/`, {
-                params: { q: searchTerm }, // Parámetros de consulta
-            });
-            setResults(response.data); // Almacena los resultados en el estado
-        } catch (error) {
-            console.error('Error during search:', error);
+    useEffect(() => {
+        if (searchTerm.length > 0) {
+            const delayDebounceFn = setTimeout(async () => {
+                try {
+                    const response = await axios.get(`http://127.0.0.1:8000/dataBase/search/`, {
+                        params: { q: searchTerm },
+                    });
+                    setResults(response.data);
+                } catch (error) {
+                    console.error('Error during search:', error);
+                }
+            }, 300); // Retrasa la ejecución 300ms
+
+            return () => clearTimeout(delayDebounceFn); // Limpia el timeout si el usuario sigue escribiendo
+        } else {
+            setResults(null);
         }
-    };
+    }, [searchTerm]);
+
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (searchBarRef.current && !searchBarRef.current.contains(e.target)) {
+                setResults(null);
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
+        return () => document.removeEventListener('click', handleClickOutside);
+    }, []);
+
     return (
-        <div className="searchBar-container">
+        <div className="searchBar-container" ref={searchBarRef}>
             <div className="flexCenter searchContainer">
                 <input
                     type="text"
@@ -29,18 +49,17 @@ const SearchBar = () => {
                     placeholder="Search Courses, Classes, Exercises..."
                 />
                 <div className="button-container">
-                    <button type="submit" className="searchButton" onClick={handleSearch}>
+                    <button type="submit" className="searchButton">
                         <img className='searchIcon' src='/images/search_Icon.png' alt="search" />
                     </button>
                 </div>
             </div>
 
-            {results && results.courses.length > 0 && results.course_classes.length > 0 && (
-                <div className='searchResults'>
-
-                    {results.courses.length > 0 && (
+            {results && (results.courses?.length > 0 || results.classes?.length > 0) && (
+                <div className="searchResults">
+                    {results.courses?.length > 0 && (
                         <>
-                            <label className='searchTitle'>Cursos</label>
+                            <label className="searchTitle">Cursos</label>
                             {results.courses.map((course) => (
                                 <SearchPreview_course
                                     key={course.id}
@@ -52,9 +71,9 @@ const SearchBar = () => {
                         </>
                     )}
 
-                    {results.course_classes.length > 0 && (
+                    {results.course_classes?.length > 0 && (
                         <>
-                            <label className='searchTitle'>Clases</label>
+                            <label className="searchTitle">Clases</label>
                             {results.course_classes.map((courseClass) => (
                                 <SearchPreview_class
                                     key={courseClass.id}
@@ -67,9 +86,6 @@ const SearchBar = () => {
                     )}
                 </div>
             )}
-
-
-
             <style>{`
                 .searchContainer {
                     width: 100%;
@@ -138,10 +154,28 @@ const SearchBar = () => {
                     background-color: var(--panel1);
                     border: 2px solid #ddd; /* Borde para separar visualmente */
                     border-radius: 20px;
-                    }
+                }
+
+                .searchResults > div {
+                    padding: 5px;
+                    cursor: pointer;
+                    transition: background-color 0.2s;
+                }
+
+                .searchResults > div:hover {
+                    background-color: #f0f0f010;
+                }
+
+                .searchResults > div:hover .searchTitle {
+                    font-weight: bold;
+                }
+
+                .searchResults:hover {
+                    display: block;
+                }
             `}</style>
         </div>
     );
-}
+};
 
 export default SearchBar;
