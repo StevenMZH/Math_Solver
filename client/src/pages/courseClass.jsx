@@ -73,7 +73,7 @@ export function CourseClass() {
 
             <style>{`
                 .class-header {
-                    width: 95vw;
+                    width: 100%;
                 }
 
                 .class-content {

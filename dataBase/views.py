@@ -106,10 +106,10 @@ class SearchCourseClass_View(APIView):
 
         # Buscar en los modelos `Course` y `CourseClass`
         courses = Course.objects.filter(
-            Q(name__icontains=query) | Q(field__icontains=query) | Q(description__icontains=query) | Q(keywords__icontains=query)
+            Q(name__icontains=query) | Q(keywords__icontains=query)
         )
         course_classes = CourseClass.objects.filter(
-            Q(name__icontains=query) | Q(class_type__icontains=query) | Q(keywords__icontains=query)
+            Q(name__icontains=query) | Q(keywords__icontains=query)
         )
 
         # Serializar los resultados
