@@ -1,0 +1,17 @@
+POST http://127.0.0.1:8000/dataBase/token/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "StevenM",
+    "password": "thorcrack1"
+}
+
+###
+
+POST http://localhost:5173/login/
+Content-Type: application/json
+
+{
+    "username": "StevenM",
+    "password": "thorcrack1"
+}

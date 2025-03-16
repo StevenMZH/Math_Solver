@@ -12,7 +12,7 @@ export function Logo4() {
                     font-size: 1em;
                     font-family: Comfortaa;
                     text-align: center;
-                    margin-right: 50px;
+                    font-weight: 800;
                 }
                 .logo-Dot {
                     margin: 0;

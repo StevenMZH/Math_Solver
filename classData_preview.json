@@ -1,41 +1,31 @@
-{
-    "id": "mathFund",
-    "name": "Fundamentos 1",
-    "class_type": "theory",
-    "content": [
-        {
-            "type": "video",
-            "content": "https://res.cloudinary.com/dryq8jqqb/video/upload/v1737783687/qkqcp6xljtvuxkrdyjk3.mp4"
-        },
-        {
-            "type": "sideContent",
-            "left": "image",
-            "leftContent": "https://res.cloudinary.com/dryq8jqqb/image/upload/v1737783103/rfpokueykzv0bbtlsr0z.png",
-            "right": "text",
-            "rightContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid."
-        },
-        {
-            "type": "text",
-            "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid."
-        },
-        {
-            "type": "sideContent",
-            "left": "video",
-            "leftContent": "https://res.cloudinary.com/dryq8jqqb/video/upload/v1737783687/qkqcp6xljtvuxkrdyjk3.mp4",
-            "right": "text",
-            "rightContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid."
-        },
-        {
-            "type": "sideContent",
-            "right": "image",
-            "rightContent": "https://res.cloudinary.com/dryq8jqqb/image/upload/v1737783103/rfpokueykzv0bbtlsr0z.png",
-            "left": "text",
-            "leftContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid."
-        },
-        {
-            "type": "text",
-            "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid."
-        }
-    ],
-    "order": 0
-}
+[
+    {
+        "type": "video",
+        "content": "https://res.cloudinary.com/dryq8jqqb/video/upload/v1737783687/qkqcp6xljtvuxkrdyjk3.mp4"
+    },
+    {
+        "type": "card",
+        "multimedia_type": "image",
+        "multimedia": "https://res.cloudinary.com/dryq8jqqb/image/upload/v1737783103/rfpokueykzv0bbtlsr0z.png",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid."
+    },
+    {
+        "type": "text",
+        "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid."    },
+    {
+        "type": "card",
+        "multimedia_type": "video",
+        "multimedia": "https://res.cloudinary.com/dryq8jqqb/video/upload/v1737783687/qkqcp6xljtvuxkrdyjk3.mp4",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid."
+    },
+    {
+        "type": "card-2",
+        "multimedia_type": "text",
+        "multimedia": "https://res.cloudinary.com/dryq8jqqb/image/upload/v1737783103/rfpokueykzv0bbtlsr0z.png",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid."
+    },
+    {
+        "type": "text",
+        "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit, quis iusto blanditiis omnis earum voluptas pariatur vitae eos vel, quibusdam debitis ab assumenda placeat nemo, numquam esse saepe aliquid."
+    }
+]

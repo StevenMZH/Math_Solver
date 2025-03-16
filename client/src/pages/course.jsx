@@ -38,9 +38,11 @@ export function Course() {
                             finished={10}
                             total={64}
                         />
-                        {course?.formulas && course.formulas.length > 0 && (
-                            <FormulaSheet formulas={course.formulas} />
-                        )}
+                        <div className='top-formulaSheet'>
+                            {course?.formulas && course.formulas.length > 0 && (
+                                <FormulaSheet formulas={course.formulas} />
+                            )}
+                        </div>
                     </div>
 
                     <div className='units'>
@@ -61,6 +63,13 @@ export function Course() {
                         )}
                     </div>
 
+                    <div className='bottom-formulaSheet'>
+                        {course?.formulas && course.formulas.length > 0 && (
+                            <FormulaSheet formulas={course.formulas} />
+                        )}
+                    </div>
+
+
                 </div>
 
                 <style>{`
@@ -75,11 +84,23 @@ export function Course() {
                     .columnDiv {
                         display: flex;
                         flex-direction: row;
-                        gap: 40px;
+                        gap: 20px;
+                    }
+                    
+                    .progress-formula, .units, .bottom-formulaSheet {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 20px;
                     }
 
-                    .progress-formula, .units {
-                        flex: 1;
+                    .bottom-formulaSheet {
+                        display: none;
+                    }
+
+
+                    .units{
+                        width: 100%;
                     }
                         
                     .progress-container, .sheet-container {
@@ -91,8 +112,12 @@ export function Course() {
                             padding-top: 50px;
                         }
                         .columnDiv {
-                            display: block;
-                            gap: 0px;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 20px;
+                        }
+                        .units {
+                            gap: 10px;
                         }
                         .progress-formula {
                             position: static;
@@ -100,13 +125,15 @@ export function Course() {
                         .progress-container, .sheet-container, .unit-container {
                             width: 90vw;
                         }
-                    }
 
-                    @media (max-width: 600px) {
-                        .class-container a {
-                            width: 70%;
+                        .bottom-formulaSheet {
+                            display: flex;
+                        }
+                        .top-formulaSheet {
+                            display: none;
                         }
                     }
+
                 `}</style>
             </main>
 

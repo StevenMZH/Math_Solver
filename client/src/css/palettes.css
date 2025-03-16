@@ -1,81 +1,51 @@
 :root {
+    /* Palette */
     --a0: #090909;
     --a1: #17191a;
     --a2: #212125;
     --a3: #cfcfd7;
     --a4: #f7fcff;
     --alpha: #00000000;
-    
-    --logoBg: #4040ff;
-    --logoFont: #f7fcff;
 
-    --imageBg: #e7e7e7;
-
+    /* Main Styles */
     --background: #090909;
     --header: #17191a;
     
+    /* Buttons Styles */
     --button: #17191a;
     --button_hover: #212125;
-
+    
+    /* Input Styles */
     --bar: #e7e7e7;
 
+    /* Panel Styles */
     --panel1: #111;
     --panel2: #333;
     --panel3: #555;
 
+    /* Text Styles */
     --text: #e7e7e7;
+    --text_title: #e7e7e7;
+    --text_subtitle: #555;
+    --text_focus: #999;
     --text2: #0c0c0c;
 
-    --graph_background: #111111;
-    --graph_border: #e7e7e7;
-    --graph_fill: #212125;
-    --graph_link: #212125;
-
-    --r: #a2574f;
-    --g: #4fa259;
-    --b: #4f88a2;
-    --r_hover: #e18a81;
-    --g_hover: #78d783;
-    --b_hover: #88c1db;
-
+    /* scrollBar Styles */
     --scrollBar: #777;
     --scrollBar_hover: #555;
     --scrollBar_bg: #f1f1f1;
-
+ 
     --scrollBar2: #222;
     --scrollBar2_hover: #555;
     --scrollBar2_bg: #444;
-}
 
-
-.dark {
-    --a0: #090909;
-    --a1: #17191a;
-    --a2: #212125;
-    --a3: #cfcfd7;
-    --a4: #f7fcff;
-    --alpha: #00000000;
-
+    /* Others */
     --logoBg: #4040ff;
     --logoFont: #f7fcff;
 
     --imageBg: #e7e7e7;
 
-    --background: #090909;
-    --header: #17191a;
-    
-    --button: #17191a;
-    --button_hover: #212125;
-    
-    --bar: #e7e7e7;
-
-    --panel1: #111;
-    --panel2: #333;
-    --panel3: #555;
-
-    --text: #e7e7e7;
-    --text2: #0c0c0c;
-
+    /* No using */
     --graph_background: #111111;
     --graph_border: #e7e7e7;;
     --graph_fill: #212125;
@@ -87,17 +57,11 @@
     --r_hover: #e18a81;
     --g_hover: #78d783;
     --b_hover: #88c1db;
-
-    --scrollBar: #777;
-    --scrollBar_hover: #555;
-    --scrollBar_bg: #f1f1f1;
- 
-    --scrollBar2: #222;
-    --scrollBar2_hover: #555;
-    --scrollBar2_bg: #444;
 }
 
-.light {
+
+.dark {
+    /* Palette */
     --a0: #090909;
     --a1: #17191a;
     --a2: #212125;
@@ -105,26 +69,106 @@
     --a4: #f7fcff;
     --alpha: #00000000;
 
+    /* Main Styles */
+    --background: #090909;
+    --header: #17191a;
+    
+    /* Button Styles */
+    --button: #17191a;
+    --button_hover: #212125;
+    
+    /* Input Styles */
+    --bar: #e7e7e7;
+
+    /* Panel Styles */
+    --panel1: #111;
+    --panel2: #333;
+    --panel3: #555;
+
+    /* Text Styles */
+    --text: #e7e7e7;
+    --text_title: #e7e7e7;
+    --text_subtitle: #555;
+    --text_focus: #999;
+    --text2: #0c0c0c;
+
+    /* scrollBar Styles */
+    --scrollBar: #777;
+    --scrollBar_hover: #555;
+    --scrollBar_bg: #f1f1f1;
+ 
+    --scrollBar2: #222;
+    --scrollBar2_hover: #555;
+    --scrollBar2_bg: #444;
+
+    /* Others */
     --logoBg: #4040ff;
     --logoFont: #f7fcff;
 
-    --imageBg: #a5c0c4;
+    --imageBg: #e7e7e7;
 
-    --background: #a5c0c4;
-    --header: #f7fcff;
+    /* No using */
+    --graph_background: #111111;
+    --graph_border: #e7e7e7;;
+    --graph_fill: #212125;
+    --graph_link: #212125;
+
+    --r: #a2574f;
+    --g: #4fa259;
+    --b: #4f88a2;
+    --r_hover: #e18a81;
+    --g_hover: #78d783;
+    --b_hover: #88c1db;
+}
+
+.light {
+    /* Palette */
+    --a0: #090909;
+    --a1: #17191a;
+    --a2: #212125;
+    --a3: #cfcfd7;
+    --a4: #f7fcff;
+    --alpha: #00000000;
+
+    /* Main Styles */
+    --background: #93badc;
+    --header: #fff5;
     
+    /* Buttons Styles */
     --button: #f7fcff;
     --button_hover: #d2dee4;
-    
+
+    /* Input Styles */  
     --bar: #e7e7e7;
 
+    /* Panel Styles */
     --panel1: #f7fcff;
     --panel2: #bbb;
     --panel3: #ddd;
 
+    /* Text Styles */
     --text: #0c0c0c;
+    --text_title: #0c0c0c;
+    --text_subtitle: #999;
+    --text_focus: #333;
     --text2: #0c0c0c;
 
+    /* scrollBar Styles */
+    --scrollBar: #999;
+    --scrollBar_hover: #777;
+    --scrollBar_bg: #ccc;
+
+    --scrollBar2: #777;
+    --scrollBar2_hover: #555;
+    --scrollBar2_bg: #aaa;
+
+    /* Others */
+    --logoBg: #4040ff;
+    --logoFont: #f7fcff;
+
+    --imageBg: #93badc;
+    
+    /* No using */
     --graph_background: #c8dcdf;
     --graph_border: #17191a;
     --graph_fill: #17191a;
@@ -136,12 +180,4 @@
     --r_hover: #8e473f;
     --g_hover: #409048;
     --b_hover: #3d748e;
-
-    --scrollBar: #999;
-    --scrollBar_hover: #777;
-    --scrollBar_bg: #ccc;
-
-    --scrollBar2: #777;
-    --scrollBar2_hover: #555;
-    --scrollBar2_bg: #aaa;
 }

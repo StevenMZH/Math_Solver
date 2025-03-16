@@ -9,11 +9,12 @@ import PaletteSelector from './paletteSelector';
 import UserPanel from './userPanel';
 
 export function HomeNav() {
+    const token = localStorage.getItem("accessToken");
+
     return (
         <div className="flexCenter nav-container">
             <div className='leftNav'>
                 <Logo4 />
-
                 <nav>
                     <ul className="main-menu">
                         <li>
@@ -34,36 +35,45 @@ export function HomeNav() {
             </div>
 
             <div className='flexCenter rightNav'>
-                <div className='logInButtons-container'>
-                    <Link to={`/login`}>Log In</Link>
-                    <Link to={`/sign_up`}>Sign Up</Link>
-                </div>
+                {!token && (
+
+                    <div className='logInButtons-container'>
+                        <Link to={`/login`}>Log In</Link>
+                        <Link to={`/sign_up`}>Sign Up</Link>
+                    </div>
+                )}
                 <PaletteSelector />
                 <UserPanel />
             </div>
 
             <style>{`
                 header {
-                    background-color: var(--header);
+                    display: flex;
+                    flex-direction: column;
+                    background-color: #0000;
                     width: 100%;
-                    padding: 15px 20px;
+                    height: 72px;
                     color: var(--text);
-                    justify-content: space-between;
+                    justify-content: center;
                     align-items: center;
                     top: 0;
                     font-family: Comfortaa;
+                    backdrop-filter: blur(10px);
                 }
+                nav {
+                    align-content: center;
+                    margin-bottom: 3px;
+                }
+
                 .nav-container {
                     display: flex;
                     width: 100%;
                     justify-content: start;
-                }
-                .nav-container nav {
-                    margin-top: 5px;
-                    margin-left: auto;
+                    font-weight: 800;
                 }
 
                 .leftNav {
+                    display: flex;
                     width: 100%;
                     justify-content: start;
                 }
@@ -86,34 +96,32 @@ export function HomeNav() {
 
                 .main-menu {
                     list-style: none;
-                    padding: 0;
+                    padding: 0 30px;
+                    padding-left: 30px;
                     margin: 0;
                     display: flex;
-                    gap: 8px;
+                    gap: 5px;
                 }
-                a {
-                    text-decoration: none;
-                    background-color: var(--button);
-                    color: var(--text);
-                    padding: 3px 5px;
-                    border: 2px solid var(--button);
-                    border-radius: 25px;
-                    transition: background-color 0.3s, color 0.3s;
-                    font-size: 0.65em;
-                }
-                a:hover {
-                    background-color: var(--button_hover);
-                    border: 2px solid var(--button_hover);
-                    color: var(--text);
-                }
-
-
                 .main-menu li {
                     display: block;
                 }
-
+                
                 .main-menu li a {
                     text-decoration: none;
+                    background-color: #0000;
+                    color: var(--text);
+                    padding: 5px 10px;
+                    border: 2px solid #0000;
+                    border-radius: 25px;
+                    font-size: 0.65em;
+                    background-color: var(--background);
+                    backdrop-filter: blur(10px);
+                }
+                .main-menu li a:hover {
+                    background-color: var(--button_hover);
+                    border: 2px solid #0000;
+                    color: var(--text);
+                    transition: background-color 0.3s, color 1s;
                 }
 
                 @media (max-width: 768px) {

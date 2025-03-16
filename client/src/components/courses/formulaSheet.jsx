@@ -4,7 +4,7 @@ export function FormulaSheet({ formulas }) {
     return (
         <div className="panelContainer sheet-container">
             <div className="panel-header">
-                <label>Formulas Sheet</label>
+                <label className="text-focus">Formulas Sheet</label>
             </div>
             <div className="sheet">
                 {formulas && formulas.length > 0 ? (

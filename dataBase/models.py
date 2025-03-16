@@ -8,8 +8,6 @@ import uuid
 # Custom User Manager
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
-        if not email:
-            raise ValueError('El correo electrónico debe ser proporcionado')
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
@@ -24,16 +22,16 @@ class UserManager(BaseUserManager):
 
 # Custom User Model
 class User(AbstractBaseUser, PermissionsMixin):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     email = models.EmailField(unique=True, db_index=True)
-    username = models.CharField(max_length=30, blank=True)
+    username = models.CharField(max_length=30, blank=True, unique=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
     def __str__(self):
@@ -64,7 +62,7 @@ class Course(models.Model):
         ('physics', 'Physics'),
         ('electronics', 'Electronics'),
     ])
-    keywords = keywords = models.JSONField(blank=True, default=list)
+    keywords = models.JSONField(blank=True, default=list)
     description = models.CharField(max_length=255)
     formulas = models.JSONField(blank=True, default=list)
 
@@ -89,7 +87,7 @@ class CourseClass(models.Model):
         ('practice', 'Practice'),
         ('test', 'Test'),
     ])
-    keywords = keywords = models.JSONField(blank=True, default=list)
+    keywords = models.JSONField(blank=True, default=list)
     content = models.JSONField(blank=True, default=list)
     order = models.IntegerField()  # Este campo permitirá ordenar las clases dentro de la unidad
     units = models.ManyToManyField(CourseUnit, related_name='classes')  # Relación de muchas unidades a muchas clases

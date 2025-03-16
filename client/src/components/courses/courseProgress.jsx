@@ -4,7 +4,7 @@ export function CourseProgress({ finished, total }) {
     return (
         <div className="panelContainer progress-container">
             <div className="panel-header">
-                <label>Course Progress</label>
+                <label className="text-focus">Course Progress</label>
             </div>
             <div className="progressCircleGraph">
                 <svg viewBox="0 0 36 36" className="circular-chart">

@@ -3,33 +3,42 @@ import React from 'react';
 export function Footer() {
     return (
         <footer className="footer">
-            <p data-lang-key="footer.rights">© 2024 Eulerian Hades. All rights reserved.</p>
+            <p className="text-focus footer-p" data-lang-key="footer.rights">© 2024 Eulerian Hades. All rights reserved.</p>
             <div className="footerNav-container">
-                <nav>
+                <nav className='footer-nav'>
                     <ul className="footerNav-ul">
-                        <li><a href="/about">About</a></li>
+                        <li><a href="/about" className='text-title'>About</a></li>
                     </ul>
                 </nav>
             </div>
             <style>{`
+                .footer-nav {
+                    margin-bottom: 2px;
+                }
+
                 .footer {
+                    display: flex;
                     background-color: #00000000;
                     font-size: 10px;
                     width: 100%;
-                    padding: 10px 0;
+                    padding: 7px 0;
+                    padding-top: 6px;
                     text-align: center;
                     color: var(--text);
-                    display: flex;
                     justify-content: center;
                     align-items: center;
                     bottom: 0;
                 }
 
                 .footer-p {
+                    font-size: 10px;
                     margin: 0;
                 }
 
                 .footerNav-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     margin-left: 10px;
                 }
 
@@ -45,7 +54,7 @@ export function Footer() {
                     text-decoration: none;
                     background-color: var(--button);
                     color: var(--text);
-                    padding: 5px 10px;
+                    padding: 2px 5px;
                     border: 2px solid var(--button);
                     border-radius: 25px;
                     transition: background-color 0.3s, color 0.3s;

@@ -14,17 +14,17 @@ export function CourseReviewPanel({ id, title, type, description, units }) {
 
     return (
         <div className="panelContainer panel-container">
-            <div className="panel-header">
+            <div className="panel-header text-title">
                 <img className='circleImage classPreview-Image' src={topicImage.src} alt={topicImage.alt} />
                 <Link to={`/courses/${id}`}>{title}</Link>
             </div>
             <div className="panel-body">
-                <label>Description:</label>
-                <p className='truncated-text'>{description}</p>
-                <label>Topics:</label>
+                <label className='text-subtitle'>Description:</label>
+                <p className='truncated-text text-focus'>{description}</p>
+                <label className='text-subtitle'>Topics:</label>
                 {topics && topics.length > 0 && (
                     <ul className='overflowScrollBar_yPanel'>
-                        {topics.map((topic, index) => (<li key={index}>{topic}</li>))}
+                        {topics.map((topic, index) => (<li key={index} className='text-focus'>{topic}</li>))}
                     </ul>
                 )}
             </div>
@@ -33,9 +33,10 @@ export function CourseReviewPanel({ id, title, type, description, units }) {
                 .panel-container {
                     overflow: hidden;
                     height: 300px;
+                    margin:0;
                 }
                 .panel-header a {
-                    font-size: 12px;
+                    font-size: 13px;
                     background-color: var(--alpha);
                     border-color: var(--alpha);
                     text-align: left;
@@ -54,12 +55,12 @@ export function CourseReviewPanel({ id, title, type, description, units }) {
                 }
 
                 .panel-body {
-                    text-align: justify;                
+                    text-align: justify;   
+                    margin-top: 0px;             
                 }
                 .panel-body p {
                     margin: 0;
-                    font-size: 12px;
-                    color: #333;
+                    font-size: 13px;
                     margin-bottom: 10px;
                     margin-top: 3px;
                 }
@@ -74,19 +75,17 @@ export function CourseReviewPanel({ id, title, type, description, units }) {
 
                 .panel-body label {
                     margin: 0;
-                    font-size: 14px;
-                    color: #555;
+                    font-size: 12px;
                 }
 
                 .panel-body ul {
-                    padding-left: 20px; /* Mantén el padding para la indentación */
+                    padding-left: 20px;
                     padding-right: 8px;
                     margin-top: 5px;
-                    max-height: 90px; /* Ajusta el alto máximo de la lista */
+                    max-height: 90px;
                 }
                 .panel-body ul li {
                     font-size: 13px;
-                    color: #333;
                 }
 
             `}</style>

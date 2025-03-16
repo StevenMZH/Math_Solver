@@ -5,7 +5,7 @@ import axios from "axios";
 import HomeNav from '../components/nav/homeNav';
 import Footer from '../components/global/footer';
 import Exercise from "../components/class/exercise";
-import { ClassImage, ClassText, ClassVideo, SideContent } from "../components/class/classAssets";
+import { ClassCard, ClassCard2, ClassImage, ClassText, ClassVideo } from "../components/class/classAssets";
 
 
 export function CourseClass() {
@@ -31,7 +31,7 @@ export function CourseClass() {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
-    console.log(classData)
+    console.log(classData);
 
     return (
         <div className="pageContainer">
@@ -40,7 +40,7 @@ export function CourseClass() {
             </header>
             <main>
                 <div className="panelContainer class-header">
-                    <label>{classData.name}</label>
+                    <label className="text-title">{classData.name}</label>
                 </div>
 
                 {classData.content && classData.content.map((item, index) => {
@@ -51,14 +51,22 @@ export function CourseClass() {
                             return <ClassVideo key={index} url={item.content} />;
                         case "text":
                             return <ClassText key={index} text={item.content} />;
-                        case "sideContent":
+                        case "card":
                             return (
-                                <SideContent
+                                <ClassCard
                                     key={index}
-                                    left={item.left}
-                                    right={item.right}
-                                    leftContent={item.leftContent}
-                                    rightContent={item.rightContent}
+                                    multimedia_type={item.multimedia_type}
+                                    multimedia={item.multimedia}
+                                    text={item.text}
+                                />
+                            );
+                        case "card2":
+                            return (
+                                <ClassCard2
+                                    key={index}
+                                    multimedia_type={item.multimedia_type}
+                                    multimedia={item.multimedia}
+                                    text={item.text}
                                 />
                             );
                         default:
@@ -74,57 +82,71 @@ export function CourseClass() {
             <style>{`
                 .class-header {
                     width: 100%;
+                    margin-top: 0;
                 }
-
                 .class-content {
                     width: 100%;
                     font-size : 12px;
                     align-items: center;
                 }
 
-                .rowMargin {
+                .segment-margin {
                     margin: 20px 0;
                 }
 
-                .videoContainer {
-                    margin: 10px 0;
-                }
-                video, .imageClass {
-                    width: 80vw;
-                    max-width: 800px;
-                    border-radius: 10px;
-                    margin: 10px 0;
-                }
-                
-                .contentFlexBox {
+                .cardAsset {
                     display: flex;
                     width: 100%;
                     justify-items: center;
-                    gap: 20px;
+                    gap: 0;
                 }
-                .contentFlexBox .panelContainer {
-                    width: auto;
-                    padding: 15px;
+                .videoAsset, .imageAsset {
+                    width: 100%;
                 }
-                .contentFlexBox video, .contentFlexBox .imageClass {
-                    height: auto;
-                    width: 40vw;
-                }
-
-                .panelContainer {
-                    margin: 10px 0;
-                }
-                
-                .paragraph {
-                    margin: 10 20px;
+                .textAsset {
                     font-size: 12px;
                     text-align: justify; 
                 }
 
+                .videoAsset video{
+                    width: 100%;
+                    max-width: 800px;
+                    border-radius: 10px;
+                }
+
+                .cardAsset video, .cardAsset .imageAsset {
+                    height: auto;
+                    width: 40vw;
+                    border-radius: 10px 0 0 10px;
+                }
+                .cardAsset .textAsset {
+                    width: auto;
+                    padding: 15px;
+                    border-radius: 0 10px 10px 0;
+                }
+                
+                .reverseCard {
+                    flex-direction: row-reverse;
+                }
+                .reverseCard video, .reverseCard .imageAsset {
+                    border-radius: 0 10px 10px 0;
+                }
+                .reverseCard textAsset {
+                    border-radius: 10px 0 0 10px;
+                }
+
+
                 
                 @media (max-width: 768px) {
-                    .class-header {
-                        margin-top: 35px;
+                    .cardAsset , .reverseCard {
+                        flex-direction: column;
+                    }
+                    .cardAsset video, .cardAsset .imageAsset {
+                        width: 100%;
+                        border-radius: 10px 10px 0 0;
+                    }
+                    .cardAsset .textAsset {
+                        border-radius: 0 0 10px 10px;
                     }
                 }
             `}</style>

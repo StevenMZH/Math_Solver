@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'coreapi',
 
     'rest_framework_simplejwt',
+    'rest_framework.authtoken',
+    # 'dj_rest_auth',
 
     'cloudinary',
     'cloudinary_storage',
@@ -151,13 +153,24 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
 }
+
+# Auth
+
+# REST_AUTH = {
+#     'USE_JWT': True,
+#     'JWT_AUTH_COOKIE': 'django_jwtauth_cookie',
+#     'JWT_AUTH_REFRESH_COOKIE': 'django_jwtauth_refresh_cookie'
+# }
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
+
+# Cloud Storage
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dryq8jqqb',

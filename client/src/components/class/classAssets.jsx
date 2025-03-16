@@ -4,7 +4,7 @@ import KatexRenderer from '../global/katexRenderer';
 
 export function ClassText({ text }) {
     return (
-        <div className="panelContainer rowMargin paragraph">
+        <div className="panelContainer segment-margin text-focus textAsset">
             <p>{text}</p>
         </div>
     );
@@ -12,7 +12,7 @@ export function ClassText({ text }) {
 
 export function ClassVideo({ url }) {
     return (
-        <div className="flexCenter rowMargin videoContainer">
+        <div className="flexCenter segment-margin videoAsset">
             <video autoPlay loop muted>
                 <source src={url} type="video/mp4" />
             </video>
@@ -22,46 +22,50 @@ export function ClassVideo({ url }) {
 
 export function ClassImage({ url }) {
     return (
-        <div className=" rowMargin videoContainer">
-            <img className="imageClass" src={url} />
+        <div className=" segment-margin imageAsset">
+            <img src={url} />
         </div>
     );
 }
 
-export function SideContent({ left, right, leftContent, rightContent }) {
+export function ClassCard({ multimedia_type, multimedia, text }) {
     return (
-        <div className="rowMargin contentFlexBox">
-            {left == "image" && (
-                <img className="flexCenter imageClass" src={leftContent} />
+        <div className="segment-margin cardAsset">
+            {multimedia_type == "image" && (
+                <img className="flexCenter imageAsset" src={multimedia} />
             )}
-            {left == "video" && (
-                <div className="flexCenter videoContainer">
+            {multimedia_type == "video" && (
+                <div className="flexCenter videoAsset">
                     <video autoPlay loop muted>
-                        <source src={leftContent} type="video/mp4" />
+                        <source src={multimedia} type="video/mp4" />
                     </video>
                 </div>
             )}
-            {left == "text" && (
-                <div className="panelContainer paragraph">
-                    <p>{leftContent}</p>
-                </div>
-            )}
+            
+            <div className="panelContainer text-focus textAsset">
+                <p>{text}</p>
+            </div>
+        </div>
+    );
+}
 
-            {right == "image" && (
-                <img className="flexCenter imageClass" src={rightContent} />
+export function ClassCard2({ multimedia_type, multimedia, text }) {
+    return (
+        <div className="segment-margin cardAsset reverseCard">
+            {multimedia_type == "image" && (
+                <img className="flexCenter imageAsset" src={multimedia} />
             )}
-            {right == "video" && (
-                <div className="flexCenter videoContainer">
+            {multimedia_type == "video" && (
+                <div className="flexCenter videoAsset">
                     <video autoPlay loop muted>
-                        <source src={rightContent} type="video/mp4" />
+                        <source src={multimedia} type="video/mp4" />
                     </video>
                 </div>
             )}
-            {right == "text" && (
-                <div className="panelContainer paragraph">
-                    <p>{rightContent}</p>
-                </div>
-            )}
+            
+            <div className="panelContainer text-focus textAsset">
+                <p>{text}</p>
+            </div>
         </div>
     );
 }

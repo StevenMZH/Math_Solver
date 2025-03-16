@@ -17,7 +17,7 @@ const KatexRenderer = ({ expression }) => {
 
     return (
         <div
-            className="katex-renderer"
+            className="katex-renderer text-title2"
             dangerouslySetInnerHTML={{ __html: formattedExpression }}
         />
     );

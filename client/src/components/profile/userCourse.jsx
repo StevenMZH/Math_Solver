@@ -1,18 +1,20 @@
 import { Link } from 'react-router-dom';
 
-export function CourseClass({ courseId, classId, name, type }) {
+export function UserCourse({ courseId, classId, name, type }) {
     const topicImages = {
-        "theory": { src: "/images/user1.png", alt: "theory" },
-        "practice": { src: "/images/defaultImage.png", alt: "Practice" },
-        "test": { src: "/images/defaultImage.png", alt: "Test" },
+        math: { src: "/images/integral.svg", alt: "Math" },
+        physics: { src: "/images/defaultImage.png", alt: "Physics" },
+        cs: { src: "/images/cs.png", alt: "Computer Science" },
+        electronics: { src: "/images/defaultImage.png", alt: "Electronics" },
     };
     const defaultImage = { src: "/images/defaultImage.png", alt: "" };
     const topicImage = topicImages[type] || defaultImage;
 
+
     return (
         <div className="class-container">
             <img className='circleImage classImage' src={topicImage.src} alt={topicImage.alt} />
-            <Link className='text-title2' to={`/courses/${courseId}/${classId}`}>{name}</Link>
+            <Link to={`/courses/${courseId}/${classId}`}>{name}</Link>
             <style>{`
                 .class-container {
                     display: flex;
@@ -27,10 +29,9 @@ export function CourseClass({ courseId, classId, name, type }) {
                 }
                 .class-container a {
                     padding: 10px;
-                    font-size: 13px;
                 }
             `}</style>
         </div>
     );
 }
-export default CourseClass;
+export default UserCourse;

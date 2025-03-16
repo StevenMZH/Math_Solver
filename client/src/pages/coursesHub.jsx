@@ -3,6 +3,7 @@ import axios from 'axios';
 import CourseReviewPanel from "../components/courses/courseReviewPanel";
 import Footer from '../components/global/footer';
 import HomeNav from '../components/nav/homeNav';
+import SidePanel from '../components/global/sideBar';
 
 export function CoursesHub() {
     const [courses, setCourses] = useState([]);
@@ -38,6 +39,7 @@ export function CoursesHub() {
 
                 </div>
 
+
                 <style>{`
                     main {
                         width: 100%;
@@ -46,8 +48,8 @@ export function CoursesHub() {
                     .coursesGrid {
                         display: grid;
                         width: 100%;
-                        grid-template-columns: repeat(4, 1fr);
-                        gap: 10px;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 15px;
                     }
 
                     @media (max-width: 1200px) {
@@ -57,7 +59,6 @@ export function CoursesHub() {
                     }
                     @media (max-width: 900px) {
                         .coursesGrid {
-                            margin-top: 10px;
                             grid-template-columns: repeat(1, 1fr);
                         }
                         .panel-container {
@@ -67,11 +68,12 @@ export function CoursesHub() {
                     }
                     @media (max-width: 768px) {
                         .coursesGrid {
-                            margin-top: 40px;
                         }
                     }
                 `}</style>
             </main>
+
+            {/* <SidePanel/> */}
 
             <Footer />
         </div>

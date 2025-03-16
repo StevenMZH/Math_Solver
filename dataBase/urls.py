@@ -4,6 +4,7 @@ from rest_framework.documentation import include_docs_urls
 from .views import UserView, APIRequest_View, APIResponse_View
 from .views import CourseViewSet, CourseUnitViewSet, CourseClassViewSet, ClassExerciseViewSet
 from .views import SearchCourseClass_View, get_classDetails
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 # from .views import searchCourse_Class, get_classDetails
 
 router = routers.DefaultRouter()
@@ -22,4 +23,7 @@ urlpatterns = [
     path('courses/<str:course_id>/<str:class_id>', get_classDetails, name='classDetails'),
     
     path('search/', SearchCourseClass_View.as_view(), name='search'),
-]
+    
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+] 

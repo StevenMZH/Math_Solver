@@ -5,13 +5,23 @@ import base64
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'email', 'username', 'is_active', 'is_staff', 'date_joined']
-        read_only_fields = ['id', 'date_joined']  # Campos no modificables
+        fields = ['id', 'email', 'username', 'password']
 
     def validate_email(self, value):
         if User.objects.filter(email=value).exists():
             raise serializers.ValidationError("A user with this email already exists.")
         return value
+
+# class UserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ['id', 'email', 'username', 'is_active', 'is_staff', 'date_joined']
+#         read_only_fields = ['id', 'date_joined']  # Campos no modificables
+
+#     def validate_email(self, value):
+#         if User.objects.filter(email=value).exists():
+#             raise serializers.ValidationError("A user with this email already exists.")
+#         return value
 
 
 class APIRequestSerializer(serializers.ModelSerializer):

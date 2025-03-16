@@ -13,6 +13,9 @@ import Exercises from './pages/exercises';
 
 import Algebra from './pages/algebra';
 import Login from './pages/login';
+import UserProfile from './pages/userProfile';
+import ProtectedRoute from './components/global/protectedRoute';
+import NotFound from './pages/notFound';
 
 
 function App() {
@@ -29,10 +32,14 @@ function App() {
                 <Route path="/courses/:courseId/:classId" element={<CourseClass />} />
                 <Route path="/classes/:classId" element={<Class />} />
 
+                <Route path='/profile' element={ <ProtectedRoute> <UserProfile/> </ProtectedRoute>} />
+
                 <Route path='/exercises' element={<Exercises />} />
                 <Route path='/solver' element={<Solver />} />
 
                 <Route path='/algebra' element={<Algebra />} />
+
+                <Route path="*" element={<Navigate to="/home"/>} />
             </Routes>
         </BrowserRouter>
     );

@@ -4,7 +4,7 @@ export function CourseUnit({ courseId, num, name, classes }) {
     return (
         <div className="panelContainer unit-container">
             <div className="panel-header unit-header">
-                <label>{`Unidad ${num + 1} : ${name}`}</label>
+                <label className="text-focus">{`Unidad ${num + 1} : ${name}`}</label>
             </div>
             <div className="classes">
                 {classes && classes.length > 0 ? (
@@ -13,14 +13,14 @@ export function CourseUnit({ courseId, num, name, classes }) {
                     ))
                 ) : (
                     <div className='noClass-container'>
-                        <label>No Classes available</label>
+                        <label className="text-subtitle">No Classes available</label>
                     </div>
                 )}
             </div>
 
             <style>{`
                 .unit-container {
-                    width: 70vw;
+                    width: 100%;
                 }
                 .unit-header {
                     text-align: left;
