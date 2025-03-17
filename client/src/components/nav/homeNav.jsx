@@ -48,11 +48,14 @@ export function HomeNav() {
 
             <style>{`
                 header {
+                    position: fixed;
                     display: flex;
                     flex-direction: column;
                     background-color: #0000;
                     width: 100%;
                     height: 72px;
+                    padding: 20px;
+                    padding-bottom: 15px;
                     color: var(--text);
                     justify-content: center;
                     align-items: center;
@@ -64,6 +67,21 @@ export function HomeNav() {
                     align-content: center;
                     margin-bottom: 3px;
                 }
+                a {
+                    text-decoration: none;
+                    background-color: var(--button);
+                    color: var(--text);
+                    padding: 3px 5px;
+                    border: 2px solid var(--button);
+                    border-radius: 25px;
+                    transition: background-color 0.3s, color 0.3s;
+                    font-size: 0.65em;
+                }
+                a:hover {
+                    background-color: var(--button_hover);
+                    border: 2px solid var(--button_hover);
+                    color: var(--text);
+                }
 
                 .nav-container {
                     display: flex;
@@ -71,7 +89,7 @@ export function HomeNav() {
                     justify-content: start;
                     font-weight: 800;
                 }
-
+                    
                 .leftNav {
                     display: flex;
                     width: 100%;

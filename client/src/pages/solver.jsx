@@ -1,6 +1,8 @@
 import HomeNav from '../components/nav/homeNav';
 import Footer from '../components/global/footer';
+import AlgebraiSolver from '../components/math/algebraicSolver';
 import GeoGebraGraph from "../components/math/functionGraph";
+
 
 export function Solver() {
     return (
@@ -9,27 +11,14 @@ export function Solver() {
                 <HomeNav />
             </header>
             <main>
-                <div className='sideSearch-container'>
-                    <div className='solverSearchBar-container'>
-                        <input className='searchBar solverSearchBar' placeholder='Search a Solver'></input>
-                    </div>
-                </div>
-                <div className='solverContent'>
-
-                </div>
+                <AlgebraiSolver/>
             </main>
             <Footer />
 
             <style>{`
-                .solverSearchBar {
+                main {
+                    display: flex;
                 }
-
-                .sideSearch {
-                }
-
-                .solverContent {
-                }
-                
             `}</style>
         </div>
     );

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import '../css/components/nav.css';
 import Footer from '../components/global/footer';
 import HomeNav from '../components/nav/homeNav';
 
