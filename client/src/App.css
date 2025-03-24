@@ -35,11 +35,29 @@ main {
     padding-top: 5px;
 }
 
+a {
+    text-decoration: none;
+    background-color: var(--button);
+    color: var(--text);
+    padding: 3px 5px;
+    border: 2px solid var(--button);
+    border-radius: 25px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 0.65em;
+}
+a:hover{
+    background-color: var(--button_hover);
+    border: 2px solid var(--button_hover);
+    color: var(--text);
+}
+
 button {
+    font-size: 11px;
+    padding: 3px 5px;
     background-color: var(--button);
     color: var(--text);
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
 }
 button:hover {
@@ -67,6 +85,10 @@ input {
     background-color: var(--button);
     cursor: pointer;
     transition: background-color 0.3s;
+    line-height: 0;
+}
+input:focus {
+    outline-color: #fff;
 }
 
 /* Inputs */
@@ -79,16 +101,21 @@ input {
 /* Panels */
 .panelContainer {
     padding: 20px;
-    border: 5px solid var(--panel1);
+    border: 5px solid #0000;
     border-radius: 10px;
     background-color: var(--panel1);
     text-align: center;
     position: relative;
+    box-shadow: 0 0 10px var(--panel_border);
 }
 .panel-header {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+}
+.floating-panel {
+    position: fixed;
+    top: 0;
 }
 
 /* Images */
@@ -169,4 +196,16 @@ input {
 /* specific Styles */
 .katex-renderer {       
     font-size: 13px;
+}
+
+
+@media (max-width: 880px) {
+    main {
+        padding-top: 20px;
+    }
+}
+@media (max-width: 440px) {
+    main {
+        padding-top:10px;
+    }
 }

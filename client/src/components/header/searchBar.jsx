@@ -88,48 +88,51 @@ const SearchBar = () => {
             )}
             <style>{`
                 .searchContainer {
-                    width: 100%;
                     position: relative;
+                    width: 100%;
+
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    position: relative;
-                    width: fit-content; /* Ajusta el ancho al contenido */
                 }
-
                 .searchBar {
                     width: clamp(280px, 40vw, 60vw);
-                    font-size: 12px;
-                    border-radius: 20px;
                     padding: 8px 15px;
+                    border-radius: 20px;
+                    border: none;
+
+                    font-size: 12px;
                     box-sizing: border-box;
+                    box-shadow: 0 0 10px var(--panel_border);
+                    outline-color: var(--panel1);
                 }
 
-                .button-container{
-                    width: 100%;
-                    height: 100%;
+                .button-container{                    
                     display: flex;
                     justify-content: end;
                     align-items: center;
+
+                    width: 100%;
+                    height: 100%;
                 }
                 .searchButton {
-                    top: 0;
                     position: absolute;
-                    border: none;
-                    background-color: #00000000;
-                    border-radius: 50%;
+                    top: 0;
+
                     padding: 6px;
                     padding-bottom: 3px;
+                    border: none;
+                    border-radius: 50%;
                     margin-right: 3px;
                     margin-top: 2px;
-                    cursor: pointer;
+                    
                     align-items: center;
-                    justify-content: center;
+                    background-color: #00000000;  
+
                 }
                 .searchButton:hover {
                     background-color: #00000022;
                 }
-
                 .searchIcon {
                     width: 14px;
                     height: 14px;
@@ -142,37 +145,63 @@ const SearchBar = () => {
                 }
 
                 .searchResults {
-                    position: absolute; /* Se posiciona fuera del flujo normal */
+                    position: absolute;
                     padding: 20px 0;
                     top: calc(75%); /* Desplaza el contenedor hacia abajo del input */
-                    width: 100%; /* Asegura que ocupe el mismo ancho que el contenedor padre */
+                    width: 100%;
                     width: clamp(280px, 40vw, 60vw);
-                    max-height: 300px; /* Opcional: limita la altura */
+                    max-height: 300px;
                     overflow-y: auto; /* Activa el scroll si el contenido excede el alto */
                     border-radius: 5px;
                     z-index: 1000; /* Asegura que el contenedor esté por encima de otros elementos */
                     background-color: var(--panel1);
-                    border: 2px solid #ddd; /* Borde para separar visualmente */
-                    border-radius: 20px;
-                }
 
+                    border: 2px solid #ddd;
+                    border-right: 0;
+                    border-radius: 10px 0 0 10px;
+                    box-shadow: 0 0 20px var(--panel_border);
+                }
+                .searchResults:hover {
+                    display: block;
+                }
                 .searchResults > div {
                     padding: 5px;
                     cursor: pointer;
                     transition: background-color 0.2s;
                 }
-
                 .searchResults > div:hover {
                     background-color: #f0f0f010;
                 }
-
                 .searchResults > div:hover .searchTitle {
                     font-weight: bold;
                 }
 
-                .searchResults:hover {
-                    display: block;
+                @media (max-width: 640px) {
+                    .searchBar-container {
+                        margin: 0 5px;
+                    }
+                    .searchBar {
+                        width: clamp(260px, 60vw, 60vw);
+                        height: 30px;
+                        font-size: 11px;
+                    }
+                    .searchResults {
+                        width: clamp(260px, 60vw, 60vw);
+                    }
                 }
+
+                @media (max-width: 420px) {
+                    .searchBar {
+                        width: clamp(200px, 60vw, 60vw);
+                        height: 30px;
+                        font-size: 8.5px;
+                    }
+                    .searchResults {
+                        width: clamp(200px, 60vw, 60vw);
+                    }
+                }
+
+
             `}</style>
         </div>
     );

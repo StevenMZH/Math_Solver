@@ -1,13 +1,10 @@
 import AlgebraicInput from '../components/math/algebraicSolver';
-import HomeNav from '../components/nav/homeNav';
 import Footer from '../components/global/footer';
+import AppHeader from '../components/global/appHeader';
 
 export function Algebra() {
     return (
         <div className='pageContainer'>
-            <header>
-                <HomeNav />
-            </header>
             <main>
                 <section>
                     <AlgebraicInput />

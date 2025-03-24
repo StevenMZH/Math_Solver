@@ -8,20 +8,22 @@
     --alpha: #00000000;
 
     /* Main Styles */
-    --background: #090909;
+    --background: #121212;
     --header: #17191a;
     
     /* Buttons Styles */
-    --button: #17191a;
+    --button: #353636;
     --button_hover: #212125;
     
     /* Input Styles */
     --bar: #e7e7e7;
 
     /* Panel Styles */
-    --panel1: #111;
-    --panel2: #333;
-    --panel3: #555;
+    --panel1: #212121;
+    --panelOpposite: #f7fcff;
+    --panel-light: #f7fcff;
+    --panel-dark: #212121;
+    --panel_border: #0000;
 
     /* Text Styles */
     --text: #e7e7e7;
@@ -43,7 +45,7 @@
     --logoBg: #4040ff;
     --logoFont: #f7fcff;
 
-    --imageBg: #e7e7e7;
+    --imageBg: #88bbdd;
 
     /* No using */
     --graph_background: #111111;
@@ -70,20 +72,22 @@
     --alpha: #00000000;
 
     /* Main Styles */
-    --background: #090909;
+    --background: #121212;
     --header: #17191a;
     
     /* Button Styles */
-    --button: #17191a;
+    --button: #353636;
     --button_hover: #212125;
     
     /* Input Styles */
     --bar: #e7e7e7;
 
     /* Panel Styles */
-    --panel1: #111;
-    --panel2: #333;
-    --panel3: #555;
+    --panel1: #212121;
+    --panelOpposite: #f7fcff;
+    --panel-light: #f7fcff;
+    --panel-dark: #212121;
+    --panel_border: #0000;
 
     /* Text Styles */
     --text: #e7e7e7;
@@ -105,7 +109,7 @@
     --logoBg: #4040ff;
     --logoFont: #f7fcff;
 
-    --imageBg: #e7e7e7;
+    --imageBg: #88bbdd; /* #e7e7e7; #88bbdd;*/
 
     /* No using */
     --graph_background: #111111;
@@ -131,7 +135,7 @@
     --alpha: #00000000;
 
     /* Main Styles */
-    --background: #93badc;
+    --background: #E0E0EA;
     --header: #fff5;
     
     /* Buttons Styles */
@@ -143,8 +147,10 @@
 
     /* Panel Styles */
     --panel1: #f7fcff;
-    --panel2: #bbb;
-    --panel3: #ddd;
+    --panelOpposite: #212121;
+    --panel-light: #f7fcff;
+    --panel-dark: #212121;
+    --panel_border: #2c5c8650;
 
     /* Text Styles */
     --text: #0c0c0c;
@@ -166,7 +172,7 @@
     --logoBg: #4040ff;
     --logoFont: #f7fcff;
 
-    --imageBg: #93badc;
+    --imageBg: #88bbdd;
     
     /* No using */
     --graph_background: #c8dcdf;

@@ -1,12 +1,10 @@
 export function Logo4() {
     return (
-        <div className="logoContainer">
+        <div className="logo-container" id="logo5">
             <div className="logo logo-Dot blueDot">e</div>
-            <div className="logo logo-text">ulerian </div>
             <div className="logo logo-Dot redDot">H</div>
-            <div className="logo logo-text">ades</div>
             <style>{`  
-                .logoContainer {
+                #logo5 .logo-container {
                     display: flex;
                     margin: 0;
                     font-size: 1em;
@@ -14,7 +12,7 @@ export function Logo4() {
                     text-align: center;
                     font-weight: 800;
                 }
-                .logo-Dot {
+                #logo5 .logo-Dot {
                     margin: 0;
                     color: #fff;
                     border-radius: 100px;
@@ -24,7 +22,7 @@ export function Logo4() {
                     width: 25px;
                     height: 25px;
                 }
-                .logo-text {
+                #logo5 .logo-text {
                     margin: 0;
                     font-size: 12px;
                     padding-top: 1px;
@@ -32,16 +30,19 @@ export function Logo4() {
                     margin-left: 3px;
                     background-color: var(--alpha);
                 }
-                .blueDot {
+                #logo5 .blueDot {
                     margin: 0;
-                    padding: 1px 7px;
-                    background-color: var(--logoBg);
+                    padding: 0px 7px;
+                    padding-bottom: 1px;
+                    background-color: #3366ff;
                     font-size: 16px;
                 }
-                .redDot {
+                #logo5 .redDot {
                     font-size: 12px;
-                    margin-left: 10px;
-                    background-color: #ff4040;
+                    padding-top: 3px;
+                    margin: 0;
+                    margin-top: 20px;
+                    background-color: #ff3366;
                 }
             `}</style>
         </div>

@@ -16,11 +16,16 @@ import Login from './pages/login';
 import UserProfile from './pages/userProfile';
 import ProtectedRoute from './components/global/protectedRoute';
 import NotFound from './pages/notFound';
+import AppHeader from './components/global/appHeader';
 
 
 function App() {
     return (
         <BrowserRouter>
+            <header>
+                <AppHeader/>
+            </header>
+            
             <Routes>
                 <Route path="/" element={<Navigate to="/home" />} />
                 <Route path="/home" element={<Home />} />

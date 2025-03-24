@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CourseReviewPanel from "../components/courses/courseReviewPanel";
+import AppHeader from '../components/global/appHeader';
 import Footer from '../components/global/footer';
-import HomeNav from '../components/nav/homeNav';
 import SidePanel from '../components/global/sideBar';
 
 export function CoursesHub() {
@@ -20,10 +20,6 @@ export function CoursesHub() {
 
     return (
         <div className='pageContainer'>
-            <header>
-                <HomeNav />
-            </header>
-
             <main>
                 <div className="coursesGrid">
                     {courses.map(course => (
@@ -52,12 +48,12 @@ export function CoursesHub() {
                         gap: 15px;
                     }
 
-                    @media (max-width: 1200px) {
+                    @media (max-width: 1100px) {
                         .coursesGrid {
-                            grid-template-columns: repeat(3, 1fr);
+                            grid-template-columns: repeat(2, 1fr);
                         }
                     }
-                    @media (max-width: 900px) {
+                    @media (max-width: 880px) {
                         .coursesGrid {
                             grid-template-columns: repeat(1, 1fr);
                         }
@@ -72,9 +68,6 @@ export function CoursesHub() {
                     }
                 `}</style>
             </main>
-
-            {/* <SidePanel/> */}
-
             <Footer />
         </div>
     );

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Footer from '../components/global/footer';
-import HomeNav from '../components/nav/homeNav';
+import AppHeader from '../components/global/appHeader';
 import CourseUnit from '../components/courses/courseUnits';
 import CourseProgress from '../components/courses/courseProgress';
 import FormulaSheet from '../components/courses/formulaSheet';
@@ -27,10 +27,6 @@ export function Course() {
 
     return (
         <div className='pageContainer'>
-            <header>
-                <HomeNav />
-            </header>
-
             <main>
                 <div className='columnDiv'>
                     <div className='progress-formula'>
@@ -107,10 +103,7 @@ export function Course() {
                         width: 20vw;
                     }
 
-                    @media (max-width: 768px) {
-                        main {
-                            padding-top: 50px;
-                        }
+                    @media (max-width: 880px) {
                         .columnDiv {
                             display: flex;
                             flex-direction: column;

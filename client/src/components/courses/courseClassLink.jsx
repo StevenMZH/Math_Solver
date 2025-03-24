@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export function CourseClass({ courseId, classId, name, type }) {
+export function CourseClass_link({ courseId, classId, name, type }) {
     const topicImages = {
         "theory": { src: "/images/user1.png", alt: "theory" },
         "practice": { src: "/images/defaultImage.png", alt: "Practice" },
@@ -10,14 +10,14 @@ export function CourseClass({ courseId, classId, name, type }) {
     const topicImage = topicImages[type] || defaultImage;
 
     return (
-        <div className="class-container">
+        <div className="classLink">
             <img className='circleImage classImage' src={topicImage.src} alt={topicImage.alt} />
             <Link className='text-title2' to={`/courses/${courseId}/${classId}`}>{name}</Link>
             <style>{`
-                .class-container {
+                .classLink {
                     display: flex;
                     align-items: center;
-                    padding-top: 10px;
+                    padding: 0;
                 }
                 .classImage {
                     width: 40px;
@@ -25,7 +25,7 @@ export function CourseClass({ courseId, classId, name, type }) {
                     margin-left: 20px;
                     margin-right: 10px;
                 }
-                .class-container a {
+                .classLink a {
                     padding: 10px;
                     font-size: 13px;
                 }
@@ -33,4 +33,4 @@ export function CourseClass({ courseId, classId, name, type }) {
         </div>
     );
 }
-export default CourseClass;
+export default CourseClass_link;

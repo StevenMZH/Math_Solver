@@ -23,20 +23,20 @@ export function PaletteSelector() {
         setTheme(selectedTheme);
     };
     return (
-        <div className="paletteSelectorContainer">
+        <div className="paletteSelector-container">
             <button name="darkTheme_Button" id="darkTheme_Button" className="roundButton" onClick={() => handleThemeChange('dark')}></button>
             <button name="lightTheme_Button" id="lightTheme_Button" className="roundButton" onClick={() => handleThemeChange('light')}></button>
 
             <style>{`
-                .paletteSelectorContainer {
+                .paletteSelector-container {
                     display: flex;
                     align-items: center;
                     color: var(--text);
                     margin-right: 5px;
+                    gap: 3px;
                 }
 
                 .roundButton {
-                    margin: 0 2px;
                     padding: 10px;
                     border-radius: 30px;
                     border: 2px solid;
@@ -45,21 +45,26 @@ export function PaletteSelector() {
                 }
 
                 #darkTheme_Button {
-                    background-color: var(--a0);
-                    border-color: var(--a4);
+                    background-color: #333;
+                    border-color: var(--panelOpposite);
+;
                 }
-
                 #lightTheme_Button {
-                    background-color: var(--a3);
-                    border-color: var(--a1);
+                    background-color: var(--panel-light);
+                    border-color: var(--panelOpposite);
                 }
 
-                @media (max-width: 768px) {
-                    .paletteSelectorContainer {
-                        top: 10px;
-                        right: 10px;
+                @media (max-width: 640px) {
+                    .paletteSelector-container {
+                        flex-direction: column;
+                        gap: 3px;
+                        margin-left: 5px;
+                    }
+                    .roundButton {
+                        padding: 5px;
                     }
                 }
+
             `}</style>
         </div>
     );

@@ -2,22 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Footer from '../components/global/footer';
-import HomeNav from '../components/nav/homeNav';
 import CourseClass from './courseClass';
 import UserCourse from '../components/profile/userCourse';
+import AppHeader from '../components/global/appHeader';
 
 export function UserProfile() {
 
     return (
         <div className='pageContainer'>
-            <header>
-                <HomeNav />
-            </header>
-
             <main>
-
                 <div className='flex data-container'>
-                    <div className='flex userData-container panelContainer'>
+                    <div className='flex panelContainer userData-container'>
                         <img className='circleImage bigUserImage' src='/images/user2.png' alt="defaultUserImage" />
                         <div className="userInfo-container text-left">
                             <label>Username</label>
@@ -25,8 +20,12 @@ export function UserProfile() {
                         </div>
                     </div>
                     <div className="panelContainer userProgress-container">
-                        <div className=''>Cursos en Proceso: n</div>
-                        <div>Cursos Terminados: n</div>
+                        <label>Account Stats</label>
+                        
+                        <label className='text-focus'>Completed Classes: </label>
+                        <label className='text-focus'>Solved Exercises: </label>
+                        <label className='text-focus'>Ongoing Courses: </label>
+                        <label className='text-focus'>Completed Courses: </label>
                     </div>
                 </div>
                 <div className='panelContainer userCourses-container'>
@@ -34,6 +33,14 @@ export function UserProfile() {
                 </div>
 
                 <style>{`
+                    main {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: start;
+                        align-items: start;
+                        gap: 10px;
+                    }
+
                     .flex {
                         display: flex;
                     }
@@ -62,6 +69,10 @@ export function UserProfile() {
                     }
 
                     .userProgress-container {
+                        width: 400px;
+                        display: flex;
+                        flex-direction: column;
+                        text-align: left;
                         font-size: 14px;
                     }
                     

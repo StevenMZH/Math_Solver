@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export function SearchPreview_class({ id, name, type }) {
+export function SearchPreview_course({ id, name, type }) {
     const topicImages = {
         "theory": { src: "../../../public/images/user1.png", alt: "theory" },
         "practice": { src: "../../../public/images/defaultImage.png", alt: "Practice" },
@@ -10,15 +10,18 @@ export function SearchPreview_class({ id, name, type }) {
     const topicImage = topicImages[type] || defaultImage;
 
     return (
-        <div className="class-container">
+        <div className="classPreview-container">
             <img className='circleImage classImage' src={topicImage.src} alt={topicImage.alt} />
-            <Link to={`/classes/${id}`}>{name}</Link>
+            <Link to={`/courses/${id}`}>{name}</Link>
             <style>{`
-                .class-container {
+                .classPreview-container {
                     display: flex;
                     align-items: center;
                     padding: 7px 15px;
                     background-color: var(--panel1);
+                }
+                .classPreview-container:hover {
+                    background-color: var(--panel2);
                 }
                 .classImage {
                     width: 40px;
@@ -26,11 +29,11 @@ export function SearchPreview_class({ id, name, type }) {
                     margin-left: 20px;
                     margin-right: 10px;
                 }
-                .class-container a {
+                .classPreview-container a {
                     padding: 10px;
                 }
             `}</style>
         </div>
     );
 }
-export default SearchPreview_class;
+export default SearchPreview_course;

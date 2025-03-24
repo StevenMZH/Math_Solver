@@ -1,13 +1,10 @@
 import { Link } from 'react-router-dom';
 import Footer from '../components/global/footer';
-import HomeNav from '../components/nav/homeNav';
+import AppHeader from '../components/global/appHeader';
 
 export function Home() {
     return (
         <div className='pageContainer'>
-            <header>
-                <HomeNav />
-            </header>
             <main>
                 <div className='sectionsDiv'>
                     <section className='section'>

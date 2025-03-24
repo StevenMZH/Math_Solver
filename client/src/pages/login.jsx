@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Logo4 from "../components/header/logos/logo4";
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -29,26 +30,49 @@ const Login = () => {
     };
 
     return (
-        <div className="login-container">
-            <h2>Iniciar Sesión</h2>
-            {error && <p className="error">{error}</p>}
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Usuario"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Contraseña"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Login</button>
-            </form>
+        <div className="pageContainer">
+            <div className="login-container">
+                <div className="panelContainer login">
+                    <Logo4/>
+                    {error && <p className="error">{error}</p>}
+                    <form onSubmit={handleSubmit} className="login-form">
+                        <input type="text" placeholder="Usuario" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                        <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        <button type="submit">Login</button>
+                    </form>
+                    <div className="side-img">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <style>{`
+                .login-container {
+                    display: grid;
+                    width: 100%;
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .login {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    flex-direction: column;
+                    align-items: left;
+                    justify-content: center;
+                    min-height: 100vh;
+                    margin: 0;
+                    border-radius: 0 10px 10px 0;
+                    background-color: #eee;
+                }
+
+                .login-form {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                }
+
+            `}</style>
         </div>
     );
 };

@@ -76,6 +76,7 @@ function AlgebraicSolver() {
                     transition: background-color 0.3s, color 0.3s;
                     font-size: 13px;
                     background-color: var(--bar);
+                    box-shadow: 0 0 20px var(--panel_border);
                 }
 
                 #algebraicSolver .button-container {

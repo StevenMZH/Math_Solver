@@ -29,6 +29,21 @@ class UserView(viewsets.ModelViewSet):
         except User.DoesNotExist:
             raise NotFound("User with this username not found.")
 
+class CheckUserView(APIView):
+    def get(self, request, username):
+        exists = User.objects.filter(username=username).exists()
+        return Response({'exists': exists}, status=status.HTTP_200_OK)
+
+class RegisterUserView(APIView):
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"success": True, "message": "User registered successfully"}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
 # Request/Response System CRUD
 class APIRequest_View(viewsets.ModelViewSet):
     serializer_class = APIRequestSerializer

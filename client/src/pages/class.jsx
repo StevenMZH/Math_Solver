@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import AppHeader from "../components/global/appHeader";
 
-import HomeNav from '../components/nav/homeNav';
 import Footer from '../components/global/footer';
 import { ClassCard, ClassCard2, ClassImage, ClassText, ClassVideo } from "../components/class/classAssets";
 
@@ -33,9 +33,6 @@ export function Class() {
 
     return (
         <div className="pageContainer">
-            <header>
-                <HomeNav />
-            </header>
             <main>
                 <div className="panelContainer class-header">
                     <label className="text-title">{classData.name}</label>

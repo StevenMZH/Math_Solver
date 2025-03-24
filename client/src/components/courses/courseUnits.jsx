@@ -1,4 +1,4 @@
-import CourseClass from "./courseClassLink";
+import CourseClass_link from "./courseClassLink";
 
 export function CourseUnit({ courseId, num, name, classes }) {
     return (
@@ -9,7 +9,7 @@ export function CourseUnit({ courseId, num, name, classes }) {
             <div className="classes">
                 {classes && classes.length > 0 ? (
                     classes.map((classItem, index) => (
-                        <CourseClass key={index} courseId={courseId} classId={classItem.id} name={classItem.name} type={classItem.type} />
+                        <CourseClass_link key={index} courseId={courseId} classId={classItem.id} name={classItem.name} type={classItem.type} />
                     ))
                 ) : (
                     <div className='noClass-container'>
@@ -30,6 +30,12 @@ export function CourseUnit({ courseId, num, name, classes }) {
                     font-size: 10px;
                     align-items: center;
                     padding-left: 20px;
+                }
+                .classes {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    margin-top: 15px;
                 }
 
             `}</style>
