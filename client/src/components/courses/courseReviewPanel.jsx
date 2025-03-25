@@ -13,27 +13,47 @@ export function CourseReviewPanel({ id, title, type, description, units }) {
     const topics = units.map(unit => unit.name);
 
     return (
-        <div className="panelContainer panel-container">
-            <div className="panel-header text-title">
-                <img className='circleImage classPreview-Image' src={topicImage.src} alt={topicImage.alt} />
-                <Link to={`/courses/${id}`}>{title}</Link>
-            </div>
-            <div className="panel-body">
-                <label className='text-subtitle'>Description:</label>
-                <p className='truncated-text text-focus'>{description}</p>
-                <label className='text-subtitle'>Topics:</label>
-                {topics && topics.length > 0 && (
-                    <ul className='overflowScrollBar_yPanel'>
-                        {topics.map((topic, index) => (<li key={index} className='text-focus'>{topic}</li>))}
-                    </ul>
-                )}
+        <div className="panelContainer coursePreview-container">
+            <div className='colorHeader'></div>
+            <div className='content'>
+                <div className="panel-header text-title">
+                    <img className='circleImage classPreview-Image' src={topicImage.src} alt={topicImage.alt} />
+                    <Link to={`/courses/${id}`}>{title}</Link>
+                </div>
+                <div className="panel-body">
+                    <label className='text-subtitle'>Description:</label>
+                    <p className='truncated-text text-focus'>{description}</p>
+
+                    {topics && topics.length > 0 && (
+                        <>
+                            <label className='text-subtitle'>Topics:</label>
+                            <ul className='overflowScrollBar_yPanel'>
+                                {topics.map((topic, index) => (<li key={index} className='text-focus'>{topic}</li>))}
+                            </ul>
+                        </>
+                    )}
+                </div>
             </div>
 
             <style>{`
-                .panel-container {
+                .coursePreview-container {
                     overflow: hidden;
                     height: 300px;
                     margin:0;
+                    padding: 0;
+                    border: none;
+                }
+                .coursePreview-container .colorHeader {
+                    display: flex;
+                    height: 30px;
+                    width: 100%;
+                    background-color: #88bbee;
+                }
+                .coursePreview-container .content {
+                    width: 100%;
+                    height: 100%;
+                    padding: 20px;
+                    padding-top: 10px;
                 }
                 .panel-header a {
                     font-size: 13px;
@@ -56,13 +76,13 @@ export function CourseReviewPanel({ id, title, type, description, units }) {
 
                 .panel-body {
                     text-align: justify;   
-                    margin-top: 0px;             
+                    margin-top: 0px;   
                 }
                 .panel-body p {
                     margin: 0;
                     font-size: 13px;
-                    margin-bottom: 10px;
-                    margin-top: 3px;
+                    margin-bottom: 15px;
+                    margin-top: 5px;
                 }
 
                 .truncated-text {
@@ -88,6 +108,14 @@ export function CourseReviewPanel({ id, title, type, description, units }) {
                     font-size: 13px;
                 }
 
+                @media (max-width: 880px) {
+                    .coursePreview-container .colorHeader {
+                        height: 25px;
+                    }
+                    .coursePreview-container .content {
+                        padding-top: 7px;
+                    }
+                }
             `}</style>
         </div>
     );

@@ -6,9 +6,10 @@ type(scope): message
 ####  Types:
 - feat( ): New feature
 - fix( ): Bug fix
+- redesign( ): 
 - docs( ): Documentation changes
 - style( ): Code style (formatting, missing semicolons, etc.)
-- refactor( ): Code changes without fixing bugs or adding features
+- refactor( ): Code changes without fixing bugs or adding 
 - test( ): Adding/modifying tests
 - chore( ): Maintenance tasks (dependencies, build process, etc.)
 - perf( ): Performance improvements

@@ -57,13 +57,9 @@ export function CoursesHub() {
                         .coursesGrid {
                             grid-template-columns: repeat(1, 1fr);
                         }
-                        .panel-container {
+                        .coursePreview-container{
                             height: auto;
                             margin: 0;
-                        }
-                    }
-                    @media (max-width: 768px) {
-                        .coursesGrid {
                         }
                     }
                 `}</style>

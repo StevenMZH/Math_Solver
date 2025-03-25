@@ -131,14 +131,14 @@ const LoginPanel = ({ isVisible, setIsVisible }) => {
                     </div>
                     
                     <div className="floating-panel login-exit">
-                        <button onClick={() => { setIsVisible(false); setPhase("access"); setError("");}}> 
+                        <button onClick={() => { setIsVisible(false); setPhase("access"); setError(""); setUsername("");  setPassword(""); setConfirmPassword(""); setEmail(""); }}> 
                             <img src="/public/images/exit.png" alt="exit-login"/> 
                         </button>
                     </div>
                 </div>
 
                 <div className="panel-shadder">
-                    <button onClick={() => { setIsVisible(false); setPhase("access"); setError("");}}> </button>
+                    <button onClick={() => { setIsVisible(false); setPhase("access"); setError(""); setUsername("");  setPassword(""); setConfirmPassword(""); setEmail(""); }}> </button>
                 </div>
 
 
