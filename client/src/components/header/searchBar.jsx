@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import SearchPreview_class from './searchPreview_class';
-import SearchPreview_course from './searchPreview_course';
+import SearchResults_class from './searchResult_class';
+import SearchResults_course from './searchResult_course';
 
 const SearchBar = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -55,17 +55,19 @@ const SearchBar = () => {
                 </div>
             </div>
 
-            {results && (results.courses?.length > 0 || results.classes?.length > 0) && (
-                <div className="searchResults">
+            <div className={`searchResults ${(results && (results.courses?.length > 0 || results.classes?.length > 0)) ? 'show' : ''}`}>
+                {results && (results.courses?.length > 0 || results.classes?.length > 0) && (
+                <>
                     {results.courses?.length > 0 && (
                         <>
-                            <label className="searchTitle">Cursos</label>
+                            <label className="text-focus searchTitle">Cursos</label>
                             {results.courses.map((course) => (
-                                <SearchPreview_course
+                                <SearchResults_course
                                     key={course.id}
                                     id={course.id}
                                     name={course.name}
-                                    field={course.field}
+                                    type={course.field}
+                                    setSearchTerm={setSearchTerm}
                                 />
                             ))}
                         </>
@@ -73,19 +75,20 @@ const SearchBar = () => {
 
                     {results.course_classes?.length > 0 && (
                         <>
-                            <label className="searchTitle">Clases</label>
+                            <label className="text-focus searchTitle">Clases</label>
                             {results.course_classes.map((courseClass) => (
-                                <SearchPreview_class
+                                <SearchResults_class
                                     key={courseClass.id}
                                     id={courseClass.id}
                                     name={courseClass.name}
-                                    field={courseClass.class_type}
+                                    type={courseClass.class_type}
+                                    setSearchTerm={setSearchTerm}
                                 />
                             ))}
                         </>
                     )}
-                </div>
-            )}
+                </>)}
+            </div>
             <style>{`
                 .searchContainer {
                     position: relative;
@@ -141,39 +144,57 @@ const SearchBar = () => {
                 .searchTitle {
                     display: block;
                     padding: 5px 0;
+                    padding-top: 10px;
                     padding-left: 20px;
                 }
 
                 .searchResults {
                     position: absolute;
-                    padding: 20px 0;
+                    padding: 10px 0;
                     top: calc(75%); /* Desplaza el contenedor hacia abajo del input */
                     width: 100%;
                     width: clamp(280px, 40vw, 60vw);
-                    max-height: 300px;
+                    max-height: 0px;
                     overflow-y: auto; /* Activa el scroll si el contenido excede el alto */
                     border-radius: 5px;
                     z-index: 1000; /* Asegura que el contenedor esté por encima de otros elementos */
-                    background-color: var(--panel1);
+                    background-color: var(--panel2);
 
                     border: 2px solid #ddd;
+                    border: none;
                     border-right: 0;
-                    border-radius: 10px 0 0 10px;
+                    border-radius: 10px;
                     box-shadow: 0 0 20px var(--panel_border);
+                
+                    opacity: 0;
+                    transition: max-height 0.2s ease-in-out, opacity 0.3s ease-in-out;
                 }
                 .searchResults:hover {
                     display: block;
                 }
+                .searchResults.show {
+                    max-height: 300px;
+                    opacity: 1;
+                }
+
                 .searchResults > div {
-                    padding: 5px;
                     cursor: pointer;
                     transition: background-color 0.2s;
                 }
-                .searchResults > div:hover {
-                    background-color: #f0f0f010;
+
+                .searchResults::-webkit-scrollbar {
+                    width: 8px;
                 }
-                .searchResults > div:hover .searchTitle {
-                    font-weight: bold;
+                .searchResults::-webkit-scrollbar-track {
+                    background: var(--scrollBar_bg);
+                    border-radius: 0px;
+                }
+                .searchResults::-webkit-scrollbar-thumb {
+                    background: var(--scrollBar);
+                    border-radius: 10px;
+                }
+                .searchResults::-webkit-scrollbar-thumb:hover {
+                    background: var(--scrollBar_hover);
                 }
 
                 @media (max-width: 640px) {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Logo4 from "./logos/logo4";
@@ -84,9 +84,19 @@ const LoginPanel = ({ isVisible, setIsVisible }) => {
         }
     };
 
+    const [showTransition, setShowTransition] = useState(false);
+
+    useEffect(() => {
+        if (isVisible) {
+            setTimeout(() => setShowTransition(true), 10); // Pequeño retraso para activar la transición
+        } else {
+            setShowTransition(false);
+        }
+    }, [isVisible]);
+
     return isVisible && (
         <div className="login-container">
-                <div className="panelContainer login">
+                <div className={`panelContainer login ${showTransition ? 'slice-transition' : ''}`}>
                     <Logo4/>
                     <div className="login-forms">
                         {phase==="access" && (
@@ -117,7 +127,7 @@ const LoginPanel = ({ isVisible, setIsVisible }) => {
                         {phase==="signup" && (
                             <form className="signUp-form" onSubmit={handleSignUp}>
                                 <label className="text-title">Get Started!</label>
-                                <label className="text-subtitle">Enter a Password for your new Account</label>
+                                <label className="text-subtitle">Sign Up for your new Account</label>
 
 
                                 {error && <p className="text-subtitle error">{error}</p>}
@@ -176,14 +186,25 @@ const LoginPanel = ({ isVisible, setIsVisible }) => {
                     align-items: center;
                     justify-content: center;
                     gap: 20px;
-                    
-                    width: 450px;
+
+                    opacity: 0;
+                    width: 0px;
+                    max-width: 0;
+                    overflow: hidden;
+
                     height: 100%;
                     margin: 0;
                     padding: 15px 20px;
                     border-radius: 10px 0 0 10px;
                     background-color: var(--background);    
                     box-shadow: 0 0 20px var(--panel_border);
+
+                    transition: width 0.3s ease-in-out, opacity 0.5s ease-in-out;
+                }
+                .slice-transition {
+                    opacity: 1;
+                    width: 450px;
+                    max-width: 450px;
                 }
 
                 .login-forms {

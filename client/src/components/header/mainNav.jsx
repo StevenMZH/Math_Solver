@@ -9,9 +9,9 @@ export function MainNav() {
                 <li> <Link to="/exercises">Exercises</Link> </li>
             </ul>
             <style>{`
-                mainNav {
-                    align-content: center;
-                    margin-bottom: 3px;
+                .mainNav {
+                    display: flex;
+                    align-items: center;
                 }
                 .mainNav ul {
                     display: flex;

@@ -4,22 +4,31 @@ export function CourseReviewPanel({ id, title, type, description, units }) {
 
     const topicImages = {
         math: { src: "/images/integral.svg", alt: "Math" },
-        physics: { src: "/images/defaultImage.png", alt: "Physics" },
+        physics: { src: "/images/physics.png", alt: "Physics" },
         cs: { src: "/images/cs.png", alt: "Computer Science" },
-        electronics: { src: "/images/defaultImage.png", alt: "Electronics" },
+        electronics: { src: "/images/electronics.png", alt: "Electronics" },
     };
     const defaultImage = { src: "/images/defaultImage.png", alt: "" };
     const topicImage = topicImages[type] || defaultImage;
     const topics = units.map(unit => unit.name);
 
+    const rootStyles = getComputedStyle(document.documentElement);
+    const colors = {
+        math: rootStyles.getPropertyValue("--course-blue").trim(),
+        physics: rootStyles.getPropertyValue("--course-yellow").trim(),
+        cs: rootStyles.getPropertyValue("--course-green").trim(),
+        electronics: rootStyles.getPropertyValue("--course-red").trim(),
+    };
+    
     return (
         <div className="panelContainer coursePreview-container">
-            <div className='colorHeader'></div>
+            <div className='colorHeader' style={{ backgroundColor: colors[type] || "#bbccee" }}></div>
             <div className='content'>
                 <div className="panel-header text-title">
-                    <img className='circleImage classPreview-Image' src={topicImage.src} alt={topicImage.alt} />
+                    <img className='circleImage classPreview-Image' src={topicImage.src} alt={topicImage.alt} style={{ backgroundColor: colors[type] || "#88bbdd;" }} />
                     <Link to={`/courses/${id}`}>{title}</Link>
                 </div>
+                
                 <div className="panel-body">
                     <label className='text-subtitle'>Description:</label>
                     <p className='truncated-text text-focus'>{description}</p>
@@ -47,7 +56,6 @@ export function CourseReviewPanel({ id, title, type, description, units }) {
                     display: flex;
                     height: 30px;
                     width: 100%;
-                    background-color: #88bbee;
                 }
                 .coursePreview-container .content {
                     width: 100%;

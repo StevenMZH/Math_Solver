@@ -71,6 +71,7 @@ function AlgebraicSolver() {
                     width: 700px;
                     height: 40px;
                     padding: 10px;
+                    padding-right: 40px;
                     border: none;
                     cursor: pointer;
                     transition: background-color 0.3s, color 0.3s;
@@ -80,7 +81,7 @@ function AlgebraicSolver() {
                 }
 
                 #algebraicSolver .button-container {
-                    width: 100%;
+                    width: 700px;
                     height: 100%;
                     display: flex;
                     justify-content: end;
@@ -108,7 +109,7 @@ function AlgebraicSolver() {
                 }
 
                 @media (max-width: 768px) {
-                    #algebraicSolver .inputBar {
+                    #algebraicSolver .inputBar, #algebraicSolver .button-container {
                         width: 80vw;
                     }
                 }

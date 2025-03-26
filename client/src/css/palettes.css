@@ -1,25 +1,41 @@
 :root {
     /* Palette */
-    --a0: #090909;
-    --a1: #17191a;
-    --a2: #212125;
-    --a3: #cfcfd7;
-    --a4: #f7fcff;
     --alpha: #00000000;
+    --main-color1: #121212;
+    --main-color2: #212121;
+    --main-color3: #282828;
+    --main-color4: #353636;
+
+    --r2: #6f4058;
+    --g2: #406f58;
+    --b2: #40586f;
+
+    --course-red: #ee88bb;
+    --course-green: #88eebb;
+    --course-blue:#88bbee;
+    --course-yellow: #eebb88;
+
+    /* --course-purple: #aabbee;
+    --course-red: #eeaabb;
+    --course-green: #aaeebb;
+    --course-blue:#bbaaee; */
 
     /* Main Styles */
     --background: #121212;
-    --header: #17191a;
     
     /* Buttons Styles */
     --button: #353636;
     --button_hover: #212125;
+    --button-red: #4f4048;
+    --button-green: #404f48;
+    --button-blue: #40484f;
     
     /* Input Styles */
     --bar: #e7e7e7;
 
     /* Panel Styles */
     --panel1: #212121;
+    --panel2: #282828;
     --panelOpposite: #f7fcff;
     --panel-light: #f7fcff;
     --panel-dark: #212121;
@@ -31,6 +47,13 @@
     --text_subtitle: #555;
     --text_focus: #999;
     --text2: #0c0c0c;
+
+    /* Img Background Styles */
+    --imageBg: #88bbdd;
+    --img-purple: #aabbee;
+    --img-red: #dd88bb;
+    --img-green: #88ddbb;
+    --img-blue: #88bbdd;
 
     /* scrollBar Styles */
     --scrollBar: #777;
@@ -44,46 +67,24 @@
     /* Others */
     --logoBg: #4040ff;
     --logoFont: #f7fcff;
-
-    --imageBg: #88bbdd;
-
-    /* No using */
-    --graph_background: #111111;
-    --graph_border: #e7e7e7;;
-    --graph_fill: #212125;
-    --graph_link: #212125;
-
-    --r: #a2574f;
-    --g: #4fa259;
-    --b: #4f88a2;
-    --r_hover: #e18a81;
-    --g_hover: #78d783;
-    --b_hover: #88c1db;
 }
 
 
 .dark {
-    /* Palette */
-    --a0: #090909;
-    --a1: #17191a;
-    --a2: #212125;
-    --a3: #cfcfd7;
-    --a4: #f7fcff;
-    --alpha: #00000000;
-
     /* Main Styles */
     --background: #121212;
     --header: #17191a;
     
     /* Button Styles */
     --button: #353636;
-    --button_hover: #212125;
+    --button_hover: #40586f;
     
     /* Input Styles */
     --bar: #e7e7e7;
 
     /* Panel Styles */
     --panel1: #212121;
+    --panel2: #282828;
     --panelOpposite: #f7fcff;
     --panel-light: #f7fcff;
     --panel-dark: #212121;
@@ -110,29 +111,17 @@
     --logoFont: #f7fcff;
 
     --imageBg: #88bbdd; /* #e7e7e7; #88bbdd;*/
-
-    /* No using */
-    --graph_background: #111111;
-    --graph_border: #e7e7e7;;
-    --graph_fill: #212125;
-    --graph_link: #212125;
-
-    --r: #a2574f;
-    --g: #4fa259;
-    --b: #4f88a2;
-    --r_hover: #e18a81;
-    --g_hover: #78d783;
-    --b_hover: #88c1db;
 }
 
 .light {
-    /* Palette */
-    --a0: #090909;
-    --a1: #17191a;
-    --a2: #212125;
-    --a3: #cfcfd7;
-    --a4: #f7fcff;
-    --alpha: #00000000;
+    --main-color1: #e0e0ea;
+    --main-color2: #f7fcff;
+    --main-color3: #f7fcff;
+    --main-color4: #f7fcff;
+
+    --r2: #6f4058;
+    --g2: #406f58;
+    --b2: #40586f;
 
     /* Main Styles */
     --background: #E0E0EA;
@@ -140,13 +129,17 @@
     
     /* Buttons Styles */
     --button: #f7fcff;
-    --button_hover: #d2dee4;
+    --button_hover: #d0d8e9;
+    --button-red: #e9d0d8;
+    --button-green: #d0e9d8;
+    --button-blue: #d0d8e9;
 
     /* Input Styles */  
     --bar: #e7e7e7;
 
     /* Panel Styles */
     --panel1: #f7fcff;
+    --panel2: #f7fcff;
     --panelOpposite: #212121;
     --panel-light: #f7fcff;
     --panel-dark: #212121;
@@ -173,17 +166,4 @@
     --logoFont: #f7fcff;
 
     --imageBg: #88bbdd;
-    
-    /* No using */
-    --graph_background: #c8dcdf;
-    --graph_border: #17191a;
-    --graph_fill: #17191a;
-    --graph_link: #17191a;
-
-    --r: #a2574f;
-    --g: #4fa259;
-    --b: #4f88a2;
-    --r_hover: #8e473f;
-    --g_hover: #409048;
-    --b_hover: #3d748e;
 }

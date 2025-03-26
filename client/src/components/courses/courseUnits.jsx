@@ -9,7 +9,7 @@ export function CourseUnit({ courseId, num, name, classes }) {
             <div className="classes">
                 {classes && classes.length > 0 ? (
                     classes.map((classItem, index) => (
-                        <CourseClass_link key={index} courseId={courseId} classId={classItem.id} name={classItem.name} type={classItem.type} />
+                        <CourseClass_link key={index} courseId={courseId} classId={classItem.id} name={classItem.name} type={classItem.class_type} />
                     ))
                 ) : (
                     <div className='noClass-container'>

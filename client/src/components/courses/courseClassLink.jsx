@@ -2,32 +2,50 @@ import { Link } from 'react-router-dom';
 
 export function CourseClass_link({ courseId, classId, name, type }) {
     const topicImages = {
-        "theory": { src: "/images/user1.png", alt: "theory" },
-        "practice": { src: "/images/defaultImage.png", alt: "Practice" },
-        "test": { src: "/images/defaultImage.png", alt: "Test" },
+        "theory": { src: "/public/images/doc.png", alt: "theory" },
+        "practice": { src: "/public/images/defaultImage.png", alt: "Practice" },
+        "test": { src: "/public/images/defaultImage.png", alt: "Test" },
     };
-    const defaultImage = { src: "/images/defaultImage.png", alt: "" };
+    const defaultImage = { src: "/public/images/defaultImage.png", alt: "" };
     const topicImage = topicImages[type] || defaultImage;
-
     return (
-        <div className="classLink">
-            <img className='circleImage classImage' src={topicImage.src} alt={topicImage.alt} />
-            <Link className='text-title2' to={`/courses/${courseId}/${classId}`}>{name}</Link>
+        <div className="class-link">
+            <Link className='text-title2' to={`/courses/${courseId}/${classId}`}>
+                <div className="img-container">
+                    <img className='circleImage classImage' src={topicImage.src} alt={topicImage.alt} />
+                </div>
+                <label>{name}</label>
+            </Link>
             <style>{`
-                .classLink {
+                .class-link {
                     display: flex;
                     align-items: center;
-                    padding: 0;
                 }
-                .classImage {
+                .class-link a {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;                
+                    padding: 10px 20px;
+                    width: 100%;    
+                    font-size: 13px;
+                    border: none;
+                }
+                .class-link a:hover {
+                    border: none;
+                }
+                
+                .class-link .img-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     width: 40px;
                     height: 40px;
-                    margin-left: 20px;
-                    margin-right: 10px;
+                    background-color: var(--course-blue);
+                    border-radius: 100%;
                 }
-                .classLink a {
-                    padding: 10px;
-                    font-size: 13px;
+                .classImage {
+                    width: 30px;
+                    height: 30px;
                 }
             `}</style>
         </div>

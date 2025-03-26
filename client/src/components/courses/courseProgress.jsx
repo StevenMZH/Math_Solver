@@ -47,7 +47,7 @@ export function CourseProgress({ finished, total }) {
                 }
                 .circle {
                     fill: none;
-                    stroke: #4caf50;
+                    stroke: #66ccaa;
                     stroke-width: 3.8;
                     stroke-linecap: round;
                     transition: stroke-dasharray 0.5s ease;
