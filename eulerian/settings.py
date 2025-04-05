@@ -43,21 +43,35 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    # REST
     'corsheaders',
     'rest_framework',
     'coreapi',
 
+    # JWT
     'rest_framework_simplejwt',
     'rest_framework.authtoken',
-    # 'dj_rest_auth',
 
+    # allAuth
+    # 'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
+    # 'dj_rest_auth',
+    # 'dj_rest_auth.registration',
+
+    # Cloudinary
     'cloudinary',
     'cloudinary_storage',
 
+    # APIs
     'frontend',
     'backend',
     'dataBase',
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -66,6 +80,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -88,15 +103,12 @@ TEMPLATES = [
     },
 ]
 
+
 AUTH_USER_MODEL = 'dataBase.User'
-
-
 WSGI_APPLICATION = 'eulerian.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+# Database https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -105,9 +117,7 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
+# Password validation https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -124,27 +134,18 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
+# Internationalization https://docs.djangoproject.com/en/5.1/topics/i18n/
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
+# Static files (CSS, JavaScript, Images) https://docs.djangoproject.com/en/5.1/howto/static-files/
 STATIC_URL = 'static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
+# Default primary key field type https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 # cors authorization
 CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
@@ -155,23 +156,52 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
+    'DEFAULT_PERMMISSION_CLASSES': [
+        "rest_framework_permissions.IsAuthenticated",
+    ]
 }
 
-# Auth
 
-# REST_AUTH = {
-#     'USE_JWT': True,
-#     'JWT_AUTH_COOKIE': 'django_jwtauth_cookie',
-#     'JWT_AUTH_REFRESH_COOKIE': 'django_jwtauth_refresh_cookie'
-# }
-
+# JWT Auth
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
 
-# Cloud Storage
+# allAuth
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'OAUTH_PKCE_ENABLED': True,
+        'FETCH_USERINFO': True,
+    },
+    'github': {
+        'SCOPE': ['user', 'email'],
+    },
+}
+
+ACCOUNT_LOGIN_METHODS = {'email'}
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'dj_rest_auth.registration.serializers.RegisterSerializer',
+}
+REST_USE_JWT = True
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None  # Permite abrir ventanas sin restricciones
+CORS_ALLOW_ALL_ORIGINS = True  # Solo en desarrollo, en producción usa CORS_ALLOWED_ORIGINS
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]  # Agrega cualquier frontend permitido
+
+CORDS_ORIGIN_ALLOW_ALL = True
+CORDS_ALLOWS_CREDENTIALS = True
+
+
+# Cloud Storage
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dryq8jqqb',
     'API_KEY': '574384248391251',
@@ -186,5 +216,4 @@ cloudinary.config(
 
 # Usar Cloudinary como el almacenamiento predeterminado para archivos multimedia
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 MEDIA_URL = '/media/'

@@ -1,12 +1,11 @@
-export function Logo4() {
+export function Logo5() {
     return (
         <div className="logo-container" id="logo5">
             <div className="logo logo-Dot blueDot">e</div>
             <div className="logo logo-Dot redDot">H</div>
             <style>{`  
-                #logo5 .logo-container {
+                #logo5 {
                     display: flex;
-                    margin: 0;
                     font-size: 1em;
                     font-family: Comfortaa;
                     text-align: center;
@@ -48,4 +47,4 @@ export function Logo4() {
         </div>
     );
 };
-export default Logo4;
+export default Logo5;

@@ -6,6 +6,9 @@
     --main-color3: #282828;
     --main-color4: #353636;
 
+    /* Wireframes */
+    --wireframe-content: #353636;
+
     --r2: #6f4058;
     --g2: #406f58;
     --b2: #40586f;
@@ -44,7 +47,7 @@
     /* Text Styles */
     --text: #e7e7e7;
     --text_title: #e7e7e7;
-    --text_subtitle: #555;
+    --text_subtitle: #666;
     --text_focus: #999;
     --text2: #0c0c0c;
 
@@ -92,9 +95,9 @@
 
     /* Text Styles */
     --text: #e7e7e7;
-    --text_title: #e7e7e7;
-    --text_subtitle: #555;
-    --text_focus: #999;
+    --text_title: #ddd;
+    --text_subtitle: #888;
+    --text_focus: #ddd;
     --text2: #0c0c0c;
 
     /* scrollBar Styles */
@@ -119,17 +122,20 @@
     --main-color3: #f7fcff;
     --main-color4: #f7fcff;
 
+    /* Wireframes */
+    --wireframe-content: #a8b4c0;
+
     --r2: #6f4058;
     --g2: #406f58;
     --b2: #40586f;
 
     /* Main Styles */
-    --background: #E0E0EA;
+    --background: #d8dbE3;
     --header: #fff5;
     
     /* Buttons Styles */
     --button: #f7fcff;
-    --button_hover: #d0d8e9;
+    --button_hover: #c8d4e9;
     --button-red: #e9d0d8;
     --button-green: #d0e9d8;
     --button-blue: #d0d8e9;
@@ -147,8 +153,8 @@
 
     /* Text Styles */
     --text: #0c0c0c;
-    --text_title: #0c0c0c;
-    --text_subtitle: #999;
+    --text_title: #444;
+    --text_subtitle: #777;
     --text_focus: #333;
     --text2: #0c0c0c;
 

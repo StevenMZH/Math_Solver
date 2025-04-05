@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
-import Footer from '../components/global/footer';
-import Exercise from "../components/class/exercise";
-import { ClassCard, ClassCard2, ClassImage, ClassText, ClassVideo } from "../components/class/classAssets";
-
+import {NotFound_Message} from "../components/assets/errorMessages";
 
 export function NotFound() {
     return (
-        <div className="pageContainer">
-            <main>
- 
-            </main>
+        <div className="page-container">
+            <NotFound_Message/>
 
             <style>{`
-            
+                .page-container {
+                    display: flex;
+                    align-item: center;
+                    justify-content: center;
+                }
+
+                footer {
+                    display: none;
+                }
             `}</style>
         </div>
     );

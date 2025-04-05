@@ -4,9 +4,9 @@ export function MainNav() {
     return (
         <nav className='mainNav'>
             <ul>
-                <li> <Link to="/solver">Solvers</Link> </li>
-                <li> <Link to="/courses">Courses</Link> </li>
-                <li> <Link to="/exercises">Exercises</Link> </li>
+                <li> <Link to="/solver" className='text-title2'>Solvers</Link> </li>
+                <li> <Link to="/courses" className='text-title2'>Courses</Link> </li>
+                <li> <Link to="/exercises" className='text-title2'>Exercises</Link> </li>
             </ul>
             <style>{`
                 .mainNav {
@@ -18,10 +18,13 @@ export function MainNav() {
                     margin: 0;
                     padding: 0 clamp(0px, 1vw, 20px);
                     list-style: none;
+                    gap: 5px;
                 }
                 .mainNav ul li a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     background-color: #0000;
-                    color: var(--text);
                     padding: 5px 10px;
                     border: 2px solid #0000;
                     border-radius: 25px;
@@ -32,7 +35,6 @@ export function MainNav() {
                 .mainNav ul li a:hover {
                     background-color: var(--button_hover);
                     border: 2px solid #0000;
-                    color: var(--text);
                     transition: background-color 0.3s, color 1s;
                 }
 

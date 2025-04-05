@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 
 export function CourseClass_link({ courseId, classId, name, type }) {
     const topicImages = {
-        "theory": { src: "/public/images/doc.png", alt: "theory" },
-        "practice": { src: "/public/images/defaultImage.png", alt: "Practice" },
-        "test": { src: "/public/images/defaultImage.png", alt: "Test" },
+        "theory": { src: "/public/images/theory.png", alt: "theory" },
+        "practice": { src: "/public/images/practice.png", alt: "Practice" },
+        "test": { src: "/public/images/test.png", alt: "Test" },
     };
     const defaultImage = { src: "/public/images/defaultImage.png", alt: "" };
     const topicImage = topicImages[type] || defaultImage;

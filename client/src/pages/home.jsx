@@ -1,42 +1,39 @@
 import { Link } from 'react-router-dom';
-import Footer from '../components/global/footer';
-import AppHeader from '../components/global/appHeader';
 
 export function Home() {
     return (
-        <div className='pageContainer'>
-            <main>
-                <div className='sectionsDiv'>
-                    <Link to="/articles" className='panelContainer'>
-                        <div className='content'>
-                            <label className='text-title'>Articles</label>
-                            <p className='text-focus'>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ipsum, saepe ut officiis at quos cupiditate? Officiis, saepe veniam qui explicabo quod nesciunt, mollitia officia fugiat nulla architecto aut voluptatum. <br /> <br />
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ipsum, saepe ut officiis at quos cupiditate? Officiis, saepe veniam qui explicabo quod nesciunt, mollitia officia fugiat nulla architecto aut voluptatum.
-                            </p>
-                        </div>
-                    </Link>
-                    <Link to="/courses" className='panelContainer'>
-                        <div className='content'>
-                            <label className='text-title'>Courses</label>
-                            <p className='text-focus'>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ipsum, saepe ut officiis at quos cupiditate? Officiis, saepe veniam qui explicabo quod nesciunt, mollitia officia fugiat nulla architecto aut voluptatum. <br /> <br />
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ipsum, saepe ut officiis at quos cupiditate? Officiis, saepe veniam qui explicabo quod nesciunt, mollitia officia fugiat nulla architecto aut voluptatum.
-                            </p>
-                        </div>
-                    </Link>
-                    <Link to="/exercises" className='panelContainer'>
-                        <div className='content'>
-                            <label className='text-title'>Exercise</label>
-                            <p className='text-focus'>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ipsum, saepe ut officiis at quos cupiditate? Officiis, saepe veniam qui explicabo quod nesciunt, mollitia officia fugiat nulla architecto aut voluptatum. <br /> <br />
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ipsum, saepe ut officiis at quos cupiditate? Officiis, saepe veniam qui explicabo quod nesciunt, mollitia officia fugiat nulla architecto aut voluptatum.
-                            </p>
-                        </div>
-                    </Link>
+        <div className='page-container'>
+            <div className='sectionsDiv'>
+                <Link to="/articles" className='panelContainer'>
+                    <div className='content'>
+                        <label className='text-title'>Articles</label>
+                        <p className='text-focus'>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ipsum, saepe ut officiis at quos cupiditate? Officiis, saepe veniam qui explicabo quod nesciunt, mollitia officia fugiat nulla architecto aut voluptatum. <br /> <br />
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ipsum, saepe ut officiis at quos cupiditate? Officiis, saepe veniam qui explicabo quod nesciunt, mollitia officia fugiat nulla architecto aut voluptatum.
+                        </p>
+                    </div>
+                </Link>
+                <Link to="/courses" className='panelContainer'>
+                    <div className='content'>
+                        <label className='text-title'>Courses</label>
+                        <p className='text-focus'>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ipsum, saepe ut officiis at quos cupiditate? Officiis, saepe veniam qui explicabo quod nesciunt, mollitia officia fugiat nulla architecto aut voluptatum. <br /> <br />
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ipsum, saepe ut officiis at quos cupiditate? Officiis, saepe veniam qui explicabo quod nesciunt, mollitia officia fugiat nulla architecto aut voluptatum.
+                        </p>
+                    </div>
+                </Link>
+                <Link to="/exercises" className='panelContainer'>
+                    <div className='content'>
+                        <label className='text-title'>Exercises</label>
+                        <p className='text-focus'>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ipsum, saepe ut officiis at quos cupiditate? Officiis, saepe veniam qui explicabo quod nesciunt, mollitia officia fugiat nulla architecto aut voluptatum. <br /> <br />
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ipsum, saepe ut officiis at quos cupiditate? Officiis, saepe veniam qui explicabo quod nesciunt, mollitia officia fugiat nulla architecto aut voluptatum.
+                        </p>
+                    </div>
+                </Link>
 
-                    <style>{`
-                        main {
+                <style>{`
+                        page-container {
                             display: flex;
                             weight: 100%;
                             height: 100%;
@@ -79,9 +76,7 @@ export function Home() {
                             line-height: normal;
                         }
                     `}</style>
-                </div>
-            </main>
-            <Footer />
+            </div>
         </div>
     );
 }

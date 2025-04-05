@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import SearchResults_class from './searchResult_class';
-import SearchResults_course from './searchResult_course';
+import ClassResult from '../header/ClassResult';
+import CourseResult from '../header/CourseResult';
 
 const SearchBar = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -43,7 +43,7 @@ const SearchBar = () => {
             <div className="flexCenter searchContainer">
                 <input
                     type="text"
-                    className="searchBar courseSearchBar"
+                    className="searchBar text-focus courseSearchBar"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search Courses, Classes, Exercises..."
@@ -60,9 +60,9 @@ const SearchBar = () => {
                 <>
                     {results.courses?.length > 0 && (
                         <>
-                            <label className="text-focus searchTitle">Cursos</label>
+                            <label className="text-subtitle searchTitle">Cursos</label>
                             {results.courses.map((course) => (
-                                <SearchResults_course
+                                <CourseResult
                                     key={course.id}
                                     id={course.id}
                                     name={course.name}
@@ -75,9 +75,9 @@ const SearchBar = () => {
 
                     {results.course_classes?.length > 0 && (
                         <>
-                            <label className="text-focus searchTitle">Clases</label>
+                            <label className="text-subtitle searchTitle">Clases</label>
                             {results.course_classes.map((courseClass) => (
-                                <SearchResults_class
+                                <ClassResult
                                     key={courseClass.id}
                                     id={courseClass.id}
                                     name={courseClass.name}
@@ -108,6 +108,7 @@ const SearchBar = () => {
                     box-sizing: border-box;
                     box-shadow: 0 0 10px var(--panel_border);
                     outline-color: var(--panel1);
+                    color: #333;
                 }
 
                 .button-container{                    

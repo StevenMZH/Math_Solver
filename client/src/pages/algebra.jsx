@@ -1,20 +1,16 @@
-import AlgebraicInput from '../components/math/algebraicSolver';
-import Footer from '../components/global/footer';
-import AppHeader from '../components/global/appHeader';
+import AlgebraicInput from '../components/math/AlgebraicSolver';
 
 export function Algebra() {
     return (
-        <div className='pageContainer'>
-            <main>
+        <div className='page-container'>
                 <section>
                     <AlgebraicInput />
                 </section>
-            </main>
-            <Footer />
 
             <style>{`
-                main {
-                    display: flex;
+                .page-container {
+                    justify-content: center;
+                    align-items: center;      
                 }
             `}</style>
         </div>

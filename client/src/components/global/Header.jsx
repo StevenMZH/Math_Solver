@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom';
 import { useState } from "react";
 
-import Logo0 from "../header/logos/logo0";
-import Logo1 from "../header/logos/logo1";
-import Logo2 from "../header/logos/logo2";
-import Logo3 from "../header/logos/logo3";
-import Logo4 from "../header/logos/logo4";
-import Logo5 from "../header/logos/logo5";
-import SearchBar from '../header/searchBar';
-import PaletteSelector from '../header/paletteSelector';
-import LoginPanel from '../header/loginPanel';
-import MainNav from '../header/mainNav';
+import Logo0 from "../header/logos/Logo0";
+import Logo1 from "../header/logos/Logo1";
+import Logo2 from "../header/logos/Logo2";
+import Logo3 from "../header/logos/Logo3";
+import Logo4 from "../header/logos/Logo4";
+import Logo5 from "../header/logos/Logo5";
+import PaletteSelector from '../header/PaletteSelector';
+import AccessPanel from '../access/AccessPanel';
+import Nav from '../header/Nav';
+import SearchBar from './SearchBar';
+import { AccessProvider } from '../access/AccessContext';
 
 export function AppHeader() {
     const [isLoginVisible, setIsLoginVisible] = useState(false);
@@ -21,17 +22,17 @@ export function AppHeader() {
             <div className='nav-left'>
                 <Logo4 />
                 <Logo5 />
-                <MainNav/>
+                <Nav/>
             </div>
 
             <div className='flexCenter nav-center'>
-                <SearchBar />
+                <SearchBar/>
             </div>
 
             <div className='flexCenter nav-right'>
                 {!token && (
                     <div className='accessButton-container'>
-                        <button onClick={() => setIsLoginVisible(true)}>Access</button>
+                        <button onClick={() => setIsLoginVisible(true)} className='text-title2'>Access</button>
                     </div>
                 )}
                 <PaletteSelector />
@@ -44,8 +45,9 @@ export function AppHeader() {
 
                 )}                
             </div>
-
-            <LoginPanel isVisible={isLoginVisible} setIsVisible={setIsLoginVisible}/>
+            <AccessProvider>
+                <AccessPanel isVisible={isLoginVisible} setIsVisible={setIsLoginVisible}/>
+            </AccessProvider>
 
             <style>{`
                 header {
@@ -64,15 +66,13 @@ export function AppHeader() {
                     padding-bottom: 15px;
 
                     background-color: #0000;
-                    color: var(--text);
-                    font-family: Comfortaa;
+                    font-family: "Work Sans", sans-serif;
                     backdrop-filter: blur(10px);
                 }
                 .appHeader-container {
                     display: flex;
                     width: 100%;
                     justify-content: start;
-                    font-weight: 800;
                 }
                     
                 .nav-left {
@@ -94,10 +94,11 @@ export function AppHeader() {
                     justify-content: end;
                 }
                 .accessButton-container {
-                    margin: 0 5px;
+                    margin: 0 7px;
                 }
                 .accessButton-container button {
-                    padding: 6px;
+                    border-radius: 5px;
+                    padding: 7px;
                 }
 
                 .profilePicture-container a, .profilePicture-container a:hover{
@@ -152,8 +153,8 @@ export function AppHeader() {
                         margin-bottom: 10px;
                     }
                     .profilePicture {
-                        width: 35px;
-                        height: 35px;
+                        width: 40px;
+                        height: 40px;
                     } 
                 }
 

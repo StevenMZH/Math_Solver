@@ -1,10 +1,10 @@
-import CourseClass_link from "./courseClassLink";
+import CourseClass_link from "./ClassLink";
 
 export function CourseUnit({ courseId, num, name, classes }) {
     return (
         <div className="panelContainer unit-container">
             <div className="panel-header unit-header">
-                <label className="text-focus">{`Unidad ${num + 1} : ${name}`}</label>
+                <label className="text-focus">{`Unit ${num + 1} : ${name}`}</label>
             </div>
             <div className="classes">
                 {classes && classes.length > 0 ? (
@@ -13,7 +13,7 @@ export function CourseUnit({ courseId, num, name, classes }) {
                     ))
                 ) : (
                     <div className='noClass-container'>
-                        <label className="text-subtitle">No Classes available</label>
+                        <label className="text-subtitle">No Classes Available</label>
                     </div>
                 )}
             </div>

@@ -55,7 +55,7 @@ export function CourseProgress({ finished, total }) {
                 .percentage {
                     font-size: 6px;
                     text-anchor: middle;
-                    fill: #bbb;
+                    fill: #aaa;
                 }
             `}</style>
         </div>

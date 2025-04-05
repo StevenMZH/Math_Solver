@@ -1,6 +1,6 @@
 export function Exercises() {
     return (
-        <div className='pageContainer'>
+        <div className='page-container'>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import KatexRenderer from "../global/katexRenderer";
+import KatexRenderer from "../global/KatexRenderer";
 
 export function FormulaSheet({ formulas }) {
     return (

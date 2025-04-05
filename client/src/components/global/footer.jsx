@@ -3,19 +3,28 @@ import React from 'react';
 export function Footer() {
     return (
         <footer className="footer">
-            <p className="text-focus footer-p" data-lang-key="footer.rights">© 2024 Eulerian Hades. All rights reserved.</p>
+            <p className="text-focus footer-p" data-lang-key="footer.rights">© 2025 Eulerian Hades. All rights reserved.</p>
             <div className="footerNav-container">
                 <nav className='footer-nav'>
                     <ul className="footerNav-ul">
-                        <li><a href="/about" className='text-title'>About</a></li>
+                        <li><a href="/about" className='text-title2'>About</a></li>
                     </ul>
                 </nav>
             </div>
             <style>{`
+                @keyframes appearAnim {
+                    0% { display: none; }
+                    90% { display: none; }
+                    100% { display: flex; }
+                }
+
+                footer {
+                    animation: appearAnim 1s ease-in-out;
+                }
+
                 .footer-nav {
                     margin-bottom: 2px;
                 }
-
                 .footer {
                     display: flex;
                     background-color: #00000000;
@@ -24,7 +33,7 @@ export function Footer() {
                     padding: 7px 0;
                     padding-top: 6px;
                     text-align: center;
-                    color: var(--text);
+                    color: var(--text_title);
                     justify-content: center;
                     align-items: center;
                     bottom: 0;
@@ -53,7 +62,6 @@ export function Footer() {
                 .footerNav-container nav a {
                     text-decoration: none;
                     background-color: var(--button);
-                    color: var(--text);
                     padding: 2px 5px;
                     border: 2px solid var(--button);
                     border-radius: 25px;

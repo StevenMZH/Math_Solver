@@ -1,11 +1,12 @@
 @import url('./css/palettes.css');
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap');
 
 html, body {
     height: 100%;
     margin: 0;
 }
-body, .pageContainer {
+body, main {
     background-color: var(--background);
     color: var(--text);
     flex-direction: column;
@@ -16,6 +17,7 @@ body, .pageContainer {
     position: relative; 
     display: flex;
     font-family: 'Comfortaa', sans-serif;
+    font-family: "Red Hat Text", sans-serif;
     font-optical-sizing: auto;
 }
 body.theme-changing * {
@@ -23,27 +25,31 @@ body.theme-changing * {
 }
 
 main {
-    display: block;
+    padding: 10px 20px;
+    padding-top: 77px;
+    gap: 20px
+}
+.page-container {
+    display: flex;
+    flex-direction: column; 
     flex: 1;
     text-align: center;
-    justify-content: center;  
+    justify-content: start;  
     align-items: center;      
     width: 100%;
     color: var(--text);
-    padding: 10px 20px;
-    margin-top: 72px;
-    padding-top: 5px;
 }
 
 a {
     text-decoration: none;
     background-color: var(--button);
-    color: var(--text);
+    color: var(--text_title);
     padding: 3px 5px;
     border: 2px solid var(--button);
     border-radius: 25px;
     transition: background-color 0.3s, color 0.3s;
     font-size: 0.65em;
+    font-weight: 500;
 }
 a:hover{
     background-color: var(--button_hover);
@@ -55,7 +61,8 @@ button {
     font-size: 11px;
     padding: 3px 5px;
     background-color: var(--button);
-    color: var(--text);
+    color: var(--text_title);
+    font-weight: 500;
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -155,6 +162,27 @@ input:focus {
     background: var(--scrollBar2_hover);
 }
 
+.overflowScrollBar_xPanel {
+    max-width: 400px; /* Max width of the panel */
+    list-style-type: disc;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.overflowScrollBar_xPanel::-webkit-scrollbar {
+    width: 6px;
+}
+.overflowScrollBar_xPanel::-webkit-scrollbar-track {
+    background: var(--scrollBar2_bg);
+    border-radius: 10px;
+}
+.overflowScrollBar_xPanel::-webkit-scrollbar-thumb {
+    background: var(--scrollBar2);
+    border-radius: 10px;
+}
+.overflowScrollBar_xPanel::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollBar2_hover);
+}
+
 /* ScrollBar */
 ::-webkit-scrollbar {
     width: 12px;
@@ -176,36 +204,35 @@ input:focus {
 .text-title {
     font-weight: 800;
     color: var(--text_title);
+    font-family: "Red Hat Text", sans-serif;
 }
 .text-title2 {
-    font-weight: 400;
+    font-weight: 600;
     color: var(--text_title);
+    font-family: "Red Hat Text", sans-serif;
 }
 
 .text-subtitle {
     font-size: 11px;
     font-weight: 800;
     color: var(--text_subtitle);
+    font-family: "Red Hat Text", sans-serif;
 }
 
 .text-focus {
     font-size: 13px;
     color: var(--text_focus);
+    font-family: "Red Hat Text", sans-serif;
 }
 
 /* specific Styles */
 .katex-renderer {       
     font-size: 13px;
+    font-family: "Red Hat Text", sans-serif;
 }
 
 
-@media (max-width: 880px) {
-    main {
-        padding-top: 20px;
-    }
-}
+
 @media (max-width: 440px) {
-    main {
-        padding-top:10px;
-    }
+
 }

@@ -1,53 +1,78 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Suspense, lazy, useState } from "react";
+import Footer from './components/global/Footer';
+import { FailLoad_Message, NotFound_Message } from './components/assets/errorMessages';
+import LoadingScreen, { Loading_floatingPanel } from './components/assets/TransitionPages';
+import InDev from './pages/InDev';
 
-import Home from './pages/home';
+const Home = lazy(() => import("./pages/Home"));
 
-import CoursesHub from './pages/coursesHub';
-import Course from './pages/course';
+const CoursesHub = lazy(() => import("./pages/CourseHub"));
+const Course = lazy(() => import("./pages/Course"));
+const CourseClass = lazy(() => import("./pages/CourseClass"));
+const Class = lazy(() => import("./pages/Class"));
 
-import CourseClass from './pages/courseClass';
-import Class from './pages/class';
+const Solver = lazy(() => import("./pages/Solver"));
+const Exercises = lazy(() => import("./pages/Exercises"));
 
-import Solver from './pages/solver';
-import Exercises from './pages/exercises';
+const Algebra = lazy(() => import("./pages/Algebra"));
 
-import Algebra from './pages/algebra';
-import Login from './pages/login';
-import UserProfile from './pages/userProfile';
-import ProtectedRoute from './components/global/protectedRoute';
-import NotFound from './pages/notFound';
-import AppHeader from './components/global/appHeader';
-
+const UserProfile = lazy(() => import("./pages/Profile"));
+const ProtectedRoute = lazy(() => import("./components/global/ProtectedRoute"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Header = lazy(() => import("./components/global/Header"));
 
 function App() {
+    const [loadingPage, setLoadingPage] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [failPageLoad, setFailPageLoad] = useState(false);
+
     return (
         <BrowserRouter>
             <header>
-                <AppHeader/>
+                <Suspense fallback={<div></div>}>
+                    <Header/>
+                </Suspense>
             </header>
-            
-            <Routes>
-                <Route path="/" element={<Navigate to="/home" />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/forgotten-password" element={<Login />} />
 
-                <Route path='/courses' element={<CoursesHub />} />
-                <Route path="/courses/:courseId" element={<Course />} />
-                <Route path="/courses/:courseId/:classId" element={<CourseClass />} />
-                <Route path="/classes/:classId" element={<Class />} />
+            <main>
+        
+                    <Suspense fallback={<div></div>} onError={() => setFailPageLoad(true)}>
+                        <Routes>
+                            <Route path="/" element={<Navigate to="/home" />} />
+                            <Route path="/home" element={<Home />} />
 
-                <Route path='/profile' element={ <ProtectedRoute> <UserProfile/> </ProtectedRoute>} />
+                            <Route path="/courses" element={<CoursesHub />} />
+                            <Route path="/courses/:courseId" element={<Course/>} />
+                            <Route path="/courses/:courseId/:classId" element={<CourseClass  />} />
+                            <Route path="/classes/:classId" element={<Class />} />
 
-                <Route path='/exercises' element={<Exercises />} />
-                <Route path='/solver' element={<Solver />} />
+                            <Route
+                                path="/profile"
+                                element={
+                                    <ProtectedRoute>
+                                        <UserProfile />
+                                    </ProtectedRoute>
+                                }
+                            />
 
-                <Route path='/algebra' element={<Algebra />} />
+                            <Route path="/exercises" element={<InDev/>} />
+                            <Route path="/solver" element={<Solver />} />
+                            <Route path="/algebra" element={<Algebra />} />
 
-                <Route path="*" element={<Navigate to="/home"/>} />
-            </Routes>
+
+                            <Route path="*" element={<NotFound/>} />
+                        </Routes>
+
+                        <Footer/>
+
+                    </Suspense>
+
+            </main>
+
+
         </BrowserRouter>
-    );
+    )
 }
 
 export default App;

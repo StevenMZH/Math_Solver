@@ -51,7 +51,7 @@ export function SearchResult_course({ id, name, type, setSearchTerm }) {
                     background-color: #0000;
                 } 
                 .courseLink-container a:hover {
-                    background-color: #0004;
+                    background-color: #0003;
                 } 
                 .courseLink-container .labelsDiv {
                     display: flex;
@@ -60,7 +60,7 @@ export function SearchResult_course({ id, name, type, setSearchTerm }) {
                 }
                 .courseLink-container .text-subtitle {
                     margin-top: 1px;
-                    font-size: 11px;
+                    font-size: 10px;
                 }
 
                 .link-img {

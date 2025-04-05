@@ -1,84 +1,115 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import Footer from '../components/global/footer';
-import AppHeader from '../components/global/appHeader';
-import CourseUnit from '../components/courses/courseUnits';
-import CourseProgress from '../components/courses/courseProgress';
-import FormulaSheet from '../components/courses/formulaSheet';
+import CourseUnit from '../components/courses/CourseUnit';
+import CourseProgress from '../components/courses/CourseProgress';
+import FormulaSheet from '../components/courses/FormulaSheet';
+import { FailLoad_Message, NotFound_Message } from '../components/assets/errorMessages';
+import LoadingScreen, { Loading_floatingPanel } from '../components/assets/TransitionPages';
 
 export function Course() {
     const { courseId } = useParams(); // Obtener el courseId de la URL
     const [course, setCourse] = useState(null);
+    const [error, setError] = useState(null);
+    const [loaded, setLoaded] = useState(false);
+    const [loadingPage, setLoadingPage] = useState(false);
+    const [failPageLoad, setFailPageLoad] = useState(false);
+    const [notFound_error, setNotFound_error] = useState(false);
 
     useEffect(() => {
         if (!courseId) {
             console.error('Course ID is missing');
             return;
         }
+        setLoadingPage(true);
 
         axios.get(`http://127.0.0.1:8000/dataBase/courses/${courseId}/`)
             .then(response => {
-                console.log('API Response:', response.data); // Log de la respuesta de la API
-                setCourse(response.data); // Guarda la respuesta en el estado
+                setCourse(response.data);
+                setError(null);
+                setLoadingPage(false);
+                setFailPageLoad(false);
+                setLoaded(true);
             })
-            .catch(error => console.error("Error fetching course:", error));
+            .catch(error => {
+                if (error.response && error.response.status === 404) {
+                    setNotFound_error(true);
+                    setLoadingPage(false);
+                    setFailPageLoad(false);
+                } else {
+                    setLoadingPage(false);
+                    setFailPageLoad(true);
+                    console.log(error.response);
+                }
+            });
     }, [courseId]); // Asegúrate de que la dependencia sea el courseId
 
     return (
-        <div className='pageContainer'>
-            <main>
-                <div className='columnDiv'>
-                    <div className='progress-formula'>
-                        <CourseProgress
-                            finished={10}
-                            total={64}
-                        />
-                        <div className='top-formulaSheet'>
-                            {course?.formulas && course.formulas.length > 0 && (
-                                <FormulaSheet formulas={course.formulas} />
+        <>
+            {notFound_error ? ( <div className='page-container flex-center'> <NotFound_Message message={"This Course does not exist"} /> </div> ) : 
+            failPageLoad ? ( <div className="page-container"> <FailLoad_Message /> </div> ) : 
+            loadingPage ? ( <div className="page-container"> <LoadingScreen/> </div>) : 
+            (
+                <div className='page-container'>
+                    <div className='columnDiv'>
+                        <div className='progress-formula'>
+                            <CourseProgress finished={10} total={64} />
+                            <div className='top-formulaSheet'>
+                                {course?.formulas?.length > 0 && <FormulaSheet formulas={course.formulas} />}
+                            </div>
+                        </div>
+
+                        <div className='units'>
+                            {Array.isArray(course?.units) && course.units.length > 0 ? (
+                                course.units.map((unit, index) => (
+                                    <CourseUnit
+                                        key={unit.id}
+                                        courseId={course.id}
+                                        num={index}
+                                        name={unit.name}
+                                        classes={unit.classes || []}
+                                    />
+                                ))
+                            ) : (
+                                <div className='panelContainer noUnits-container'>
+                                    <label className='text-title2'>No Units Available</label>
+                                </div>
                             )}
                         </div>
+
+                        <div className='bottom-formulaSheet'>
+                            {course?.formulas?.length > 0 && <FormulaSheet formulas={course.formulas} />}
+                        </div>
                     </div>
-
-                    <div className='units'>
-                        {Array.isArray(course?.units) && course.units.length > 0 ? (
-                            course.units.map((unit, index) => (
-                                <CourseUnit
-                                    key={unit.id}
-                                    courseId={course.id}
-                                    num={index}
-                                    name={unit.name}
-                                    classes={unit.classes || []}
-                                />
-                            ))
-                        ) : (
-                            <div className='panelContainer noUnits-container'>
-                                <label>No units available</label>
-                            </div>
-                        )}
-                    </div>
-
-                    <div className='bottom-formulaSheet'>
-                        {course?.formulas && course.formulas.length > 0 && (
-                            <FormulaSheet formulas={course.formulas} />
-                        )}
-                    </div>
-
-
                 </div>
+            )}
 
-                <style>{`
-                    .main {
+
+            <style>{`
+                    .page-container {
                         width: 100%;
+                        gap: 10px;
                     }
 
-                    .progress-container, .sheet-container, .noUnits-container {
+                    .flex-center {
+                        display: flex;
+                        flex-direction: column;
+                        flex: 1;
+                        height: 100%;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .progress-container, .sheet-container{
                         width: 70vw;
+                    }
+                    .noUnits-container {
+                        width: 100%;
                     }
 
                     .columnDiv {
                         display: flex;
+                        width: 100%;
                         flex-direction: row;
                         gap: 20px;
                     }
@@ -115,7 +146,7 @@ export function Course() {
                         .progress-formula {
                             position: static;
                         }
-                        .progress-container, .sheet-container, .unit-container {
+                        .progress-container, .sheet-container, .unit-container, .noUnits-container {
                             width: 90vw;
                         }
 
@@ -128,11 +159,8 @@ export function Course() {
                     }
 
                 `}</style>
-            </main>
-
-            <Footer />
-        </div>
-    );
+        </>
+    )
 }
 
 export default Course;

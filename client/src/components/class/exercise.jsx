@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import KatexRenderer from '../global/katexRenderer';
+import KatexRenderer from '../global/KatexRenderer';
 
 export function Exercise({ exerciseId }) {
     const [exercise, setExercise] = useState(null);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import KatexRenderer from '../global/katexRenderer';
+import KatexRenderer from '../global/KatexRenderer';
 
 export function ClassText({ text }) {
     return (
@@ -23,7 +23,7 @@ export function ClassVideo({ url }) {
 export function ClassImage({ url }) {
     return (
         <div className=" segment-margin imageAsset">
-            <img src={url} />
+            <img src={url} alt="class image"/>
         </div>
     );
 }
@@ -32,7 +32,7 @@ export function ClassCard({ multimedia_type, multimedia, text }) {
     return (
         <div className="segment-margin cardAsset">
             {multimedia_type == "image" && (
-                <img className="flexCenter imageAsset" src={multimedia} />
+                <img className="flexCenter imageAsset" src={multimedia} alt="class image"/>
             )}
             {multimedia_type == "video" && (
                 <div className="flexCenter videoAsset">

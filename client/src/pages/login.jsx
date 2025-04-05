@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Logo4 from "../components/header/logos/logo4";
+import Logo4 from "../components/header/logos/Logo4";
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -30,7 +30,7 @@ const Login = () => {
     };
 
     return (
-        <div className="pageContainer">
+        <div className="page-container">
             <div className="login-container">
                 <div className="panelContainer login">
                     <Logo4/>

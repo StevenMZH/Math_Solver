@@ -6,7 +6,7 @@ export function Logo4() {
             <div className="logo logo-Dot redDot">H</div>
             <div className="logo logo-text">ades</div>
             <style>{`  
-                .logo-container {
+                #logo4 {
                     display: flex;
                     margin: 0;
                     font-size: 1em;
@@ -14,7 +14,7 @@ export function Logo4() {
                     text-align: center;
                     font-weight: 800;
                 }
-                .logo-Dot {
+                #logo4 .logo-Dot {
                     margin: 0;
                     color: #fff;
                     border-radius: 100px;
@@ -25,7 +25,7 @@ export function Logo4() {
                     height: 25px;
                     line-height: 0;
                 }
-                .logo-text {
+                #logo4 .logo-text {
                     margin: 0;
                     font-size: 12px;
                     padding-top: 1px;
@@ -33,14 +33,14 @@ export function Logo4() {
                     margin-left: 3px;
                     background-color: var(--alpha);
                 }
-                .blueDot {
+                #logo4 .blueDot {
                     margin: 0;
                     padding: 0px 7px;
                     padding-bottom: 1px;
                     background-color: #3366ff;
                     font-size: 16px;
                 }
-                .redDot {
+                #logo4 .redDot {
                     font-size: 12px;
                     margin-left: 10px;
                     background-color: #ff3366;

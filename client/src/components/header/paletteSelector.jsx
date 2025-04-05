@@ -24,8 +24,8 @@ export function PaletteSelector() {
     };
     return (
         <div className="paletteSelector-container">
-            <button name="darkTheme_Button" id="darkTheme_Button" className="roundButton" onClick={() => handleThemeChange('dark')}></button>
-            <button name="lightTheme_Button" id="lightTheme_Button" className="roundButton" onClick={() => handleThemeChange('light')}></button>
+            <button name="darkTheme_Button" aria-label="Activate Dark Theme" id="darkTheme_Button" className="roundButton" onClick={() => handleThemeChange('dark')}></button>
+            <button name="lightTheme_Button" aria-label="Activate Light Theme" id="lightTheme_Button" className="roundButton" onClick={() => handleThemeChange('light')}></button>
 
             <style>{`
                 .paletteSelector-container {
@@ -59,6 +59,7 @@ export function PaletteSelector() {
                         flex-direction: column;
                         gap: 3px;
                         margin-left: 5px;
+                        display: none;
                     }
                     .roundButton {
                         padding: 5px;

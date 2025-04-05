@@ -1,82 +1,117 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import AppHeader from "../components/global/appHeader";
 
-import Footer from '../components/global/footer';
-import Exercise from "../components/class/exercise";
 import { ClassCard, ClassCard2, ClassImage, ClassText, ClassVideo } from "../components/class/classAssets";
+import { NotFound_Message, FailLoad_Message } from "../components/assets/errorMessages";
+import LoadingAnim from "../components/assets/anims";
+import LoadingScreen from "../components/assets/TransitionPages";
+
 
 
 export function CourseClass() {
-    const { courseId, classId } = useParams(); // Obtén los parámetros de la URL
+    const { courseId, classId } = useParams();
     const [classData, setClassData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [notFound_error, setNotFound_error] = useState(false);
+    const [failLoad, setFailLoad] = useState(false);
 
     useEffect(() => {
         const fetchClassData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/dataBase/courses/${courseId}/${classId}`);
+                const response = await axios.get(`http://127.0.0.1:8000/dataBase/classes/${classId}`);
                 setClassData(response.data);
             } catch (err) {
-                setError(err.response ? err.response.data.message : err.message);
+                if (err.response && err.response.status === 404) {
+                    setNotFound_error(true);
+                } else {
+                    setFailLoad(true);
+                }
             } finally {
                 setLoading(false);
             }
         };
 
         fetchClassData();
-    }, [courseId, classId]);
+    }, [classId]);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
-    console.log(classData);
+    if (loading) return ( <LoadingScreen/> ) ;
+    if (notFound_error) return (
+        <div className="page-container">
+            <NotFound_Message message="This Class does not exist" />
+            <style>{`
+                .page-container {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                    height: 100%;
+                    justify-content: center;
+                    align-items: center;
+                }
+            `}</style>
+        </div>
+    )
 
-    return (
-        <div className="pageContainer">
-            <main>
-                <div className="panelContainer class-header">
-                    <label className="text-title">{classData.name}</label>
-                </div>
-
-                {classData.content && classData.content.map((item, index) => {
-                    switch (item.type) {
-                        case "image":
-                            return <ClassImage key={index} url={item.content} />;
-                        case "video":
-                            return <ClassVideo key={index} url={item.content} />;
-                        case "text":
-                            return <ClassText key={index} text={item.content} />;
-                        case "card":
-                            return (
-                                <ClassCard
-                                    key={index}
-                                    multimedia_type={item.multimedia_type}
-                                    multimedia={item.multimedia}
-                                    text={item.text}
-                                />
-                            );
-                        case "card2":
-                            return (
-                                <ClassCard2
-                                    key={index}
-                                    multimedia_type={item.multimedia_type}
-                                    multimedia={item.multimedia}
-                                    text={item.text}
-                                />
-                            );
-                        default:
-                            return null;
-                    }
-                })}
-
-
-            </main>
-            <Footer />
-
+    
+    if (failLoad) return (
+        <div className="page-container flex-center">
+            <FailLoad_Message message="Failed to load class data. Please try again later." />
 
             <style>{`
+                .page-container {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                    height: 100%;
+                    align-items: center;
+                }
+            `}</style>
+        </div>
+    )
+
+    return (
+        <div className="page-container">
+            <div className="panelContainer class-header">
+                <label className="text-title">{classData.name}</label>
+            </div>
+
+            {classData.content && classData.content.map((item, index) => {
+                switch (item.type) {
+                    case "image":
+                        return <ClassImage key={index} url={item.content} />;
+                    case "video":
+                        return <ClassVideo key={index} url={item.content} />;
+                    case "text":
+                        return <ClassText key={index} text={item.content} />;
+                    case "card":
+                        return (
+                            <ClassCard
+                                key={index}
+                                multimedia_type={item.multimedia_type}
+                                multimedia={item.multimedia}
+                                text={item.text}
+                            />
+                        );
+                    case "card2":
+                        return (
+                            <ClassCard2
+                                key={index}
+                                multimedia_type={item.multimedia_type}
+                                multimedia={item.multimedia}
+                                text={item.text}
+                            />
+                        );
+                    default:
+                        return null;
+                }
+            })}
+
+            <style>{`
+                .page-container {
+                    display: flex;
+                    flex-direction: column;
+                }
+
                 .class-header {
                     width: 100%;
                     margin-top: 0;
@@ -97,7 +132,7 @@ export function CourseClass() {
                     justify-items: center;
                     gap: 0;
                 }
-                .videoAsset, .imageAsset {
+                .videoAsset video, .imageAsset img {
                     width: 100%;
                     box-shadow: 0 0 10px var(--panel_border);
                 }
@@ -122,7 +157,7 @@ export function CourseClass() {
                     padding: 15px;
                     border-radius: 0 10px 10px 0;
                 }
-                
+                        
                 .reverseCard {
                     flex-direction: row-reverse;
                 }
@@ -134,7 +169,7 @@ export function CourseClass() {
                 }
 
 
-                
+                        
                 @media (max-width: 768px) {
                     .cardAsset , .reverseCard {
                         flex-direction: column;
@@ -150,6 +185,6 @@ export function CourseClass() {
             `}</style>
         </div>
     );
-}
+};
 
 export default CourseClass;

@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import AppHeader from "../components/global/appHeader";
 
-import Footer from '../components/global/footer';
 import { ClassCard, ClassCard2, ClassImage, ClassText, ClassVideo } from "../components/class/classAssets";
 
 
@@ -32,8 +30,7 @@ export function Class() {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div className="pageContainer">
-            <main>
+        <div className="page-container">
                 <div className="panelContainer class-header">
                     <label className="text-title">{classData.name}</label>
                 </div>
@@ -55,7 +52,7 @@ export function Class() {
                                     text={item.text}
                                 />
                             );
-                        case "card-2":
+                        case "card2":
                             return (
                                 <ClassCard2
                                     key={index}
@@ -70,64 +67,80 @@ export function Class() {
                 })}
 
 
-            </main>
-            <Footer />
-
-
             <style>{`
-                .class-header {
-                    width: 100%;
+                .page-container {
+                    display: flex;
+                    flex-direction: column;
                 }
 
+                .class-header {
+                    width: 100%;
+                    margin-top: 0;
+                }
                 .class-content {
                     width: 100%;
                     font-size : 12px;
                     align-items: center;
                 }
 
-                .rowMargin {
+                .segment-margin {
                     margin: 20px 0;
                 }
 
-                .videoContainer {
-                    margin: 10px 0;
-                }
-                video, .imageClass {
-                    width: 80vw;
-                    max-width: 800px;
-                    border-radius: 10px;
-                    margin: 10px 0;
-                }
-                
-                .contentFlexBox {
+                .cardAsset {
                     display: flex;
                     width: 100%;
                     justify-items: center;
-                    gap: 20px;
+                    gap: 0;
                 }
-                .contentFlexBox .panelContainer {
-                    width: auto;
-                    padding: 15px;
+                .videoAsset video, .imageAsset img {
+                    width: 100%;
+                    box-shadow: 0 0 10px var(--panel_border);
                 }
-                .contentFlexBox video, .contentFlexBox .imageClass {
-                    height: auto;
-                    width: 40vw;
-                }
-
-                .panelContainer {
-                    margin: 10px 0;
-                }
-                
-                .paragraph {
-                    margin: 10 20px;
+                .textAsset {
                     font-size: 12px;
                     text-align: justify; 
                 }
 
+                .videoAsset video{
+                    width: 100%;
+                    max-width: 800px;
+                    border-radius: 10px;
+                }
+
+                .cardAsset video, .cardAsset .imageAsset {
+                    height: auto;
+                    width: 40vw;
+                    border-radius: 10px 0 0 10px;
+                }
+                .cardAsset .textAsset {
+                    width: auto;
+                    padding: 15px;
+                    border-radius: 0 10px 10px 0;
+                }
+                
+                .reverseCard {
+                    flex-direction: row-reverse;
+                }
+                .reverseCard video, .reverseCard .imageAsset {
+                    border-radius: 0 10px 10px 0;
+                }
+                .reverseCard textAsset {
+                    border-radius: 10px 0 0 10px;
+                }
+
+
                 
                 @media (max-width: 768px) {
-                    .class-header {
-                        margin-top: 35px;
+                    .cardAsset , .reverseCard {
+                        flex-direction: column;
+                    }
+                    .cardAsset video, .cardAsset .imageAsset {
+                        width: 100%;
+                        border-radius: 10px 10px 0 0;
+                    }
+                    .cardAsset .textAsset {
+                        border-radius: 0 0 10px 10px;
                     }
                 }
             `}</style>
