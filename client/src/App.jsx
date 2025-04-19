@@ -1,12 +1,13 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Suspense, lazy, useState } from "react";
-import Footer from './components/global/Footer';
-import { FailLoad_Message, NotFound_Message } from './components/assets/errorMessages';
-import LoadingScreen, { Loading_floatingPanel } from './components/assets/TransitionPages';
-import InDev from './pages/InDev';
+
+// Lazy loading de los componentes
+const Footer = lazy(() => import('./components/global/Footer'));
+const InDev = lazy(() => import('./pages/InDev'));
+const MobileNav = lazy(() => import('./components/mobile/MobileNav'));
+const MobileHeader = lazy(() => import('./components/mobile/MobileHeader'));
 
 const Home = lazy(() => import("./pages/Home"));
-
 const CoursesHub = lazy(() => import("./pages/CourseHub"));
 const Course = lazy(() => import("./pages/Course"));
 const CourseClass = lazy(() => import("./pages/CourseClass"));
@@ -14,8 +15,6 @@ const Class = lazy(() => import("./pages/Class"));
 
 const Solver = lazy(() => import("./pages/Solver"));
 const Exercises = lazy(() => import("./pages/Exercises"));
-
-const Algebra = lazy(() => import("./pages/Algebra"));
 
 const UserProfile = lazy(() => import("./pages/Profile"));
 const ProtectedRoute = lazy(() => import("./components/global/ProtectedRoute"));
@@ -31,48 +30,42 @@ function App() {
         <BrowserRouter>
             <header>
                 <Suspense fallback={<div></div>}>
-                    <Header/>
+                    <Header />
+                    <MobileHeader />
                 </Suspense>
             </header>
 
             <main>
-        
-                    <Suspense fallback={<div></div>} onError={() => setFailPageLoad(true)}>
-                        <Routes>
-                            <Route path="/" element={<Navigate to="/home" />} />
-                            <Route path="/home" element={<Home />} />
+                <Suspense fallback={<div></div>} onError={() => setFailPageLoad(true)}>
+                    <Routes>
+                        <Route path="/" element={<Navigate to="/home" />} />
+                        <Route path="/home" element={<Home />} />
 
-                            <Route path="/courses" element={<CoursesHub />} />
-                            <Route path="/courses/:courseId" element={<Course/>} />
-                            <Route path="/courses/:courseId/:classId" element={<CourseClass  />} />
-                            <Route path="/classes/:classId" element={<Class />} />
+                        <Route path="/courses" element={<CoursesHub />} />
+                        <Route path="/courses/:courseId" element={<Course />} />
+                        <Route path="/courses/:courseId/:classId" element={<CourseClass />} />
+                        <Route path="/classes/:classId" element={<Class />} />
 
-                            <Route
-                                path="/profile"
-                                element={
-                                    <ProtectedRoute>
-                                        <UserProfile />
-                                    </ProtectedRoute>
-                                }
-                            />
+                        <Route path="/profile" element={ <ProtectedRoute> <UserProfile /> </ProtectedRoute> } />
 
-                            <Route path="/exercises" element={<InDev/>} />
-                            <Route path="/solver" element={<Solver />} />
-                            <Route path="/algebra" element={<Algebra />} />
+                        <Route path="/exercises" element={<InDev />} />
+                        <Route path="/solver" element={<Solver />} />
 
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>            
+                </Suspense>
 
-                            <Route path="*" element={<NotFound/>} />
-                        </Routes>
+                <Suspense fallback={<div></div>}>
+                    <Footer />
+                </Suspense>
 
-                        <Footer/>
-
-                    </Suspense>
-
+                <Suspense fallback={<div></div>}>
+                    <MobileNav />
+                </Suspense>
+    
             </main>
-
-
         </BrowserRouter>
-    )
+    );
 }
 
 export default App;

@@ -1,0 +1,83 @@
+:root, .dark {
+    --scrollBar: #333;
+    --scrollBar_hover: #444;
+    --scrollBar_bg: #fff0;
+ 
+    --scrollBar2: #444;
+    --scrollBar2_hover: #666;
+    --scrollBar2_bg: #0000;
+}
+.light {
+    --scrollBar: #aaa;
+    --scrollBar_hover: #999;
+    --scrollBar_bg: #0000;
+
+    --scrollBar2: #ccc;
+    --scrollBar2_hover: #aaa;
+    --scrollBar2_bg: #0000;
+ 
+}
+
+.scrollBar-y {
+    max-height: 90px;
+    list-style-type: disc;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.scrollBar-y::-webkit-scrollbar {
+    width: 6px;
+}
+.scrollBar-y::-webkit-scrollbar-track {
+    background: var(--scrollBar_bg);
+    border-radius: 10px;
+}
+.scrollBar-y::-webkit-scrollbar-thumb {
+    background: var(--scrollBar);
+    border-radius: 10px;
+}
+.scrollBar-y::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollBar_hover);
+}
+
+.scrollBar2-y {
+    max-height: 90px;
+    list-style-type: disc;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.scrollBar2-y::-webkit-scrollbar {
+    width: 6px;
+}
+.scrollBar2-y::-webkit-scrollbar-track {
+    background: var(--scrollBar2_bg);
+    border-radius: 10px;
+}
+.scrollBar2-y::-webkit-scrollbar-thumb {
+    background: var(--scrollBar2);
+    border-radius: 10px;
+}
+.scrollBar2-y::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollBar2_hover);
+}
+
+
+.scrollBar-x {
+    max-width: 100%;
+    list-style-type: disc;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.scrollBar-x::-webkit-scrollbar {
+    height: 7px;
+}
+.scrollBar-x::-webkit-scrollbar-track {
+    background: #0000;
+    border-radius: 0px;
+}
+.scrollBar-x::-webkit-scrollbar-thumb {
+    background: var(--scrollBar);
+    border-radius: 10px;
+}
+.scrollBar-x::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollBar_hover);
+}

@@ -4,5 +4,5 @@ __pycache__/
 *.pyo
 .vscode/
 db.sqlite3
-
+.env
 .codegpt

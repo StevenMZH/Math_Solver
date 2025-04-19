@@ -1,0 +1,48 @@
+
+@base_url = http://127.0.0.1:8000
+@class_id = dataBase-U1-C1
+@class_name = "Definiendo porque una Base de Datos"
+@class_type = "theory"
+@keywords = ["base", "datos", "base de datos", "db", "database", "que", "porque", "definiendo", "definicion", "introduccion"]
+
+
+PUT http://127.0.0.1:8000/dataBase/classes/dataBase-U1-C1/ HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "id": "dataBase-U1-C1",
+    "name": "Porque usamos Base de Datos",
+    "class_type": "theory",
+    "keywords": [
+        "base",
+        "datos",
+        "base de datos",
+        "db",
+        "database",
+        "que",
+        "porque",
+        "definiendo",
+        "definicion",
+        "introduccion"
+    ],
+    "content": [
+        {
+            "type": "text",
+            "content": "Una Base de Datos definiéndolo de una forma vaga, se puede decir que es un lugar donde se almacenan datos, por lo que una simple hoja, un cuaderno o un archivo .txt de un blog de notas, se puede considerar de manera vaga como una base de datos.\n\nEstos pueden llegar a ser muy útiles para cosas pequeñas, como hacer una lista de tareas por hacer o escribir sobre temas que tienes que estudiar para un examen, así como por su fácil acceso y flexibilidad de uso, ya que uno en un papel puede ocuparlo tanto como para escribir, como para dibujar o otras muchas funciones.\n\nPero qué pasa si lo que se quiere almacenar son una cantidad de datos un poco más grandes, aquí es donde inician los problemas.\n\n¿Qué pasaría si queremos almacenar la información de los estudiantes de una universidad, llevando la contabilidad en cuadernos?"
+        },
+        {
+            "type": "text",
+            "content": "**Problema con la Creación y Consultas en la Base de Datos (Queries)**\n\n¿Cuánto tiempo tardaríamos en escribir inicialmente toda la información *(Escritura de Datos: Create)*, o buscando la información de un estudiante entre todos los cuadernos *(Lectura de Datos: Read)*, el tiempo que tomaría en modificar un dato, teniendo que buscarlo en el proceso *(Actualización de Datos: Update)* y el tiempo para borrar un conjunto de datos en distintos lugares *(Eliminación: Delete)*?\n\nEsto es uno de los principales problemas que resuelve una base de datos, ya que cuenta con la capacidad de realizar de manera increíblemente rápida y eficiente estas cuatro operaciones básicas llamadas **CRUD**:\n\n- **Create:** Insertar nuevos registros.\n- **Read:** Consultar datos.\n- **Update:** Modificar datos existentes.\n- **Delete:** Eliminar registros."
+        },
+        {
+            "type": "text",
+            "content": "**Escalabilidad y Almacenamiento**"
+        },
+        {
+            "type": "text",
+            "content": "**Organización o Estructuración de los Datos**"
+        }
+    ],
+    "order": 0
+}

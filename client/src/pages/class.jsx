@@ -30,8 +30,8 @@ export function Class() {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div className="page-container">
-                <div className="panelContainer class-header">
+        <div className="page column">
+                <div className="panel class-header">
                     <label className="text-title">{classData.name}</label>
                 </div>
 
@@ -68,11 +68,6 @@ export function Class() {
 
 
             <style>{`
-                .page-container {
-                    display: flex;
-                    flex-direction: column;
-                }
-
                 .class-header {
                     width: 100%;
                     margin-top: 0;

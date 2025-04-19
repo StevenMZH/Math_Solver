@@ -10,6 +10,8 @@ export function Logo5() {
                     font-family: Comfortaa;
                     text-align: center;
                     font-weight: 800;
+                    justify-content: start;
+                    height: 35px
                 }
                 #logo5 .logo-Dot {
                     margin: 0;
@@ -35,13 +37,13 @@ export function Logo5() {
                     padding-bottom: 1px;
                     background-color: #3366ff;
                     font-size: 16px;
+                    align-self: start;
                 }
                 #logo5 .redDot {
                     font-size: 12px;
                     padding-top: 3px;
-                    margin: 0;
-                    margin-top: 20px;
                     background-color: #ff3366;
+                    align-self: end;
                 }
             `}</style>
         </div>

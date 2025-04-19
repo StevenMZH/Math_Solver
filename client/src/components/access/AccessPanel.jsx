@@ -3,7 +3,7 @@ import Logo4 from "../header/logos/Logo4";
 import AccessForm from "./AccessForm";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
-import { AccessProvider, useAccessContext } from "./AccessContext";
+import { useAccessContext } from "./AccessContext";
 
 export function AccessPanel ({ isVisible, setIsVisible }) {
     const { username, setUsername, password, setPassword, email, setEmail, confirmPassword, setConfirmPassword, form, setForm, error, setError} = useAccessContext();
@@ -33,7 +33,7 @@ export function AccessPanel ({ isVisible, setIsVisible }) {
                     
                     <div className="floating-panel login-exit">
                         <button onClick={() => { setIsVisible(false); setForm("access"); setError(""); setUsername("");  setPassword(""); setConfirmPassword(""); setEmail(""); }}> 
-                            <img src="/public/images/exit.png" alt="exit-login"/> 
+                            <img src="./public/images/global/exit.png" alt="exit-login"/> 
                         </button>
                     </div>
 
@@ -56,11 +56,12 @@ export function AccessPanel ({ isVisible, setIsVisible }) {
                     width: 100%;
                     height: 100%;
                     min-height: 100vh;
-                    z-index:2000;
+                    z-index: 2000;
                     background-color: #000a;
 
                 }
                 .panel-shadder {
+                    display: flex;
                     width: 100%;
                     height: 100%;
                 }
@@ -117,9 +118,7 @@ export function AccessPanel ({ isVisible, setIsVisible }) {
                 }
 
                 .login-forms input {
-                    background-color: var(--panel1);
                     font-size: 14px;
-                    padding: 10px;
                 }
 
                 .login-forms .signup-email {
@@ -138,7 +137,6 @@ export function AccessPanel ({ isVisible, setIsVisible }) {
                 }
 
                 .login-forms .buttons button {
-                    border-radius: 10px;
                     width: 100%;
                     height: 100%;
                     padding: 10px;
@@ -190,6 +188,24 @@ export function AccessPanel ({ isVisible, setIsVisible }) {
                     color: #dd6688;
                 }
 
+                @media (max-width: 640px) {
+                    .login-container {
+                        flex-direction: column-reverse;
+                    }
+                    .login {
+                        width: 100vw;
+                        padding-top: 40px;
+                        border-radius: 10px 10px 0 0;    
+                        min-width: 100vw;
+                        min-height: 55%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .login-exit {
+                        position: absolute;
+                    }
+                }
             `}</style>
         </div>
     );

@@ -3,7 +3,6 @@ import axios from 'axios';
 import CoursePreview, { CoursePreview_wireframe } from "../components/courses/CoursePreview";
 import { FailLoad_Message } from '../components/assets/errorMessages';
 import { Loading_floatingPanel } from '../components/assets/TransitionPages';
-import { MiniLoadingAnim } from '../components/assets/anims';
 
 export function CoursesHub( ) {
     const [courses, setCourses] = useState([]);
@@ -26,7 +25,7 @@ export function CoursesHub( ) {
 
 
     return (
-        <div className='page-container'>
+        <div className='page gap-20'>
                 {loading ?  (  
                     <>
                         {failLoad ? (<FailLoad_Message/>) : (<Loading_floatingPanel/>) }
@@ -52,20 +51,15 @@ export function CoursesHub( ) {
                 }
 
                 <style>{`
-                        .page-container {
-                            width: 100%;
-                            display: flex;
-                            flex-direction: column;
-                            gap: 20px;
+                        .CoursePreview-container, .CoursePreviewWF-container {
+                            height: 300px;
                         }
-
                         .coursesGrid {
                             display: grid;
                             width: 100%;
                             grid-template-columns: repeat(3, 1fr);
                             gap: 15px;
                         }
-
                         @media (max-width: 1100px) {
                             .coursesGrid {
                                 grid-template-columns: repeat(2, 1fr);
@@ -75,9 +69,14 @@ export function CoursesHub( ) {
                             .coursesGrid {
                                 grid-template-columns: repeat(1, 1fr);
                             }
-                            .coursePreview-container, .coursePreviewWF-container{
+                            .CoursePreview-container, .CoursePreviewWF-container{
                                 height: auto;
-                                margin: 0;
+                            }
+                        }
+
+                        @media (max-width: 640px) {
+                            .coursesGrid {
+                                gap: 10px;
                             }
                         }
                     `}</style>

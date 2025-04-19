@@ -1,7 +1,7 @@
 from typing import Any
 from math import sin, cos, tan, asin, acos, atan, pi, e, log, sqrt, exp, factorial, floor,fabs, inf
 
-from sympy import symbols, solve, simplify, sympify, factor, expand, latex, Symbol, nan
+from sympy import symbols, solve, simplify, sympify, factor, expand, latex, parse_expr, Symbol, nan
 from sympy import sinh, cosh, tanh, asinh, acosh, atanh
 from sympy import diff, integrate, limit, series, summation
 
@@ -175,6 +175,9 @@ def toLatex(string: str) -> str:
     expr = sympify(string)    
     return latex(expr)
 
+def toRawLatex(string: str) -> str:
+    raw = parse_expr(string, evaluate=False)
+    return latex(raw)
 
 if __name__ == '__main__':
 

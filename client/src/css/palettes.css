@@ -12,16 +12,12 @@
     --r2: #6f4058;
     --g2: #406f58;
     --b2: #40586f;
-
+    
     --course-red: #ee88bb;
     --course-green: #88eebb;
-    --course-blue:#88bbee;
-    --course-yellow: #eebb88;
+    --course-blue:#88bbee; 
+    --course-yellow: #eebb88; 
 
-    /* --course-purple: #aabbee;
-    --course-red: #eeaabb;
-    --course-green: #aaeebb;
-    --course-blue:#bbaaee; */
 
     /* Main Styles */
     --background: #121212;
@@ -34,7 +30,7 @@
     --button-blue: #40484f;
     
     /* Input Styles */
-    --bar: #e7e7e7;
+    --bar: #353636;
 
     /* Panel Styles */
     --panel1: #212121;
@@ -44,29 +40,15 @@
     --panel-dark: #212121;
     --panel_border: #0000;
 
-    /* Text Styles */
-    --text: #e7e7e7;
-    --text_title: #e7e7e7;
-    --text_subtitle: #666;
-    --text_focus: #999;
-    --text2: #0c0c0c;
 
     /* Img Background Styles */
-    --imageBg: #88bbdd;
+    /* --imageBg: #88bbdd;
     --img-purple: #aabbee;
     --img-red: #dd88bb;
     --img-green: #88ddbb;
-    --img-blue: #88bbdd;
+    --img-blue: #88bbdd; */
 
     /* scrollBar Styles */
-    --scrollBar: #777;
-    --scrollBar_hover: #555;
-    --scrollBar_bg: #f1f1f1;
- 
-    --scrollBar2: #222;
-    --scrollBar2_hover: #555;
-    --scrollBar2_bg: #444;
-
     /* Others */
     --logoBg: #4040ff;
     --logoFont: #f7fcff;
@@ -83,7 +65,13 @@
     --button_hover: #40586f;
     
     /* Input Styles */
-    --bar: #e7e7e7;
+    --bar: #282828;
+
+    /* 
+    --course-red: #CE76A2;
+    --course-green: #76CEA2;
+    --course-blue: #76A2CE; 
+    --course-yellow: #CEA276; */
 
     /* Panel Styles */
     --panel1: #212121;
@@ -92,22 +80,6 @@
     --panel-light: #f7fcff;
     --panel-dark: #212121;
     --panel_border: #0000;
-
-    /* Text Styles */
-    --text: #e7e7e7;
-    --text_title: #ddd;
-    --text_subtitle: #888;
-    --text_focus: #ddd;
-    --text2: #0c0c0c;
-
-    /* scrollBar Styles */
-    --scrollBar: #777;
-    --scrollBar_hover: #555;
-    --scrollBar_bg: #f1f1f1;
- 
-    --scrollBar2: #222;
-    --scrollBar2_hover: #555;
-    --scrollBar2_bg: #444;
 
     /* Others */
     --logoBg: #4040ff;
@@ -141,7 +113,7 @@
     --button-blue: #d0d8e9;
 
     /* Input Styles */  
-    --bar: #e7e7e7;
+    --bar: #e3e8f0;
 
     /* Panel Styles */
     --panel1: #f7fcff;
@@ -151,23 +123,7 @@
     --panel-dark: #212121;
     --panel_border: #2c5c8650;
 
-    /* Text Styles */
-    --text: #0c0c0c;
-    --text_title: #444;
-    --text_subtitle: #777;
-    --text_focus: #333;
-    --text2: #0c0c0c;
-
-    /* scrollBar Styles */
-    --scrollBar: #999;
-    --scrollBar_hover: #777;
-    --scrollBar_bg: #ccc;
-
-    --scrollBar2: #777;
-    --scrollBar2_hover: #555;
-    --scrollBar2_bg: #aaa;
-
-    /* Others */
+   /* Others */
     --logoBg: #4040ff;
     --logoFont: #f7fcff;
 

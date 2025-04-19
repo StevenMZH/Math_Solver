@@ -1,144 +1,112 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import UserCourse from '../components/profile/UserCourse';
-import LogoutBtn from '../components/profile/LogoutBtn';
+import CoursePreview from '../components/courses/CoursePreview';
+import CourseProfileLink from '../components/courses/CourseProfileLink';
+import ClassSearchLink from '../components/header/ClassSearchLink';
+import LogoutBtn from '../components/ui/LogoutBtn';
+import Button_SideIcon from '../components/ui/Button_SideIcon';
+import UserStats from '../components/user/UserStats';
+import PaletteSelector from '../components/header/PaletteSelector';
+import TogglePalette from '../components/header/togglePalette';
 
-export function UserProfile() {
+export function Profile({streak=2}) {
+
+    const getStreakStyle = (streak) => {
+        if (streak >= 30) { return "invert(80%) sepia(100%) saturate(500%) hue-rotate(250deg)"; } 
+        else if (streak >= 15) { return "invert(80%) sepia(100%) saturate(500%) hue-rotate(0deg)"; }  
+        else if (streak >= 7) { return "invert(70%) sepia(100%) saturate(300%) hue-rotate(330deg)"; } 
+        else if (streak >= 1) { return "invert(70%) sepia(100%) saturate(400%) hue-rotate(300deg)"; } 
+        else { return "invert(70%) sepia(100%) saturate(100%) hue-rotate(180deg)"; }
+    };
+
+    const streakFilter = getStreakStyle(streak);
 
     return (
-        <div className='page-container'>
-                <div className='flex data-container'>
-                    <div className='flex panelContainer userData-container'>
-                        <img className='circleImage bigUserImage' src='/images/user2.png' alt="defaultUserImage" />
-                        <div className="userInfo-container text-left">
-                            <div className='first'>
-                                <label className='text-title2'>Username</label>
-                                <label className='tag'>Admin</label>
-                            </div>
-                            
-                            <label className='text-focus'>name.lastname@gmail.com</label>
+        <div className='page gap-30'>
+            <div className="box row fullheight center gap-10 profile-data">
+                <div className='box center fullwidth p10 gap-5 profile-data'>
+                    <img className='circleImage bigUserImage' style={{ filter: streakFilter }} src='/images/global/defaultUser.png' alt="defaultUserImage" />
+                    
+                    <div className="box fullscreen start gap-10">
+                        <div className="box">
+                            <label className='text-title2 font-LL'>Username</label>
+                            <label className='text-subtitle font-S'>name.lastname@gmail.com</label>
+                        </div>
+                    
+                        <div className='start gap-5'>
+                            <Button_SideIcon icon="/images/global/settings.png" text="Settings"/>
                             <LogoutBtn/>
-                        </div>
-                    </div>
-                    <div className="panelContainer userProgress-container">
-                        <label className='text-title2'>Account Stats</label>
-                        
-                        <div className='grid'>
-                            <div className="column">
-                                <label className='text-focus'>Completed Courses</label>
-                                <label className='text-title'>10</label>
-                            </div>
-
-                            <div className="column">
-                                <label className='text-focus'>Completed Classes</label>
-                                <label className='text-title'>67</label>
-                            </div>
-
-                            <div className="column">
-                                <label className='text-focus'>Solved Exercises:</label>
-                                <label className='text-title'>31</label>
-                            </div>
-                        </div>
+                        </div>    
                     </div>
                 </div>
-                <div className='panelContainer data-container userCourses-container'>
-                    <label>Ongoing Courses</label>
+
+                <UserStats courses='3' classes='13' exercises='9' streak={streak}/>
+            </div>
+
+
+
+
+            <div className="box gap-20">
+                <label className='text-title2'>Courses</label>
+        
+                <div className="box shadow-10 p20 radius-20 gap-20 profile-coursePanel">
+                    <div className="box row gap-10">
+                        <button className='button-square2' >Ongoing Courses</button>
+                        <button className='button-square2 ' >Completed Courses</button>
+                        <button className='button-square2' >Completed Exercise</button>
+                    </div>
+
+                    <div className="box text-left gap-20 profile-courses">                    
+                            <CourseProfileLink 
+                                name="Linear Algebra" 
+                                description="Learn about vectors, matrices, and linear transformations. Master the fundamentals of linear algebra with interactive exercises." 
+                                type="math" 
+                                classes={10} 
+                                finished={3}
+                            />
+                            <CourseProfileLink 
+                                name="DataBase"
+                                type="cs"
+                                description="Learn about vectors, matrices, and linear transformations. Master the fundamentals of linear algebra with interactive exercises." 
+                                classes={1} 
+                                finished={1} 
+                                completionDate="January, 1, 2025"/>
+                            <CourseProfileLink classes={100} finished={92}/>
+                            <CourseProfileLink type="physics" classes={145} finished={3}/>
+                            <CourseProfileLink type="math" classes={31} finished={23}/>
+                    </div>
+                
                 </div>
+            </div>
+            
+            <style>{`
+                .bigUserImage {
+                    width: clamp( 180px, 20vw ,200px);
+                    height: clamp( 180px, 20vw, 200px);
+                    border: solid #aaa 3px;
+                }
+                .profile-coursePanel {
+                    background-color: var(--panel1);                
+                }
+                .light .profile-coursePanel {
+                    background-color: #fff3;
+                }
 
-                <style>{`
-                    .page-container {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: start;
-                        align-items: start;
-                        gap: 10px;
-                    }
-
-                    .flex {
-                        display: flex;
-                    }
-                    .text-left {
-                        text-align: left;
-                    }
-                    .text-justify {
-                        text-align: justify;
-                    }
-                    .userInfo-container {
-                        display: flex;
-                        flex-direction: column;
-                        height: 100%;
-                        justify-content: center;
-                        padding: 10px 20px;
-                    }
-                    .userInfo-container .first{
-                        display: flex;
-                        align-items: center;
-                    }
-                    .userInfo-container .text-title2{
-                        font-size: 20px;
-                    }
-                    .userInfo-container .tag {
-                        margin-left: 7px;
-                        font-size: 10px;
-                        padding: 3px 5px;
-                        background-color:rgb(109, 14, 14);
-                        border-radius: 20px;
-                    }
-                    .userInfo-container button {
-                        margin-top: 10px;
-                    }
-
-                    .data-container {
-                        width: 100%;
-                        gap: 10px;
-                    }
-
-                    .userData-container {
-                        width: 400px;
-                        min-width: 400px;
-                        max-width: 400px;
-                    }
-
-                    .bigUserImage {
-                        width: 140px;
-                        height: 140px;
-                        border: #f00 100px;
-                    }
-
-                    .userProgress-container {
-                        width: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        text-align: left;
-                        font-size: 14px;
-                    }
-                    .userProgress-container .grid {
+                @media (min-width: 640px) {
+                    .UserStats-streak { height: clamp(150px, 15vw, 220px); }
+                    .profile-courses {
                         display: grid;
                         width: 100%;
-                        height: 100%;
-                        grid-template-columns: repeat(3, 1fr);
-                    }
-                    .userProgress-container .grid .column {
-                        display: flex;
-                        gap: 10px;
+                        grid-template-columns: repeat(2, 1fr);
+                    }    
+                }                
+
+                @media (max-width: 880px) {
+                    .profile-data {
                         flex-direction: column;
-                        align-items: center;
-                        justify-content: center;
                     }
-                    .userProgress-container .text-title {
-                        font-size: 60px;
-                        font-weight: bolder;    
-                        color: #90c5dc;
-                    }
-
-                    .userCourses-containe {
-                        width: 100%:
-                    }
-
-                `}</style>
+                }
+            `}</style>
         </div>
     );
 }
 
-export default UserProfile;
+export default Profile;

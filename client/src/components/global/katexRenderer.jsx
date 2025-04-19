@@ -2,7 +2,7 @@ import React from 'react';
 import katex from 'katex';
 import 'katex/dist/katex.min.css'; // Asegúrate de importar los estilos de KaTeX
 
-const KatexRenderer = ({ expression }) => {
+export function KatexRenderer ({ expression }) {
     let formattedExpression;
 
     try {

@@ -12,25 +12,33 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
+import environ
 
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+
+environ.Env.read_env(BASE_DIR / '.env')
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^r^21(^@d9pxzyima##7g2up&m$=1+0)y6e!c8zejf-^_+@gqb'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -156,9 +164,9 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
-    'DEFAULT_PERMMISSION_CLASSES': [
-        "rest_framework_permissions.IsAuthenticated",
-    ]
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     "rest_framework.permissions.IsAuthenticated",
+    # ]
 }
 
 
@@ -194,24 +202,24 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 }
 REST_USE_JWT = True
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None  # Permite abrir ventanas sin restricciones
-CORS_ALLOW_ALL_ORIGINS = True  # Solo en desarrollo, en producción usa CORS_ALLOWED_ORIGINS
-CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]  # Agrega cualquier frontend permitido
 
-CORDS_ORIGIN_ALLOW_ALL = True
-CORDS_ALLOWS_CREDENTIALS = True
+# CORS y CSRF configuración
+CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS')  # Orígenes permitidos para CORS
+CSRF_TRUSTED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS')  # Orígenes confiables para CSRF
+CORS_ALLOW_CREDENTIALS = True  # Permitir envío de cookies/sesiones
 
 
 # Cloud Storage
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dryq8jqqb',
-    'API_KEY': '574384248391251',
-    'API_SECRET': 'TA_3J7bBA78DwIyewH_TmS6EGRY'
+    'CLOUD_NAME': env('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': env('CLOUDINARY_API_KEY'),
+    'API_SECRET': env('CLOUDINARY_API_SECRET'),
 }
 
 cloudinary.config(
-    cloud_name='dryq8jqqb',
-    api_key='574384248391251',     
-    api_secret='TA_3J7bBA78DwIyewH_TmS6EGRY'
+    cloud_name=env('CLOUDINARY_CLOUD_NAME'),
+    api_key=env('CLOUDINARY_API_KEY'),
+    api_secret=env('CLOUDINARY_API_SECRET'),
 )
 
 # Usar Cloudinary como el almacenamiento predeterminado para archivos multimedia

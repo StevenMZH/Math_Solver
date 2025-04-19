@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 
-export function SearchResult_course({ id, name, type, setSearchTerm }) {
+export function CourseSearchLink({ id, name, type, setSearchTerm, setSearching }) {
     const topicImages = {
-        math: { src: "/public/images/integral.svg", alt: "Math" },
-        physics: { src: "/public/images/physics.png", alt: "Physics" },
-        cs: { src: "/public/images/cs.png", alt: "Computer Science" },
-        electronics: { src: "/public/images/electronics.png", alt: "Electronics" },
+        math: { src: "/public/images/courses/integral.svg", alt: "Math" },
+        physics: { src: "/public/images/courses/physics.png", alt: "Physics" },
+        cs: { src: "/public/images/courses/cs.png", alt: "Computer Science" },
+        electronics: { src: "/public/images/courses/electronics.png", alt: "Electronics" },
     };
     const topicNames = {
         math: "Math",
@@ -25,8 +25,8 @@ export function SearchResult_course({ id, name, type, setSearchTerm }) {
     };
     
     return (
-        <div className="courseLink-container">
-            <Link to={`/courses/${id}`} onClick={(e) => setSearchTerm("")}>
+        <div className="courseLink-container column fullwidth">
+            <Link className='link-box gap-20' to={`/courses/${id}`} onClick={(e) => {setSearchTerm(""); setSearching(false)}}>
                 <img className='circleImage link-img' src={topicImage.src} alt={topicImage.alt} style={{ backgroundColor: colors[type] || "#bbccee" }}/>
                 <div className="labelsDiv">
                     <label className='text-title'>{name}</label>
@@ -35,24 +35,9 @@ export function SearchResult_course({ id, name, type, setSearchTerm }) {
             </Link>
             <style>{`
                 .courseLink-container {
-                    display: flex;
-                    flex-direction: column;
-                    width: 100%
-                    align-items: center;
-                    border: 0;
                     font-size: 18px; 
                 }
-                .courseLink-container a {
-                    display: flex;
-                    padding: 5px 10px;
-                    align-items: center;
-                    border-radius: 0;
-                    border: none;
-                    background-color: #0000;
-                } 
-                .courseLink-container a:hover {
-                    background-color: #0003;
-                } 
+
                 .courseLink-container .labelsDiv {
                     display: flex;
                     flex-direction: column;
@@ -67,11 +52,17 @@ export function SearchResult_course({ id, name, type, setSearchTerm }) {
                     width: 35px;
                     height: 35px;
                     margin: 0 20px;
-                    margin-right: 15px;
+                    margin-right: 0px;
                     background-color: var(--imageBg);
+                }
+
+                @media (max-width:640px) {
+                    .courseLink-container a:hover {
+                        background-color: var(--panel2);
+                    } 
                 }
             `}</style>
         </div>
     );
 }
-export default SearchResult_course;
+export default CourseSearchLink;

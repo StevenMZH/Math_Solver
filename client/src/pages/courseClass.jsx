@@ -37,41 +37,21 @@ export function CourseClass() {
 
     if (loading) return ( <LoadingScreen/> ) ;
     if (notFound_error) return (
-        <div className="page-container">
+        <div className="page-center">
             <NotFound_Message message="This Class does not exist" />
-            <style>{`
-                .page-container {
-                    display: flex;
-                    flex-direction: column;
-                    flex: 1;
-                    height: 100%;
-                    justify-content: center;
-                    align-items: center;
-                }
-            `}</style>
         </div>
     )
 
     
     if (failLoad) return (
-        <div className="page-container flex-center">
+        <div className="page column">
             <FailLoad_Message message="Failed to load class data. Please try again later." />
-
-            <style>{`
-                .page-container {
-                    display: flex;
-                    flex-direction: column;
-                    flex: 1;
-                    height: 100%;
-                    align-items: center;
-                }
-            `}</style>
         </div>
     )
 
     return (
-        <div className="page-container">
-            <div className="panelContainer class-header">
+        <div className="page column">
+            <div className="panel class-header">
                 <label className="text-title">{classData.name}</label>
             </div>
 
@@ -107,11 +87,6 @@ export function CourseClass() {
             })}
 
             <style>{`
-                .page-container {
-                    display: flex;
-                    flex-direction: column;
-                }
-
                 .class-header {
                     width: 100%;
                     margin-top: 0;
@@ -123,7 +98,7 @@ export function CourseClass() {
                 }
 
                 .segment-margin {
-                    margin: 20px 0;
+                    margin-top: 10px;
                 }
 
                 .cardAsset {
@@ -136,8 +111,16 @@ export function CourseClass() {
                     width: 100%;
                     box-shadow: 0 0 10px var(--panel_border);
                 }
-                .textAsset {
-                    font-size: 12px;
+                .dark .textAsset {
+                    color: #b8b8b8;
+                    font-weight: 500;
+                    font-size: 14px;
+                    text-align: justify; 
+                }
+                .light .textAsset {
+                    color: #333;
+                    font-weight: 500;
+                    font-size: 14px;
                     text-align: justify; 
                 }
 

@@ -33,7 +33,6 @@ export function Logo6() {
                     text-align: center;
                     font-weight: 500;
                     gap: clamp(10px, 2vw, 25px);
-                    margin-top: 5vw;
                     margin-bottom: 10px;
                 }
                 #logo6 .segment {

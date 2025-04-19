@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 
 export function StartingAnim() {
@@ -164,6 +163,64 @@ export function MiniLoadingAnim() {
                     background-color: #ff3366;
                     top: 5px;
                     left: 5px;
+                    transform-origin: -2px -2px;
+                }
+      `}</style>
+        </div>
+    );
+};
+
+
+export function LoadingAnimXS() {
+    return (
+        <div className="anim-container center loadingAnimXS-container">
+            <div className="anim-elements center">
+                <motion.div
+                    className="ball blue"
+                    animate={{ rotate: 360 }}
+                    transition={{ repeat: Infinity, duration: 3, ease: "circInOut" }}
+                />
+                <motion.div
+                    className="ball red"
+                    animate={{ rotate: 360 }}
+                    transition={{ repeat: Infinity, duration: 3, ease: "circInOut" }}
+                />
+            </div>
+            <style>{`
+                @keyframes appearAnim {
+                    0% { display: none; }
+                    90% { display: none; }
+                    100% { display: flex; }
+                }
+                    
+                .loadingAnimXS-container {
+                    width: 10px;
+                    height: 10px;
+                    animation: appearAnim 1s ease-in-out;
+                }
+
+                .loadingAnimXS-container .anim-elements {
+                    position: relative;
+                    justify-content: center;
+                    width: 0;
+                    height: 0;
+                }
+                .loadingAnimXS-container .ball {
+                    position: absolute;
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 100%;
+                }
+                .loadingAnimXS-container .blue {
+                    background-color: #3366ff;
+                    bottom: 3px;
+                    right: 3px;
+                    transform-origin: 8px 8px;
+                }
+                .loadingAnimXS-container .red {
+                    background-color: #ff3366;
+                    top: 3px;
+                    left: 3px;
                     transform-origin: -2px -2px;
                 }
       `}</style>

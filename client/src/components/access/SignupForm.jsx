@@ -60,20 +60,21 @@ export function SignupForm ({ isVisible, setIsVisible }) {
     };
 
     return form==="signup" && (
-        <form className="signUp-form" onSubmit={handleSignUp}>
-            <label className="text-title">Get Started!</label>
-            <label className="text-subtitle">Sign Up for your new Account</label>
-
+        <form className="signUp-form center" onSubmit={handleSignUp}>
+            <div className="box center gap-0">
+                <label className="text-title">Get Started!</label>
+                <label className="text-subtitle">Sign Up for your new Account</label>
+            </div>
 
             {error && <p className="text-subtitle error">{error}</p>}
-            <input className="text-focus" type="email" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} required />
-            <input className="text-focus" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-            <input className="text-focus" type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+            <input className="fullwidth text-focus" type="email" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <input className="fullwidth text-focus" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <input className="fullwidth text-focus" type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
 
             <div className="buttons">
-                <button className="text-title" type="submit">Sign Up</button>
-                <button className="panel-return" onClick={() => { setForm("access"); setError(""); setUsername("");  setPassword(""); setConfirmPassword(""); setEmail(""); }}> 
-                    <img src="/public/images/return.png" alt="return"/> 
+                <button className="button-square text-title" type="submit">Sign Up</button>
+                <button className="panel-return button-square" onClick={() => { setForm("access"); setError(""); setUsername("");  setPassword(""); setConfirmPassword(""); setEmail(""); }}> 
+                    <img className="img-themes" src="./public/images/global/return.png" alt="return"/> 
                 </button>
             </div>
         </form>

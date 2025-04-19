@@ -1,21 +1,43 @@
 @import url('./css/palettes.css');
+
+@import url('./css/globals/panels.css');
+@import url('./css/globals/boxing.css');
+
+@import url('./css/base/text.css');
+@import url('./css/base/buttons.css');
+@import url('./css/base/links.css');
+@import url('./css/base/scrollBars.css');
+@import url('./css/base/images.css');
+@import url('./css/base/shaders.css');
+
+@import url('./css/components/ui.css');
+
+
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap');
+
+div {
+    border: 0;
+    padding: 0;
+}
 
 html, body {
     height: 100%;
     margin: 0;
 }
 body, main {
-    background-color: var(--background);
-    color: var(--text);
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
+    position: relative; 
     min-height: 100vh;
     margin: 0;
-    position: relative; 
-    display: flex;
+
+    background-color: var(--background);
+    color: var(--text);
+    
     font-family: 'Comfortaa', sans-serif;
     font-family: "Red Hat Text", sans-serif;
     font-optical-sizing: auto;
@@ -29,7 +51,8 @@ main {
     padding-top: 77px;
     gap: 20px
 }
-.page-container {
+
+.page, .page-container, .page-center {
     display: flex;
     flex-direction: column; 
     flex: 1;
@@ -40,62 +63,64 @@ main {
     color: var(--text);
 }
 
-a {
-    text-decoration: none;
+.page-center {
+    justify-content: center;  
+}
+
+
+a, button, input, select {
+    border: 0;
+    margin: 0;
+    border-radius: 25px;
+
+    font-size: 11px;
+    font-weight: 500;
+
     background-color: var(--button);
     color: var(--text_title);
-    padding: 3px 5px;
-    border: 2px solid var(--button);
-    border-radius: 25px;
+}
+
+a {
+    text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
-    font-size: 0.65em;
-    font-weight: 500;
 }
 a:hover{
     background-color: var(--button_hover);
-    border: 2px solid var(--button_hover);
-    color: var(--text);
 }
 
 button {
-    font-size: 11px;
-    padding: 3px 5px;
     background-color: var(--button);
-    color: var(--text_title);
-    font-weight: 500;
-    border: none;
-    border-radius: 25px;
     cursor: pointer;
 }
 button:hover {
     background-color: var(--button_hover);
-    color: var(--text);
 }
 
 
 select {
-    background-color: var(--button);
-    color: var(--text);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
     padding: 10px;
-    border-radius: 20px;
+    color: var(--text);
+    transition: background-color 0.3s;
 }
 
 input {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 20px;
+    padding: 10px;
+
     color: var(--text);
-    background-color: var(--button);
+    background-color: var(--panel1);
+
     cursor: pointer;
     transition: background-color 0.3s;
     line-height: 0;
 }
 input:focus {
     outline-color: #fff;
+}
+
+
+label, p {
+    text-align: justify;
+    font-family: "Red Hat Text", sans-serif;
 }
 
 /* Inputs */
@@ -106,86 +131,15 @@ input:focus {
 }
 
 /* Panels */
-.panelContainer {
-    padding: 20px;
-    border: 5px solid #0000;
-    border-radius: 10px;
-    background-color: var(--panel1);
-    text-align: center;
-    position: relative;
-    box-shadow: 0 0 10px var(--panel_border);
-}
-.panel-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
 .floating-panel {
     position: fixed;
     top: 0;
 }
 
-/* Images */
-.circleImage {
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-/* Funtion Adder's Classes */
-.flexCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.overflowScrollBar_yPanel {
-    max-height: 90px; /* Max height of the panel */
-    list-style-type: disc;
-    overflow-y: auto; /* Adds a scrollbar if the content is exceed the max height */
-    overflow-x: hidden;
-}
-.overflowScrollBar_yPanel::-webkit-scrollbar {
-    width: 6px;
-}
-.overflowScrollBar_yPanel::-webkit-scrollbar-track {
-    background: var(--scrollBar2_bg);
-    border-radius: 10px;
-}
-.overflowScrollBar_yPanel::-webkit-scrollbar-thumb {
-    background: var(--scrollBar2);
-    border-radius: 10px;
-}
-.overflowScrollBar_yPanel::-webkit-scrollbar-thumb:hover {
-    background: var(--scrollBar2_hover);
-}
-
-.overflowScrollBar_xPanel {
-    max-width: 400px; /* Max width of the panel */
-    list-style-type: disc;
-    overflow-x: auto;
-    overflow-y: hidden;
-}
-.overflowScrollBar_xPanel::-webkit-scrollbar {
-    width: 6px;
-}
-.overflowScrollBar_xPanel::-webkit-scrollbar-track {
-    background: var(--scrollBar2_bg);
-    border-radius: 10px;
-}
-.overflowScrollBar_xPanel::-webkit-scrollbar-thumb {
-    background: var(--scrollBar2);
-    border-radius: 10px;
-}
-.overflowScrollBar_xPanel::-webkit-scrollbar-thumb:hover {
-    background: var(--scrollBar2_hover);
-}
 
 /* ScrollBar */
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 10px;
     height:12px;
 }  
 ::-webkit-scrollbar-track {
@@ -198,41 +152,12 @@ input:focus {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--scrollBar_hover);
 }
-  
 
-/* Text Styles */
-.text-title {
-    font-weight: 800;
-    color: var(--text_title);
-    font-family: "Red Hat Text", sans-serif;
-}
-.text-title2 {
-    font-weight: 600;
-    color: var(--text_title);
-    font-family: "Red Hat Text", sans-serif;
-}
-
-.text-subtitle {
-    font-size: 11px;
-    font-weight: 800;
-    color: var(--text_subtitle);
-    font-family: "Red Hat Text", sans-serif;
-}
-
-.text-focus {
-    font-size: 13px;
-    color: var(--text_focus);
-    font-family: "Red Hat Text", sans-serif;
-}
-
-/* specific Styles */
-.katex-renderer {       
-    font-size: 13px;
-    font-family: "Red Hat Text", sans-serif;
-}
-
-
-
-@media (max-width: 440px) {
-
+@media (max-width: 640px) {
+    body::-webkit-scrollbar {
+        display:none;
+    }
+    main {
+        padding-top: 65px;
+    }
 }

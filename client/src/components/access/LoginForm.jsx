@@ -33,17 +33,19 @@ export function LoginForm ({ isVisible, setIsVisible }) {
     };
 
     return form==="login" && (
-        <form className="login-form" onSubmit={handleLogin}>
-            <label className="text-title">Welcome Back!</label>
-            <label className="text-subtitle">Log In with the {username}'s Password</label>
+        <form className="center login-form" onSubmit={handleLogin}>
+            <div className="box center gap-0">
+                <label className="text-title">Welcome Back!</label>
+                <label className="text-subtitle">Log In with the {username}'s Password</label>
+            </div>
 
             {error && <p className="text-subtitle error">{error}</p>}
-            <input className="text-focus" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <input className="fullwidth Stext-focus" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
             <div className="buttons">
-                <button className="text-title" type="submit">Log In</button>
-                <button className="panel-return" onClick={() => { setForm("access"); setError(""); setUsername("");  setPassword(""); setConfirmPassword(""); setEmail(""); }}> 
-                    <img src="/public/images/return.png" alt="return"/> 
+                <button className="button-square text-title" type="submit">Log In</button>
+                <button className="button-square panel-return" onClick={() => { setForm("access"); setError(""); setUsername("");  setPassword(""); setConfirmPassword(""); setEmail(""); }}> 
+                    <img className="img-themes" src="./public/images/global/return.png" alt="return"/> 
                 </button>
             </div>
         </form>

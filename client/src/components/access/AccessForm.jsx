@@ -27,21 +27,22 @@ export function AccessForm ({ isVisible, setIsVisible }) {
     };
 
     return form==="access" && (
-        <form className="access-form" onSubmit={handleAccess}>
-            <label className="text-title"></label>
-            <label className="text-title">Hello, Enter your Username</label>
-            <label className="text-subtitle">Log In or Sign Up for an Account</label>
+        <form className="access-form center" onSubmit={handleAccess}>
+            <div className="box center gap-0">
+                <label className="text-title">Hello, Enter your Username</label>
+                <label className="text-subtitle">Log In or Sign Up for an Account</label>            
+            </div>
 
             {error && <p className="text-subtitle error">{error}</p>}
-            <input className="text-focus" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+            <input className="fullwidth text-focus" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
 
             <div className="buttons">
-                <button className="text-title" type="submit">Continue</button>
+                <button className="button-square text-title" type="submit">Continue</button>
             </div>    
-            <div className="social-login">
+            {/* <div className="social-login">
                     <GoogleAccessBtn/>
                     <GithubAccessBtn/>
-            </div>
+            </div> */}
 
         </form>
     );

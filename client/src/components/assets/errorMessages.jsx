@@ -88,7 +88,7 @@ export function NotFound_Message({ message="This page does not exist", link="/",
             <ErrorMessage
                 type="NOT FOUND"
                 info={message}
-                imgSourse="/public/images/404.png"
+                imgSourse="/public/images/pages/404.png"
                 imgAlt="This page does not exist"
                 link = {link}
                 btnText = {btnText}

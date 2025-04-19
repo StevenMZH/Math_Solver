@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 
-export function CoursePreview({ id, title, type, description, units }) {
+export function CoursePreview({ id, title, type, description, units=[] }) {
 
     const topicImages = {
-        math: { src: "/images/integral.svg", alt: "Math" },
-        physics: { src: "/images/physics.png", alt: "Physics" },
-        cs: { src: "/images/cs.png", alt: "Computer Science" },
-        electronics: { src: "/images/electronics.png", alt: "Electronics" },
+        math: { src: "./public/images/courses/integral.svg", alt: "Math" },
+        physics: { src: "./public/images/courses/physics.png", alt: "Physics" },
+        cs: { src: "./public/images/courses/cs.png", alt: "Computer Science" },
+        electronics: { src: "./public/images/courses/electronics.png", alt: "Electronics" },
     };
-    const defaultImage = { src: "/images/defaultImage.png", alt: "" };
+    const defaultImage = { src: "./public/images/defaultImage.png", alt: "" };
     const topicImage = topicImages[type] || defaultImage;
     const topics = units.map(unit => unit.name);
 
@@ -21,123 +21,102 @@ export function CoursePreview({ id, title, type, description, units }) {
     };
 
     return (
-        <div className="panelContainer coursePreview-container">
-            <Link to={`/courses/${id}`}>
-                <div className='colorHeader' style={{ backgroundColor: colors[type] || "#bbccee" }}></div>
-
-                <div className='content'>
-                    <div className="panel-header text-title">
-                        <img className='circleImage classPreview-Image' src={topicImage.src} alt={topicImage.alt} style={{ backgroundColor: colors[type] || "#88bbdd;" }} />
-                        <label>{title}</label>
+        <div className="panel p0 CoursePreview-container">
+            <Link className='box fullscreen' to={`/courses/${id}`}>
+                    <div className='fullscreen shader-container CoursePreview-colorHeader' style={{ backgroundColor: colors[type] || "#bbccee" }}>
+                        <div className="shader-shadow1"/>
                     </div>
 
-                    <div className="panel-body">
-                        <label className='text-subtitle'>Description:</label>
-                        <p className='truncated-text text-focus'>{description}</p>
+                <div className='box p25 gap-20 CoursePreview-content'>
+                    <div className="row-start gap-20 ">
+                        <div className="circleImage shader-container">        
+                            <img src={topicImage.src} alt={topicImage.alt} style={{ backgroundColor: colors[type] || "#88bbdd;" }} />
+                            <div className="shader-shadow1"/>
+                        </div>
+                        
+                        <label className='text-title CoursePreview-title'>{title}</label>
+                    </div>
 
+                    <div className="box text-start gap-10">
+                        <div className="box gap-5">
+                            <label className='text-subtitle font-XS'>Description:</label>
+                            <p className='truncated-text text-focus'>{description}</p>
+                        </div>
+                        
                         {topics && topics.length > 0 && (
-                            <>
-                                <label className='text-subtitle'>Topics:</label>
-                                <ul className='overflowScrollBar_yPanel'>
+                            <div className='box gap-5'>
+                                <label className='text-subtitle font-XS'>Topics:</label>
+                                <ul className='scrollBar2-y CoursePreview-topics'>
                                     {topics.map((topic, index) => (<li key={index} className='text-focus'>{topic}</li>))}
                                 </ul>
-                            </>
+                            </div>
                         )}
                     </div>
                 </div>
             </Link>
 
-            <style>{`
-                .coursePreview-container {
-                    overflow: hidden;
-                    height: 300px;
-                    margin:0;
-                    padding: 0;
-                    border: none;
-                }
-                .coursePreview-container a {
-                    display: flex;
-                    flex-direction: column;
-                    border: 0;
-                    padding: 0;
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 0;
+            <style>{`                
+                .CoursePreview-container a {
                     transition: background-color 0.3s ease-in-out;
                 }
-                .coursePreview-container a:hover .content{
+                .CoursePreview-colorShader {
+                    background-color: #0002;
+                }
+                .CoursePreview-colorHeader{
+                    height: 30px;
+                }
+                .CoursePreview-content{
+                    padding-top: 20px;
+                }
+                a:hover .CoursePreview-content{
                     padding: 35px;
                     padding-top: 25px;
                     transition: padding 0.3s ease-in-out;
                 }
-                
-                .coursePreview-container .colorHeader {
-                    display: flex;
-                    height: 30px;
-                    width: 100%;
+                .CoursePreview-topics {
+                    max-height: 50px;
                 }
-                .coursePreview-container .content {
-                    width: 100%;
-                    height: 100%;
-                    padding: 25px;
-                    padding-top: 20px;
-                }
-                .coursePreview-container .panel-header label {
+
+                .CoursePreview-title {
                     font-size: 14px;
-                    background-color: var(--alpha);
-                    border-color: var(--alpha);
-                    text-align: left;
-                    padding: 5px 10px;
                 }
 
 
-                .coursePreview-container .classPreview-Image {
+                .CoursePreview-container .CoursePreview-icon {
                     width: 50px;
                     height: 50px;
                     margin-right: 10px;
                     background-color: var(--imageBg);
                 }
 
-                .coursePreview-container .panel-body {
-                    text-align: justify;   
-                    margin-top: 0px;   
-                }
-                .coursePreview-container .panel-body p {
-                    margin: 0;
-                    font-size: 13px;
-                    margin-bottom: 15px;
-                    margin-top: 5px;
-                }
 
-                .coursePreview-container .truncated-text {
+                .CoursePreview-container .truncated-text {
                     overflow: hidden;
                     display: -webkit-box;
-                    -webkit-line-clamp: 4; /* Num of visible lines */
+                    -webkit-line-clamp: 3; /* Num of visible lines */
                     -webkit-box-orient: vertical;
                     text-overflow: ellipsis;
                 }
 
-                .coursePreview-container .panel-body label {
+                .CoursePreview-container .panel-body label {
                     margin: 0;
                     font-size: 12px;
                 }
 
-                .coursePreview-container .panel-body ul {
+                .CoursePreview-container ul {
                     padding-left: 20px;
-                    padding-right: 8px;
-                    margin-top: 5px;
                     height: 100%;
-                    max-height: 200px;
+                    max-height: 60px;
                 }
-                .coursePreview-container .panel-body ul li {
+                .CoursePreview-container .panel-body ul li {
                     font-size: 13px;
                 }
 
                 @media (max-width: 880px) {
-                    .coursePreview-container .colorHeader {
+                    .CoursePreview-container .CoursePreview-colorHeader {
                         height: 25px;
                     }
-                    .coursePreview-container .content {
+                    .CoursePreview-container .content {
                         padding-top: 15px;
                     }
                 }
@@ -150,13 +129,13 @@ export function CoursePreview({ id, title, type, description, units }) {
 export function CoursePreview_wireframe({ title, type, description, units }) {
 
     return (
-        <div className="panelContainer coursePreviewWF-container">
-            <div className="colorHeader"></div>
+        <div className="panel p0 CoursePreviewWF-container">
+            <div className="CoursePreview-colorHeader"></div>
 
-            <div className="content">
-                <div className="panel-header">
-                    <div className="circleImage classPreview-Image skeleton"></div>
-                    <div className="title skeleton"></div>
+            <div className="CoursePreviewWF-content panel-box gap-10">
+                <div className="row-start gap-10">
+                    <div className="circleImage radius-full skeleton"></div>
+                    <div className="skeleton CoursePreviewWF-title"></div>
                 </div>
 
                 <div className="panel-body">
@@ -200,83 +179,69 @@ export function CoursePreview_wireframe({ title, type, description, units }) {
                     animation: lightSkeleton-loading 3s infinite ease-in-out;
                 }
 
-                .coursePreviewWF-container {
-                    overflow: hidden;
+                .CoursePreviewWF-container {
                     height: 300px;
-                    margin: 0;
-                    padding: 0;
-                    border: none;
+                }
+                .CoursePreviewWF-content div {
+                    border-radius: 20px;
                 }
 
-                .coursePreviewWF-container .title, 
-                .coursePreviewWF-container .subtitle, 
-                .coursePreviewWF-container p, 
-                .coursePreviewWF-container li {
+                .CoursePreviewWF-container .title, 
+                .CoursePreviewWF-container .subtitle, 
+                .CoursePreviewWF-container p, 
+                .CoursePreviewWF-container li {
                     padding: 0;
                     border-radius: 20px;
                     height: 10px;
                 }
 
-                .coursePreviewWF-container .title {
+                .CoursePreviewWF-title {
                     width: 170px;
                     height: 20px;
                 }
 
-                .coursePreviewWF-container .description-segment .subtitle {
+                .CoursePreviewWF-container .description-segment .subtitle {
                     width: 90px;
                     height: 12px;
                     margin-bottom: 10px;
                 }
 
-                .coursePreviewWF-container .topics-segment .subtitle {
+                .CoursePreviewWF-container .topics-segment .subtitle {
                     width: 55px;
                     height: 12px;
                     margin-bottom: 10px;
                 }
 
-                .coursePreviewWF-container p {
+                .CoursePreviewWF-container p {
                     width: 100%;
                     height: 9px;
                 }
 
-                .coursePreviewWF-container .p-last {
+                .CoursePreviewWF-container .p-last {
                     width: 30%;
                 }
 
-                .coursePreviewWF-container .li-1 {
+                .CoursePreviewWF-container .li-1 {
                     width: 300px;
                 }
 
-                .coursePreviewWF-container .li-2 {
+                .CoursePreviewWF-container .li-2 {
                     width: 200px;
                 }
 
-                .coursePreviewWF-container .li-3 {
+                .CoursePreviewWF-container .li-3 {
                     width: 150px;
                 }
 
-                .coursePreviewWF-container .colorHeader {
+                .CoursePreviewWF-container .CoursePreview-colorHeader {
                     display: flex;
                     height: 30px;
                     width: 100%;
                     background-color: var(--wireframe-content); 
                 }
 
-                .coursePreviewWF-container .content {
-                    width: 100%;
-                    height: 100%;
-                    padding: 25px;
-                    padding-top: 20px;
-                }
-
-                .coursePreviewWF-container .classPreview-Image {
-                    width: 50px;
-                    height: 50px;
-                    margin-right: 20px;
-                }
-
-                .coursePreviewWF-container .paragraph, 
-                .coursePreviewWF-container ul {
+                .CoursePreviewWF-container .paragraph, 
+                .CoursePreviewWF-container ul {
                     display: flex;
                     flex-direction: column;
                     gap: 5px;
@@ -284,28 +249,28 @@ export function CoursePreview_wireframe({ title, type, description, units }) {
                     margin-bottom: 10px;
                 }
 
-                .coursePreviewWF-container .panel-body {
+                .CoursePreviewWF-container .panel-body {
                     display: flex;
                     flex-direction: column;
                     gap: 5px;
                 }
 
-                .coursePreviewWF-container .panel-body ul {
+                .CoursePreviewWF-container .panel-body ul {
                     padding-left: 20px;
                     padding-right: 8px;
                     margin-top: 5px;
                     list-style-type: none;
                 }
 
-                .coursePreviewWF-container .panel-body ul li {
+                .CoursePreviewWF-container .panel-body ul li {
                     font-size: 13px;
                 }
 
                 @media (max-width: 880px) {
-                    .coursePreviewWF-container .colorHeader {
+                    .CoursePreviewWF-container .CoursePreview-colorHeader {
                         height: 25px;
                     }
-                    .coursePreviewWF-container .content {
+                    .CoursePreviewWF-container .content {
                         padding-top: 15px;
                     }
                 }

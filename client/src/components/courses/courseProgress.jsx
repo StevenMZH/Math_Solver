@@ -2,7 +2,7 @@ export function CourseProgress({ finished, total }) {
     const percentage = Math.round((finished / total) * 100);
 
     return (
-        <div className="panelContainer progress-container">
+        <div className="panelContainer progress-container column gap-10">
             <div className="panel-header">
                 <label className="text-focus">Course Progress</label>
             </div>

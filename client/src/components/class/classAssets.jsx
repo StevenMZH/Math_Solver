@@ -1,14 +1,55 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import KatexRenderer from '../global/KatexRenderer';
+
+// utils.js
+export function parseText(input) {
+    const lines = input.split("\n");
+    return lines.map((line, index) => {
+        // Lista con guion
+        if (line.startsWith("- ")) {
+            return <li key={index}>{applyFormatting(line.substring(2))}</li>;
+        }
+        // Línea vacía = salto de línea
+        if (line.trim() === "") {
+            return <br key={index} />;
+        }
+        return <p key={index}>{applyFormatting(line)}</p>;
+    });
+}
+
+export function applyFormatting(text) {
+    // Negrita: **texto**
+    text = text.split(/(\*\*[^*]+\*\*)/g).map((part, i) => {
+        if (part.startsWith("**") && part.endsWith("**")) {
+            return <strong key={i}>{part.slice(2, -2)}</strong>; // Elimina los asteriscos de la negrita
+        }
+        return part;
+    });
+
+    // Cursiva: *texto*
+    text = text.flatMap((part, i) =>
+        typeof part === "string"
+            ? part.split(/(\*[^*]+\*)/g).map((subpart, j) => {
+                  if (subpart.startsWith("*") && subpart.endsWith("*")) {
+                      return <em key={`${i}-${j}`}>{subpart.slice(1, -1)}</em>;
+                  }
+                  return subpart;
+              })
+            : [part]
+    );
+
+    return text;
+}
+
 
 export function ClassText({ text }) {
     return (
         <div className="panelContainer segment-margin text-focus textAsset">
-            <p>{text}</p>
+            {parseText(text)}
         </div>
     );
 }
+
+
 
 export function ClassVideo({ url }) {
     return (

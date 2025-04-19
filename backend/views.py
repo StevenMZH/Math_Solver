@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .algebraic.equation import Equation, toLatex
+from .algebraic.equation import Equation, toLatex, toRawLatex
 
 class SimplifyEquationView(APIView):
     def post(self, request):
@@ -15,7 +15,7 @@ class SimplifyEquationView(APIView):
             equation = Equation(equation_str)
             simplified = str(equation.getSymplified())
             latexOutput = toLatex(simplified)
-            latexInput = toLatex(equation_str)
+            latexInput = toRawLatex(equation_str)
 
             # Response
             return Response({"simplified_equation": latexOutput, "inputLatex": latexInput}, status=status.HTTP_200_OK)

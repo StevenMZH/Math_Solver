@@ -46,12 +46,12 @@ export function Course() {
 
     return (
         <>
-            {notFound_error ? ( <div className='page-container flex-center'> <NotFound_Message message={"This Course does not exist"} /> </div> ) : 
-            failPageLoad ? ( <div className="page-container"> <FailLoad_Message /> </div> ) : 
-            loadingPage ? ( <div className="page-container"> <LoadingScreen/> </div>) : 
+            {notFound_error ? ( <div className='page-center'> <NotFound_Message message={"This Course does not exist"} /> </div> ) : 
+            failPageLoad ? ( <div className="page"> <FailLoad_Message /> </div> ) : 
+            loadingPage ? ( <div className="page"> <LoadingScreen/> </div>) : 
             (
-                <div className='page-container'>
-                    <div className='columnDiv'>
+                <div className='page gap-10'>
+                    <div className='fullwidth row columnDiv'>
                         <div className='progress-formula'>
                             <CourseProgress finished={10} total={64} />
                             <div className='top-formulaSheet'>
@@ -59,7 +59,7 @@ export function Course() {
                             </div>
                         </div>
 
-                        <div className='units'>
+                        <div className='fullwidth units'>
                             {Array.isArray(course?.units) && course.units.length > 0 ? (
                                 course.units.map((unit, index) => (
                                     <CourseUnit
@@ -71,7 +71,7 @@ export function Course() {
                                     />
                                 ))
                             ) : (
-                                <div className='panelContainer noUnits-container'>
+                                <div className='panel fullwidth noUnits-container'>
                                     <label className='text-title2'>No Units Available</label>
                                 </div>
                             )}
@@ -86,31 +86,12 @@ export function Course() {
 
 
             <style>{`
-                    .page-container {
-                        width: 100%;
-                        gap: 10px;
-                    }
-
-                    .flex-center {
-                        display: flex;
-                        flex-direction: column;
-                        flex: 1;
-                        height: 100%;
-                        justify-content: center;
-                        align-items: center;
-                    }
 
                     .progress-container, .sheet-container{
                         width: 70vw;
                     }
-                    .noUnits-container {
-                        width: 100%;
-                    }
 
                     .columnDiv {
-                        display: flex;
-                        width: 100%;
-                        flex-direction: row;
                         gap: 20px;
                     }
                     
@@ -123,11 +104,6 @@ export function Course() {
 
                     .bottom-formulaSheet {
                         display: none;
-                    }
-
-
-                    .units{
-                        width: 100%;
                     }
                         
                     .progress-container, .sheet-container {
