@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useState } from "react";
 
 import Logo4 from "../header/logos/Logo4";
 import Logo5 from "../header/logos/Logo5";
@@ -7,10 +6,10 @@ import PaletteSelector from '../header/PaletteSelector';
 import AccessPanel from '../access/AccessPanel';
 import Nav from '../header/Nav';
 import SearchBar from './SearchBar';
-import { AccessProvider } from '../access/AccessContext';
+import { useAuthFormContext } from '../../context/AuthFormContext';
 
 export function AppHeader() {
-    const [isLoginVisible, setIsLoginVisible] = useState(false);
+    const {isAuthFormVisible, setIsAuthFormVisible} = useAuthFormContext();
     const token = localStorage.getItem("accessToken");
 
     return (
@@ -27,7 +26,7 @@ export function AppHeader() {
 
             <div className='flexCenter nav-right'>
                 {!token && (
-                    <button onClick={() => setIsLoginVisible(true)} className='button-square2 text-title2'>Access</button>
+                    <button onClick={() => setIsAuthFormVisible(true)} className='button-square2 text-title2'>Access</button>
                 )}
                 <PaletteSelector />
                 {token && (
@@ -39,9 +38,6 @@ export function AppHeader() {
 
                 )}                
             </div>
-            <AccessProvider>
-                <AccessPanel isVisible={isLoginVisible} setIsVisible={setIsLoginVisible}/>
-            </AccessProvider>
 
             <style>{`
                 header {

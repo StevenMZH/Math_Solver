@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
+import { useAccountContext } from '../../context/accountContext';
 
 export function ClassLink({ courseId, classId, name, type }) {
     const topicImages = {
-        "theory": { src: "/public/images/classes/theory.png", alt: "theory" },
-        "practice": { src: "/public/images/classes/practice.png", alt: "Practice" },
-        "test": { src: "/public/images/classes/test.png", alt: "Test" },
+        "theory": { src: "/images/classes/theory.png", alt: "theory" },
+        "practice": { src: "/images/classes/practice.png", alt: "Practice" },
+        "test": { src: "/images/classes/test.png", alt: "Test" },
     };
-    const defaultImage = { src: "/public/images/defaultImage.png", alt: "" };
+    const defaultImage = { src: "/images/defaultImage.png", alt: "" };
     const topicImage = topicImages[type] || defaultImage;
     return (
         <div className="class-link">

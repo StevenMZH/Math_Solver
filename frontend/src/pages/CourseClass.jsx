@@ -1,39 +1,16 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 
 import { ClassCard, ClassCard2, ClassImage, ClassText, ClassVideo } from "../components/class/classAssets";
 import { NotFound_Message, FailLoad_Message } from "../components/assets/errorMessages";
-import LoadingAnim from "../components/assets/anims";
 import LoadingScreen from "../components/assets/TransitionPages";
-
-
+import { useCourseLesson } from "../hooks/useCourseLesson";
+import { useAccountContext } from "../context/accountContext";
 
 export function CourseClass() {
     const { courseId, classId } = useParams();
-    const [classData, setClassData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [notFound_error, setNotFound_error] = useState(false);
-    const [failLoad, setFailLoad] = useState(false);
+    const [classData, loading, notFound_error, failLoad] = useCourseLesson(courseId, classId);
+    const { language } = useAccountContext();
 
-    useEffect(() => {
-        const fetchClassData = async () => {
-            try {
-                const response = await axios.get(`http://127.0.0.1:8000/courses/course/${courseId}/${classId}`);
-                setClassData(response.data);
-            } catch (err) {
-                if (err.response && err.response.status === 404) {
-                    setNotFound_error(true);
-                } else {
-                    setFailLoad(true);
-                }
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchClassData();
-    }, [classId]);
 
     if (loading) return ( <LoadingScreen/> ) ;
     if (notFound_error) return (
@@ -42,20 +19,21 @@ export function CourseClass() {
         </div>
     )
 
-    
     if (failLoad) return (
         <div className="page column">
             <FailLoad_Message message="Failed to load class data. Please try again later." />
         </div>
     )
 
+    const content = classData.content?.[language] || classData.content?.['en'] || [];
+
     return (
         <div className="page column">
             <div className="panel class-header">
-                <label className="text-title">{classData.name}</label>
+                <label className="text-title">{classData.name[language]}</label>
             </div>
 
-            {classData.content && classData.content.map((item, index) => {
+            {classData && content.map((item, index) => {
                 switch (item.type) {
                     case "image":
                         return <ClassImage key={index} url={item.content} />;

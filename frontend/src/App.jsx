@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Suspense, lazy, useState } from "react";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import GoogleCallback from './components/access/GoogleCallback';
+import AccessPanel from './components/access/AccessPanel';
 
 // Lazy loading de los componentes
 const Footer = lazy(() => import('./components/global/Footer'));
@@ -66,7 +67,8 @@ function App() {
                 <Suspense fallback={<div></div>}>
                     <MobileNav />
                 </Suspense>
-    
+
+                <AccessPanel/>
             </main>
         </BrowserRouter>
     );

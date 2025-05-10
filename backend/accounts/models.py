@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.utils.timezone import now
 import uuid
 from datetime import timedelta
@@ -8,7 +10,7 @@ class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
-        user.set_password(password if password else '')  # Se establece '' si no hay contraseña
+        user.set_password(password if password else '')  # Se establece '' si no hay contraseña (Google Login)
         user.save(using=self._db)
         return user
 
@@ -24,7 +26,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     profile_picture = models.URLField(blank=True, null=True)  # Foto como URL desde Google
-    birth_date = models.DateField(blank=True, null=True)      # Campo para cumpleaños
+    birth_date = models.DateField(blank=True, null=True)      # ToDo: Manage Google Request Scope
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -38,7 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-class UserMetadata(models.Model):
+class UserAccount(models.Model):
     ROLE_CHOICES = [
         ('Admin', 'Admin'),
         ('VIP', 'VIP'),
@@ -50,8 +52,9 @@ class UserMetadata(models.Model):
     THEME_CHOICES = [('light', 'light'), ('dark', 'dark')]
     LANGUAGE_CHOICES = [('en', 'English'), ('es', 'Spanish')]
 
+    # id
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.OneToOneField('User', on_delete=models.CASCADE, related_name='metadata')
+    user = models.OneToOneField('User', on_delete=models.CASCADE, related_name='account')
 
     # Metadata fields
     rol = models.CharField(max_length=20, choices=ROLE_CHOICES, default='Student')
@@ -60,19 +63,12 @@ class UserMetadata(models.Model):
     last_check_in = models.DateTimeField(null=True, blank=True)
 
     # Gamification
+    last_activity = models.DateTimeField(null=True, blank=True)
     daily_streak = models.BigIntegerField(default=0)
     longest_daily_streak = models.BigIntegerField(default=0)
     badges = models.JSONField(default=list, blank=True)
     points = models.BigIntegerField(default=0)
     level = models.IntegerField(default=1)
-
-    # Courses and progress
-    enrolled_courses = models.ManyToManyField('courses.Course', blank=True, related_name='enrolled_users')
-    completed_courses = models.ManyToManyField('courses.Course', blank=True, related_name='completed_users')
-    completed_courses_lessons = models.JSONField(default=dict, blank=True)
-    completed_classes = models.ManyToManyField('courses.CourseLesson', blank=True)
-    completed_exercises = models.JSONField(default=list, blank=True)
-    content_history = models.JSONField(default=list, blank=True)
 
     # Preferences
     language = models.CharField(max_length=8, choices=LANGUAGE_CHOICES, default='en')
@@ -82,4 +78,32 @@ class UserMetadata(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Metadata of {self.user.email}"
+        return f"Metadata of {self.user.username}"
+
+    
+class UserContentProgress(models.Model):
+    PROGRESS_STATUS = [
+        ('completed', 'completed'), 
+        ('in progress', 'in progress'), 
+        ('attempted', 'attempted'), 
+        ('later', 'later'), 
+        ('on hold', 'on hold'),
+        ('dropped', 'dropped')
+    ]
+    
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    account = models.ForeignKey('UserAccount', on_delete=models.CASCADE, related_name='progress_entries')
+    status = models.CharField(max_length=15, choices=PROGRESS_STATUS, default='in progress')
+
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.CharField(max_length=64) # Same ID data type as the related content IDs
+    content_object = GenericForeignKey('content_type', 'object_id')
+    class Meta:
+        indexes = [
+            models.Index(fields=['status']),
+            models.Index(fields=['account']),
+            models.Index(fields=['content_type']),
+        ]
+
+    def __str__(self):
+        return f"Content Progress of {self.account.user.username}"

@@ -4,16 +4,15 @@ import { useState } from "react";
 import Logo5 from "../header/logos/Logo5";
 
 import AccessPanel from '../access/AccessPanel';
-import { AccessProvider } from '../access/AccessContext';
 import MobileSearchBar from './MobileSearchBar';
 import TogglePalette from '../header/togglePalette';
+import { useAuthFormContext } from '../../context/AuthFormContext';
 
 
 export function MobileHeader() {
-    const [isLoginVisible, setIsLoginVisible] = useState(false);
     const token = localStorage.getItem("accessToken");
     const [searching, setSearching] = useState(false);
-    
+    const {setIsAuthFormVisible} = useAuthFormContext();
 
     const pageTitles = {
         "/home": "Home",
@@ -58,7 +57,7 @@ export function MobileHeader() {
                         </button>
 
                         {!token && (
-                            <button onClick={() => setIsLoginVisible(true)} className='button-square2 text-title2'>Access</button> 
+                            <button onClick={() => setIsAuthFormVisible(true)} className='button-square2 text-title2'>Access</button> 
                         )}
                     </div>
                 </>)}
@@ -74,9 +73,6 @@ export function MobileHeader() {
 
             </div>
         
-            <AccessProvider>
-                <AccessPanel isVisible={isLoginVisible} setIsVisible={setIsLoginVisible}/>
-            </AccessProvider>
 
             <style>{`
                 header {

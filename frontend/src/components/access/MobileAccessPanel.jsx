@@ -3,43 +3,40 @@ import Logo4 from "../header/logos/Logo4";
 import AccessForm from "./AccessForm";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
-import { useAccessContext } from "./AccessContext";
+import { useResetAuthForm } from "../../hooks/auth/useResetAuthForm";
 
-export function MobileAccessPanel ({ isVisible, setIsVisible }) {
-    const { username, setUsername, password, setPassword, email, setEmail, confirmPassword, setConfirmPassword, form, setForm, error, setError} = useAccessContext();
+export function MobileAccessPanel() {
+    const {isAuthFormVisible} = useAuthFormContext();
     const [showTransition, setShowTransition] = useState(false);
+    const {resetAuthForm} = useResetAuthForm();
 
     useEffect(() => {
-        if (isVisible) {
+        if (isAuthFormVisible) {
             setTimeout(() => setShowTransition(true), 10); // Pequeño retraso para activar la transición
         } else {
             setShowTransition(false);
         }
-    }, [isVisible]);
+    }, [isAuthFormVisible]);
 
-    const handleSocialLogin = (provider) => {
-        window.location.href = `http://127.0.0.1:8000/auth/social/login/${provider}/`;
-    };
-
-    return isVisible && (
+    return isAuthFormVisible && (
         <div className="login-container">
                 <div className={`panelContainer login ${showTransition ? 'slice-transition' : ''}`}>
                     <div className="floating-panel login-exit">
-                        <button onClick={() => { setIsVisible(false); setForm("access"); setError(""); setUsername("");  setPassword(""); setConfirmPassword(""); setEmail(""); }}> 
+                        <button onClick={() => { resetAuthForm }}> 
                             <img src="./public/images/global/exit.png" alt="exit-login"/> 
                         </button>
                     </div>
                     
                     <Logo4/>
                     <div className="login-forms">
-                        <AccessForm isVisible={isVisible} setIsVisible={setIsVisible} />
-                        <LoginForm isVisible={isVisible} setIsVisible={setIsVisible} />
-                        <SignupForm isVisible={isVisible} setIsVisible={setIsVisible} />
+                        <AccessForm/>
+                        <LoginForm/>
+                        <SignupForm/>
                     </div>
                 </div>
 
                 <div className="panel-shadder">
-                    <button onClick={() => { setIsVisible(false); setForm("access"); setError(""); setUsername("");  setPassword(""); setConfirmPassword(""); setEmail(""); }}> </button>
+                    <button onClick={() => { resetAuthForm }}> </button>
                 </div>
             <style>{`
                 .login-container {

@@ -1,9 +1,12 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model, authenticate
+from rest_framework.serializers import ModelSerializer
+from .models import UserContentProgress, UserAccount
+from courses.models import Course, CourseLesson
+from courses.serializers import PublicCourseSerializer, PublicLessonSerializer
 
 User = get_user_model()
-
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'email', 'username', 'password']
@@ -17,15 +20,21 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         return user
 
-class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
 
+class RegisterSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ('email', 'username', 'password')
+        fields = ['username', 'email', 'password']
+        extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            password=validated_data['password']
+        )
+        UserAccount.objects.get_or_create(user=user)
+        return user
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
@@ -39,3 +48,53 @@ class LoginSerializer(serializers.Serializer):
         if not user:
             raise serializers.ValidationError("Credenciales inválidas")
         return user
+
+class UserContentProgressSerializer(ModelSerializer):
+    content_object_data = serializers.SerializerMethodField()
+
+    class Meta:
+        model = UserContentProgress
+        fields = ['id', 'status', 'content_type', 'object_id', 'content_object_data']
+        read_only_fields = ['id', 'account']
+
+    def get_content_object_data(self, obj):
+        content = obj.content_object
+
+        if isinstance(content, Course):
+            return PublicCourseSerializer(content).data
+        elif isinstance(content, CourseLesson):
+            return PublicLessonSerializer(content).data
+        else:
+            # Para tipos de contenido futuros que no tengan aún serializer
+            return {
+                "id": content.id,
+                "type": str(type(content).__name__),
+                "message": "Its not part of any kind of content"
+            }
+               
+class UserPreferences_Serializer(ModelSerializer):
+    class Meta:
+        model = UserAccount
+        fields = [
+            'id',
+            'language',
+            'theme',
+            'notification',
+        ]
+        
+class UpdateUser_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name']
+
+    def validate_username(self, value):
+        user = self.context['request'].user
+        if User.objects.exclude(pk=user.pk).filter(username=value).exists():
+            raise serializers.ValidationError("This username is already taken.")
+        return value
+
+    def validate_email(self, value):
+        user = self.context['request'].user
+        if User.objects.exclude(pk=user.pk).filter(email=value).exists():
+            raise serializers.ValidationError("This email is already registered.")
+        return value

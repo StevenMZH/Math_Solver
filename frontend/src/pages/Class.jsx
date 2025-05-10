@@ -6,28 +6,20 @@ import { ClassCard, ClassCard2, ClassImage, ClassText, ClassVideo } from "../com
 
 
 export function Class() {
-    const { classId } = useParams(); // Obtén los parámetros de la URL
-    const [classData, setClassData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const { classId } = useParams();
+    const [classData, loading, notFound_error, failLoad] = useLesson(classId);
 
-    useEffect(() => {
-        const fetchClassData = async () => {
-            try {
-                const response = await axios.get(`http://127.0.0.1:8000/courses/classes/${classId}`);
-                setClassData(response.data);
-            } catch (err) {
-                setError(err.response ? err.response.data.message : err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchClassData();
-    }, [classId]);
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
+    if (loading) return ( <LoadingScreen/> ) ;
+    if (notFound_error) return (
+        <div className="page-center">
+            <NotFound_Message message="This Class does not exist" />
+        </div>
+    )
+    if (failLoad) return (
+        <div className="page column">
+            <FailLoad_Message message="Failed to load class data. Please try again later." />
+        </div>
+    )
 
     return (
         <div className="page column">

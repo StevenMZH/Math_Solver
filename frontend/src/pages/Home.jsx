@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Logo5 from '../components/header/logos/Logo5';
 import Button_SideIcon from '../components/ui/Button_SideIcon';
 import AccessPanel from '../components/access/AccessPanel';
-import { AccessProvider } from '../components/access/AccessContext';
+import { useAuthFormContext } from '../context/AuthFormContext';
 
 
 export function FieldBalls_Wave({
@@ -79,7 +79,7 @@ export function FieldBalls_Wave({
 
 export function Home() {
     const navigate = useNavigate();
-    const [isLoginVisible, setIsLoginVisible] = useState(false);
+    const { setIsAuthFormVisible } = useAuthFormContext();
 
     return (
         <div className='page gap-20'>
@@ -98,7 +98,7 @@ export function Home() {
                 
                 
                 <div className='row fullwidth gap-10 buttons'>
-                    <button className='button-square2 font-S' onClick={() => setIsLoginVisible(true)}>Get Started</button>
+                    <button className='button-square2 font-S' onClick={() => setIsAuthFormVisible(true)}>Get Started</button>
                     <Button_SideIcon className='font-S' icon="/images/nav/courses.png" text="Explore Courses" func={() => navigate("/courses")}/>
                 </div>
 
@@ -121,9 +121,7 @@ export function Home() {
                 </Link>
             </div>
             
-            <AccessProvider>
-              <AccessPanel isVisible={isLoginVisible} setIsVisible={setIsLoginVisible}/>              
-            </AccessProvider>
+            <AccessPanel/>              
 
             <style>{`
                 header, footer.footer, main .MobileNav {

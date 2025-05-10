@@ -34,8 +34,7 @@ function GoogleCallback() {
 
                     localStorage.setItem("accessToken", access);
                     localStorage.setItem("refreshToken", refresh);
-
-                    localStorage.setItem("user", JSON.stringify(user));
+                    window.location.href = "/profile";
                 })
                 .catch((err) => {
                     console.error("Error al autenticar con el backend", err);

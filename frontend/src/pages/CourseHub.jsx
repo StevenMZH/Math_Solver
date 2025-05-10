@@ -1,28 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import CoursePreview, { CoursePreview_wireframe } from "../components/courses/CoursePreview";
 import { FailLoad_Message } from '../components/assets/errorMessages';
 import { Loading_floatingPanel } from '../components/assets/TransitionPages';
+import { useCourses } from '../hooks/useCourses';
+import { useAccountContext } from "../context/accountContext";
 
 export function CoursesHub( ) {
-    const [courses, setCourses] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [failLoad, setFailLoad] = useState(false);
-
-    useEffect(() => {
-        setLoading(true);
-
-        axios.get('http://127.0.0.1:8000/courses/course/')
-            .then(response => {
-                setCourses(response.data);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error("Hubo un error al obtener los cursos:", error);
-                setFailLoad(true);
-            })
-    }, [])
-
+    const { language } = useAccountContext();
+    const { courses, loading, failLoad } = useCourses(language);
 
     return (
         <div className='page gap-20'>
@@ -40,9 +24,9 @@ export function CoursesHub( ) {
                             <CoursePreview
                                 key={course.id}
                                 id={course.id}
-                                title={course.name}
+                                title={(course.name[language])}
                                 type={course.field}
-                                description={course.description}
+                                description={course.description[language]}
                                 units={course.units}
                             />
                         ))}

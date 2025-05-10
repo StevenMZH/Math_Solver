@@ -1,48 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import CourseUnit from '../components/courses/CourseUnit';
 import CourseProgress from '../components/courses/CourseProgress';
 import FormulaSheet from '../components/courses/FormulaSheet';
 import { FailLoad_Message, NotFound_Message } from '../components/assets/errorMessages';
 import LoadingScreen, { Loading_floatingPanel } from '../components/assets/TransitionPages';
+import { useCourse } from '../hooks/useCourse';
 
 export function Course() {
     const { courseId } = useParams(); // Obtener el courseId de la URL
-    const [course, setCourse] = useState(null);
-    const [error, setError] = useState(null);
-    const [loaded, setLoaded] = useState(false);
-    const [loadingPage, setLoadingPage] = useState(false);
-    const [failPageLoad, setFailPageLoad] = useState(false);
-    const [notFound_error, setNotFound_error] = useState(false);
-
-    useEffect(() => {
-        if (!courseId) {
-            console.error('Course ID is missing');
-            return;
-        }
-        setLoadingPage(true);
-
-        axios.get(`http://127.0.0.1:8000/courses/course/${courseId}/`)
-            .then(response => {
-                setCourse(response.data);
-                setError(null);
-                setLoadingPage(false);
-                setFailPageLoad(false);
-                setLoaded(true);
-            })
-            .catch(error => {
-                if (error.response && error.response.status === 404) {
-                    setNotFound_error(true);
-                    setLoadingPage(false);
-                    setFailPageLoad(false);
-                } else {
-                    setLoadingPage(false);
-                    setFailPageLoad(true);
-                    console.log(error.response);
-                }
-            });
-    }, [courseId]); // Asegúrate de que la dependencia sea el courseId
+    const [course, loadingPage, failPageLoad, notFound_error] = useCourse(courseId);
+    console.log(course)
+    console.log(failPageLoad)
 
     return (
         <>
@@ -67,7 +35,7 @@ export function Course() {
                                         courseId={course.id}
                                         num={index}
                                         name={unit.name}
-                                        classes={unit.classes || []}
+                                        classes={unit.lessons || []}
                                     />
                                 ))
                             ) : (

@@ -16,7 +16,7 @@ function GoogleAccessBtn() {
   
     return (
         <>
-            <button type="button" class="login-with-google-btn" onClick={handleGoogleLogin}>
+            <button type="button" className="login-with-google-btn" onClick={handleGoogleLogin}>
                 Sign in with Google
             </button>
         
@@ -35,7 +35,7 @@ function GoogleAccessBtn() {
                     font-weight: 500;
                     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
                     
-                    background-image: url(images/global/google.svg);
+                    background-image: url(/images/global/google.svg);
                     background-color: white;
                     background-repeat: no-repeat;
                     background-position: 12px 11px;

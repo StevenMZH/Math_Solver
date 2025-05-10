@@ -1,4 +1,3 @@
-# At adding a new Model:
+# Views:
 
-python manage.py makemigrations
-python manage.py migrate
+

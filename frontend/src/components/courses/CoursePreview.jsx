@@ -1,16 +1,18 @@
 import { Link } from 'react-router-dom';
+import { useAccountContext } from '../../context/accountContext';
 
 export function CoursePreview({ id, title, type, description, units=[] }) {
 
     const topicImages = {
-        math: { src: "./public/images/courses/integral.svg", alt: "Math" },
-        physics: { src: "./public/images/courses/physics.png", alt: "Physics" },
-        cs: { src: "./public/images/courses/cs.png", alt: "Computer Science" },
-        electronics: { src: "./public/images/courses/electronics.png", alt: "Electronics" },
+        math: { src: "/images/courses/integral.svg", alt: "Math" },
+        physics: { src: "/images/courses/physics.png", alt: "Physics" },
+        cs: { src: "/images/courses/cs.png", alt: "Computer Science" },
+        electronics: { src: "/images/courses/electronics.png", alt: "Electronics" },
     };
-    const defaultImage = { src: "./public/images/defaultImage.png", alt: "" };
+    const defaultImage = { src: "/images/defaultImage.png", alt: "" };
     const topicImage = topicImages[type] || defaultImage;
-    const topics = units.map(unit => unit.name);
+    const { language } = useAccountContext();
+    const topics = units.map(unit => unit.name[language]);
 
     const rootStyles = getComputedStyle(document.documentElement);
     const colors = {
@@ -30,7 +32,7 @@ export function CoursePreview({ id, title, type, description, units=[] }) {
                 <div className='box p25 gap-20 CoursePreview-content'>
                     <div className="row-start gap-20 ">
                         <div className="circleImage shader-container">        
-                            <img src={topicImage.src} alt={topicImage.alt} style={{ backgroundColor: colors[type] || "#88bbdd;" }} />
+                            <img src={topicImage.src} alt={topicImage.alt} style={{ backgroundColor: colors[type] || "#88bbdd" }} />
                             <div className="shader-shadow1"/>
                         </div>
                         

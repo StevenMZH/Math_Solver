@@ -1,9 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('docs/', include_docs_urls(title="Eulerian Hades APIs")),
     
+    # APIs
     path('api/', include('solvers.urls')),
     path('courses/', include('courses.urls')),
     path('account/', include('accounts.urls')),

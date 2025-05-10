@@ -1,26 +1,55 @@
 from rest_framework import serializers
-from .models import Course, CourseUnit, CourseLesson, Exercise
+from .models import Course, CourseUnit, CourseLesson
 
-class LessonSerializer(serializers.ModelSerializer):
+class PublicLessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseLesson
-        fields = ['id', 'name', 'class_type', 'keywords', 'content', 'order']
+        fields = [
+            'id',
+            'name',
+            'type',
+            'content_data',
+            'order',
+        ]
 
-class UnitSerializer(serializers.ModelSerializer):
-    classes = LessonSerializer(many=True, read_only=True)
-    
+class PublicUnitSerializer(serializers.ModelSerializer):
+    lessons = PublicLessonSerializer(many=True, read_only=True)
+
     class Meta:
         model = CourseUnit
-        fields = ['id', 'name', 'course', 'classes']
+        fields = ['id', 'name', 'lessons']
 
-class CourseSerializer(serializers.ModelSerializer):
-    units = UnitSerializer(many=True, read_only=True)
+class PublicCourseSerializer(serializers.ModelSerializer):
+    units = PublicUnitSerializer(many=True, read_only=True)
 
     class Meta:
         model = Course
-        fields = ['id', 'name', 'field', 'keywords', 'description', 'formulas', 'units']
+        fields = [
+            'id',
+            'name',
+            'field',
+            'description',
+            'formulas',
+            'units',
+            'prerequisites',
+            'recommended',
+            'level'
+        ]
 
-class ExerciseSerializer(serializers.ModelSerializer):
+from rest_framework import serializers
+from .models import Course, CourseUnit, CourseLesson
+
+class PrivateCourseSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Exercise
-        fields = ['id', 'name', 'problemText', 'image', 'problem', 'solution']
+        model = Course
+        fields = '__all__'
+
+class PrivateUnitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseUnit
+        fields = '__all__'
+
+class PrivateLessonSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseLesson
+        fields = '__all__'

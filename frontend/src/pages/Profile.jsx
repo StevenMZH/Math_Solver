@@ -6,6 +6,8 @@ import Button_SideIcon from '../components/ui/Button_SideIcon';
 import UserStats from '../components/user/UserStats';
 import PaletteSelector from '../components/header/PaletteSelector';
 import TogglePalette from '../components/header/togglePalette';
+import useAccountData from '../hooks/accounts/useAccountData';
+import { useAccountContext } from '../context/accountContext';
 
 export function Profile({streak=2}) {
 
@@ -19,45 +21,40 @@ export function Profile({streak=2}) {
 
     let user = null;
 
-    try {
-        const storedUser = localStorage.getItem("user");
-    
-        if (storedUser) {
-            user = JSON.parse(storedUser);
-        } else {
-            // Si no existe en localStorage, se crea el usuario por defecto
-            user = {
-                name: 'username',
-                email: 'example@example.com',
-                profile_picture: '/images/global/defaultUser.png'
-            };
-            localStorage.setItem("user", JSON.stringify(user));
-        }
-    } catch (error) {
-        console.error("Error al parsear el usuario desde localStorage:", error);
-        // Si hay error al parsear, también asignamos el usuario por defecto
-        user = {
-            name: 'username',
-            email: 'example@example.com',
-            profile_picture: '/images/global/defaultUser.png'
-        };
-        localStorage.setItem("user", JSON.stringify(user));
-    }
-    
 
+    const { 
+        username,
+        email,
+        first_name,
+        last_name,
+        profile_picture,
+        birth_date,
+        date_joined,
+
+        rol,
+        last_check_in,
+        daily_streak,
+        longest_daily_streak,
+        badges,
+        points,
+        level
+    } = useAccountContext();
+    
     const streakFilter = getStreakStyle(streak);
+    const { accountData, loading, error } = useAccountData();
+    console.log(accountData);
 
     return (
         <div className='page gap-30'>
             <div className="box row fullheight center gap-10 profile-data">
                 <div className='box center fullwidth p10 gap-5 profile-data'>
-                    <img className='circleImage bigUserImage' src={user.profile_picture} alt="profile picture" 
+                    <img className='circleImage bigUserImage' src={profile_picture} alt="profile picture" 
                     onError={(e) => { e.target.onerror = null; e.target.src = "/images/global/defaultUser.png"; }}/>
                     
                     <div className="box fullscreen start gap-10">
                         <div className="box">
-                            <label className='text-title2 font-LL'>{user.username}</label>
-                            <label className='text-subtitle font-S'>{user.email}</label>
+                            <label className='text-title2 font-LL'>{username}</label>
+                            <label className='text-subtitle font-S'>{email}</label>
                         </div>
                     
                         <div className='start gap-5'>

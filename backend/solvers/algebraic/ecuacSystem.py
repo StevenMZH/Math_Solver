@@ -1,4 +1,4 @@
-from backend.algebraic.equation import Ecuation
+from solvers.algebraic.equation import Ecuation
 
 # In progress...
 class ecuationSystem:

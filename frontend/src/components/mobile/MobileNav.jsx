@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useState } from "react";
 
 import AccessPanel from '../access/AccessPanel';
-import { AccessProvider } from '../access/AccessContext';
+import { useAuthFormContext } from '../../context/AuthFormContext';
 
 export function MobileNav() {
-    const [isLoginVisible, setIsLoginVisible] = useState(false);
     const token = localStorage.getItem("accessToken");
+    const {setIsAuthFormVisible} = useAuthFormContext();
 
     return (
         <div className="MobileNav">
@@ -16,7 +15,7 @@ export function MobileNav() {
             <Link to="/exercises" className='nav-a'> <img className='nav-img icon3' src='/public/images/nav/exercises.png' alt="Exercises" /> <label className='text-subtitle'>Exercises</label> </Link>
 
             {!token ? (
-                <button className='nav-a' onClick={() => setIsLoginVisible(true)}> 
+                <button className='nav-a' onClick={() => setIsAuthFormVisible(true)}> 
                     <img className='nav-img icon4' src='/public/images/nav/profile.png' alt="Profile" /> 
                     <label className='text-subtitle'>Profile</label>
                 </button>
@@ -27,9 +26,6 @@ export function MobileNav() {
                 </Link> 
             )}    
 
-            <AccessProvider>
-                <AccessPanel isVisible={isLoginVisible} setIsVisible={setIsLoginVisible}/>
-            </AccessProvider>
 
             <style>{`
                 .MobileNav {

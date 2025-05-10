@@ -7,12 +7,13 @@ const SearchBar = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [results, setResults] = useState(null);
     const searchBarRef = useRef(null);
+    let lang = 'en'
 
     useEffect(() => {
         if (searchTerm.length > 0) {
             const delayDebounceFn = setTimeout(async () => {
                 try {
-                    const response = await axios.get(`http://127.0.0.1:8000/dataBase/search/`, {
+                    const response = await axios.get(`http://127.0.0.1:8000/courses/search/`, {
                         params: { q: searchTerm },
                     });
                     setResults(response.data);
@@ -65,7 +66,7 @@ const SearchBar = () => {
                                 <CourseSearchLink
                                     key={course.id}
                                     id={course.id}
-                                    name={course.name}
+                                    name={course.name[lang]}
                                     type={course.field}
                                     setSearchTerm={setSearchTerm}
                                 />
@@ -80,7 +81,7 @@ const SearchBar = () => {
                                 <ClassSearchLink
                                     key={courseClass.id}
                                     id={courseClass.id}
-                                    name={courseClass.name}
+                                    name={courseClass.name[lang]}
                                     type={courseClass.class_type}
                                     setSearchTerm={setSearchTerm}
                                 />
