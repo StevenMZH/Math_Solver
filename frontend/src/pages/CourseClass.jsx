@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 
 import { ClassCard, ClassCard2, ClassImage, ClassText, ClassVideo } from "../components/lesson/ClassAssets";
 import { NotFound_Message, FailLoad_Message } from "../components/assets/errorMessages";
-import LoadingScreen from "../components/assets/TransitionPages";
+import LoadingScreen from "../components/assets/transitionPages";
 import { useCourseLesson } from "../hooks/content/useCourseLesson";
 import { useAccountContext } from "../context/AccountContext";
 import { useEffect, useState } from "react";
