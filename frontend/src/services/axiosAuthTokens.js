@@ -2,6 +2,7 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
 const API_URL = window._env_.REACT_APP_API_URL;
+  console.log(API_URL)
 
 const axiosAuthTokens = axios.create({
   baseURL: API_URL, // URL de la API
@@ -12,6 +13,7 @@ const axiosAuthTokens = axios.create({
 
 // Verificar si el token ha expirado
 function isTokenExpired() {
+  console.log(API_URL)
   const token = localStorage.getItem('accessToken');
   if (token) {
     const { exp } = jwtDecode(token);
