@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Eulerian Hades</title>
+
+        <meta charset="UTF-8">
+        <meta name="description" content="{{ description }}">
+        <meta name="keywords" content="Math">
+        <meta name="author" content="{{ author }}">
+        <meta http-equiv="refresh" content="1800"> <!-- Refresh each 30mins --> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
+        
+        <!-- Styles -->
+        <link rel="stylesheet" href="../static/css/normalize.css">
+        <link rel="stylesheet" href="../static/css/webStyle.css">
+        <link rel="stylesheet" href="../static/css/palettes.css">
+        <link rel="stylesheet" href="../static/css/graphTheory.css">
+
+        <!-- Components Styles -->
+        <link rel="stylesheet" href="../static/css/components/nav.css">
+        <link rel="stylesheet" href="../static/css/components/paletteSelector.css">
+        <link rel="stylesheet" href="../static/css/components/footer.css">
+        <link rel="stylesheet" href="../static/css/components/panels.css">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+
+    </head>
+
+    <body>
+        
+        <header>
+            {% include 'components/globals/nav.html' %}
+            {% include 'components/globals/paletteSelector.html' %}
+            {% include 'components/globals/languageSelector.html' %}
+        </header>
+        
+        <main>
+            <div class="graphMaker-container">
+
+                <div class="inputGetter-container">
+            
+                    <div> <label for="newNode" data-lang-key="Graphs.addNode" >Add Nodes:</label> </div>
+            
+                    <div id="inputGetter-node">
+                        <div id="nodeBar">
+                            <input type="text" placeholder="Node Name" name="newNode" id="newNode">
+                        </div>
+                        <div id="shortButton-container">
+                            <button name="newNode_Button" id="newNode_Button" class="shortButton">+</button>
+                        </div>
+                    </div>
+            
+                    <div> <label for="newIntersection" data-lang-key="Graphs.addLink">Add Intersection:</label> </div>
+            
+                    <div id="inputGetter-link">
+                        <div id="inputGetter-link-innerdiv">    
+                            <div> <input type="text" id="newNode_source" placeholder="Source Node"> </div>
+                            <div> <input type="text" id="newNode_target" placeholder="Target Node"> </div>
+                            <div> <input type="text" id="newNode_weight" placeholder="Link Weight"> </div>
+                        </div>
+            
+                        <div id="columnButton">
+                            <button name="newIntersection_Button" id="newIntersection_Button" class="highButton" >+</button>
+                        </div>
+                    </div>
+            
+                    <div id="buttonsDiv">
+                        <button class="wideButton" id="clear_Button" data-lang-key="Graphs.clear" >Clear Graph</button>
+                        <button class="wideButton" id="algorithms_Button" data-lang-key="Graphs.applyAlgorithm" >Apply Algorithm</button>
+                        <button class="wideButton" id="download_Button" data-lang-key="Graphs.download" >Download Graph</button>
+                    </div>
+                
+                </div> 
+                
+                {% include 'components/dataStructs/graph.html' %}
+            
+            </div>
+        </main>
+        
+        {% include 'components/panels/Panel_graphAlgorithm.html' %}
+        {% include 'components/panels/Panel_graphDownload.html' %}
+        
+        {% include 'components/globals/footer.html' %}
+
+        <!-- JS -->
+        <script src="../static/js/paletteSelector.js"></script>
+        <script src="../static/js/languageManager.js"></script>
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <script src="../static/js/graphPanels.js"></script>
+    
+    </body>
+</html>

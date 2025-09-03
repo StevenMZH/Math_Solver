@@ -1,0 +1,45 @@
+.panelContainer, .panel {
+    position: relative;
+    text-align: center;
+
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--panel1);
+    overflow: hidden;
+    box-shadow: 0 0 10px var(--panel_border);
+}
+
+.panel-fullwidth {
+    position: relative;
+    width: 100%;
+    text-align: center;
+
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--panel1);
+    box-shadow: 0 0 10px var(--panel_border);
+}
+
+.panel-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--panel1);
+    box-shadow: 0 0 10px var(--panel_border);
+}
+
+.shadow-10 {
+    box-shadow: 0 0 10px var(--panel_border);
+}
+
+.shadow-20 {
+    box-shadow: 0 0 20px var(--panel_border);
+}

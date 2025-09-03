@@ -1,0 +1,13 @@
+.link-box {
+    display: flex;
+    align-items: center;
+
+    border: none;
+    border-radius: 0;
+
+    padding: 5px 10px;
+    background-color: #0000;
+}
+.link-box a:hover {
+    background-color: var(--button_hover);
+} 

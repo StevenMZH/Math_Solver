@@ -1,0 +1,57 @@
+.button-square {
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    color: var(--text_title);
+}
+.button-square2 {
+    padding: 7px;
+    border-radius: 5px;    
+    font-weight: 600;
+    color: var(--text_title);
+}
+
+.button-alpha {
+    padding: 7px;
+    border-radius: 5px;    
+    font-weight: 600;
+    color: var(--text_title);
+    background-color: #0000;
+    transition: background-color 0.2s ease-out;
+}
+.button-alpha:hover {
+    background-color: #0000;
+}
+.button-alpha:active {
+    background-color: #fff2;
+}
+.light .button-alpha:active {
+    background-color: #0002;
+}
+
+/* .button-search {
+
+} */
+
+nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+
+    padding: 5px 10px;
+    border-radius: 25px;
+
+    font-size: 10px;
+    background-color: var(--background);
+    backdrop-filter: blur(10px);
+}
+nav a:hover {
+    background-color: var(--button_hover);
+    transition: background-color 0.3s, color 1s;
+}
+/* 
+.MobileNav a {
+
+} */

@@ -1,0 +1,43 @@
+.shader-container {
+    position: relative;
+}
+
+.shader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.dark .shader-shadow1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0002;
+}
+
+.dark .shader-light1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff4;
+}
+
+.shader-polar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff4;
+}
+.light .shader-polar {
+    background-color: #0004;
+    box-shadow: 0 0 20px var(--panel_border);
+}

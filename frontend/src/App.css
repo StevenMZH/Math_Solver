@@ -1,0 +1,163 @@
+@import url('./css/palettes.css');
+
+@import url('./css/globals/panels.css');
+@import url('./css/globals/boxing.css');
+
+@import url('./css/base/text.css');
+@import url('./css/base/buttons.css');
+@import url('./css/base/links.css');
+@import url('./css/base/scrollBars.css');
+@import url('./css/base/images.css');
+@import url('./css/base/shaders.css');
+
+@import url('./css/components/ui.css');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap');
+
+div {
+    border: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body, main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    position: relative; 
+    min-height: 100vh;
+    margin: 0;
+
+    background-color: var(--background);
+    color: var(--text);
+    
+    font-family: 'Comfortaa', sans-serif;
+    font-family: "Red Hat Text", sans-serif;
+    font-optical-sizing: auto;
+}
+body.theme-changing * {
+    transition: none;
+}
+
+main {
+    padding: 10px 20px;
+    padding-top: 77px;
+    gap: 20px
+}
+
+.page, .page-container, .page-center {
+    display: flex;
+    flex-direction: column; 
+    flex: 1;
+    text-align: center;
+    justify-content: start;  
+    align-items: center;      
+    width: 100%;
+    color: var(--text);
+}
+
+.page-center {
+    justify-content: center;  
+}
+
+
+a, button, input, select {
+    border: 0;
+    margin: 0;
+    border-radius: 25px;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    background-color: var(--button);
+    color: var(--text_title);
+}
+
+a {
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+a:hover{
+    background-color: var(--button_hover);
+}
+
+button {
+    background-color: var(--button);
+    cursor: pointer;
+}
+button:hover {
+    background-color: var(--button_hover);
+}
+
+
+select {
+    padding: 10px;
+    color: var(--text);
+    transition: background-color 0.3s;
+}
+
+input {
+    padding: 10px;
+
+    color: var(--text);
+    background-color: var(--panel1);
+
+    cursor: pointer;
+    transition: background-color 0.3s;
+    line-height: 0;
+}
+input:focus {
+    outline-color: #fff;
+}
+
+
+label, p {
+    text-align: justify;
+    font-family: "Red Hat Text", sans-serif;
+}
+
+/* Inputs */
+.searchBar {
+    background-color: var(--bar);
+    color: var(--text2);                
+    border-radius: 20px;
+}
+
+/* Panels */
+.floating-panel {
+    position: fixed;
+    top: 0;
+}
+
+
+/* ScrollBar */
+::-webkit-scrollbar {
+    width: 10px;
+    height:12px;
+}  
+::-webkit-scrollbar-track {
+    background: var(--scrollBar_bg);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--scrollBar);
+    border-radius: 10px;
+} 
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollBar_hover);
+}
+
+@media (max-width: 640px) {
+    body::-webkit-scrollbar {
+        display:none;
+    }
+    main {
+        padding-top: 65px;
+    }
+}

@@ -1,0 +1,79 @@
+:root {
+    --text: #e7e7e7;
+    --text_title: #ddd;
+    --text_subtitle: #888;
+    --text_focus: #ddd;
+
+    --text2: #222;
+    --text_dark: #222;
+    --text_light1: #e7e7e7;
+    --text_light2: #ddd;
+}
+
+.dark {
+    --text: #e7e7e7;
+    --text_title: #ddd;
+    --text_subtitle: #888;
+    --text_focus: #ddd;
+}
+
+.light {
+    --text: #0c0c0c;
+    --text_title: #444;
+    --text_subtitle: #777;
+    --text_focus: #333;
+}
+
+
+/* Text Styles */
+.text-title {
+    font-weight: 800;
+    color: var(--text_title);
+}
+.text-title2 {
+    font-weight: 600;
+    color: var(--text_title);
+}
+.text-titleBlack {
+    font-weight: 600;
+    color: var(--text2);
+}
+
+.text-subtitle {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--text_subtitle);
+}
+.text-focus {
+    font-size: 13px;
+    color: var(--text_focus);
+}
+
+.font-XXS { font-size: 10px; }
+.font-XS { font-size: 11px; }
+.font-S { font-size: 12px; }
+.font-M { font-size: 14px; }
+.font-L { font-size: 16px; }
+.font-LL { font-size: 24px; }
+.font-XL { font-size: 32px; }
+.font-XXL { font-size: 48px; }
+
+.font-H1 { font-size: clamp(32px, 5vw, 48px); }
+.font-H2 { font-size: clamp(13px, 2vw, 16px); }
+
+.color-title { color: var(--text_title); }
+.color-sub { color: var(--text_subtitle); }
+.color-focus { color: var(--text_focus); }
+.color-dark { color: var(--text_dark); }
+.color-light { color: var(--text_light1); }
+
+.text-start { text-align: start; }
+.text-center { text-align: center; }
+.text-end { text-align: end; }
+
+/* specific Styles */
+.katex-renderer {       
+    font-size: 13px;
+    font-family: "Red Hat Text", sans-serif;
+}
+

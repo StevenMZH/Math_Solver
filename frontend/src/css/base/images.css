@@ -1,0 +1,38 @@
+.circleImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.img-size15 {
+    width: 15px;
+    height: 15px;
+}
+
+.img-size20 {
+    width: 20px;
+    height: 20px;
+}
+
+.img-size30 {
+    width: 30px;
+    height: 30px;
+}
+
+.img-size35 {
+    width: 35px;
+    height: 35px;
+}
+
+.img-themes {
+    filter: invert(70%) sepia(100%) saturate(0%) hue-rotate(180deg);
+}
+.light .img-themes {
+    filter: invert(20%) sepia(100%) saturate(0%) hue-rotate(180deg);
+}
+
+.img-light {
+    filter: invert(20%) sepia(100%) saturate(0%) hue-rotate(180deg);
+}

@@ -1,0 +1,131 @@
+:root {
+    /* Palette */
+    --alpha: #00000000;
+    --main-color1: #121212;
+    --main-color2: #212121;
+    --main-color3: #282828;
+    --main-color4: #353636;
+
+    /* Wireframes */
+    --wireframe-content: #353636;
+
+    --r2: #6f4058;
+    --g2: #406f58;
+    --b2: #40586f;
+    
+    --course-red: #ee88bb;
+    --course-green: #88eebb;
+    --course-blue:#88bbee; 
+    --course-yellow: #eebb88; 
+
+
+    /* Main Styles */
+    --background: #121212;
+    
+    /* Buttons Styles */
+    --button: #353636;
+    --button_hover: #212125;
+    --button-red: #4f4048;
+    --button-green: #404f48;
+    --button-blue: #40484f;
+    
+    /* Input Styles */
+    --bar: #353636;
+
+    /* Panel Styles */
+    --panel1: #212121;
+    --panel2: #282828;
+    --panelOpposite: #f7fcff;
+    --panel-light: #f7fcff;
+    --panel-dark: #212121;
+    --panel_border: #0000;
+
+
+    /* Img Background Styles */
+    /* --imageBg: #88bbdd;
+    --img-purple: #aabbee;
+    --img-red: #dd88bb;
+    --img-green: #88ddbb;
+    --img-blue: #88bbdd; */
+
+    /* scrollBar Styles */
+    /* Others */
+    --logoBg: #4040ff;
+    --logoFont: #f7fcff;
+}
+
+
+.dark {
+    /* Main Styles */
+    --background: #121212;
+    --header: #17191a;
+    
+    /* Button Styles */
+    --button: #353636;
+    --button_hover: #40586f;
+    
+    /* Input Styles */
+    --bar: #282828;
+
+    /* 
+    --course-red: #CE76A2;
+    --course-green: #76CEA2;
+    --course-blue: #76A2CE; 
+    --course-yellow: #CEA276; */
+
+    /* Panel Styles */
+    --panel1: #212121;
+    --panel2: #282828;
+    --panelOpposite: #f7fcff;
+    --panel-light: #f7fcff;
+    --panel-dark: #212121;
+    --panel_border: #0000;
+
+    /* Others */
+    --logoBg: #4040ff;
+    --logoFont: #f7fcff;
+
+    --imageBg: #88bbdd; /* #e7e7e7; #88bbdd;*/
+}
+
+.light {
+    --main-color1: #e0e0ea;
+    --main-color2: #f7fcff;
+    --main-color3: #f7fcff;
+    --main-color4: #f7fcff;
+
+    /* Wireframes */
+    --wireframe-content: #a8b4c0;
+
+    --r2: #6f4058;
+    --g2: #406f58;
+    --b2: #40586f;
+
+    /* Main Styles */
+    --background: #d8dbE3;
+    --header: #fff5;
+    
+    /* Buttons Styles */
+    --button: #f7fcff;
+    --button_hover: #c8d4e9;
+    --button-red: #e9d0d8;
+    --button-green: #d0e9d8;
+    --button-blue: #d0d8e9;
+
+    /* Input Styles */  
+    --bar: #e3e8f0;
+
+    /* Panel Styles */
+    --panel1: #f7fcff;
+    --panel2: #f7fcff;
+    --panelOpposite: #212121;
+    --panel-light: #f7fcff;
+    --panel-dark: #212121;
+    --panel_border: #2c5c8650;
+
+   /* Others */
+    --logoBg: #4040ff;
+    --logoFont: #f7fcff;
+
+    --imageBg: #88bbdd;
+}
