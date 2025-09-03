@@ -2,7 +2,7 @@ services:
   backend:
     build: ./backend
     container_name: "${PROJECT_NAME}_backend"
-    command: "gunicorn backend.wsgi:application --bind 0.0.0.0:${BACKEND_PORT}"
+    command: "gunicorn eulerian.wsgi:application --bind 0.0.0.0:${BACKEND_PORT}"
     environment:
       VIRTUAL_HOST: ${BACKEND_DOMAIN}
       VIRTUAL_PORT: ${BACKEND_PORT} 
