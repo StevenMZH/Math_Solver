@@ -120,3 +120,4 @@ pylint-global.txt
 
 
 .unlighthouse/
+env-config.js

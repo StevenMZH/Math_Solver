@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
+const API_URL = window._env_.REACT_APP_API_URL;
+
 const axiosAuthTokens = axios.create({
-  baseURL: process.env.REACT_APP_API_URL, // URL de la API
+  baseURL: API_URL, // URL de la API
   headers: {
     'Content-Type': 'application/json',
   }
@@ -61,7 +63,7 @@ async function refreshAccessToken() {
   }
 
   try {
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/account/token/refresh/`, {
+    const response = await axios.post(`${API_URL}/account/token/refresh/`, {
       refresh: refreshToken,
     });
     console.log(response.data.access);

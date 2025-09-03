@@ -30,8 +30,6 @@ services:
   frontend:
     build:
       context: ./frontend
-      args:
-        REACT_APP_API_URL: ${BACKEND_DOMAIN}
     container_name: "${PROJECT_NAME}_frontend"
     expose:
       - "80"
