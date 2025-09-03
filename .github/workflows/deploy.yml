@@ -11,12 +11,12 @@ on:
       - dev
 
 jobs:
-  # build-and-test:
-  #   name: Build & Test All Docker Images
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
+  build-and-test:
+    name: Build & Test All Docker Images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
   #     - name: Set up Docker Buildx
   #       uses: docker/setup-buildx-action@v3
