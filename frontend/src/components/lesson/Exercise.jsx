@@ -11,7 +11,7 @@ export function Exercise({ exerciseId }) {
     useEffect(() => {
         const fetchExercise = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/dataBase/exercises/${exerciseId}/`);
+                const response = await axios.get(`${window._env_.REACT_APP_API_URL}/dataBase/exercises/${exerciseId}/`);
                 setExercise(response.data);
             } catch (err) {
                 setError(err.response ? err.response.data.message : err.message);

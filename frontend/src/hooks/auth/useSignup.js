@@ -27,7 +27,7 @@ export const useSignup = () => {
 
         try {
             // console.log(formUsername, formEmail, formPassword)
-            const response = await axios.post("http://127.0.0.1:8000/account/register/", {
+            const response = await axios.post(`${window._env_.REACT_APP_API_URL}/account/register/`, {
                 username: formUsername,
                 email: formEmail,
                 password: formPassword,

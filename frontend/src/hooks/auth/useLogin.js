@@ -25,7 +25,7 @@ export const useLogin = () => {
         setFormError(null);
 
         try {
-            const response = await axios.post("http://127.0.0.1:8000/account/login/", {
+            const response = await axios.post(`${window._env_.REACT_APP_API_URL}/account/login/`, {
                 email: formEmail,
                 password: formPassword
             });

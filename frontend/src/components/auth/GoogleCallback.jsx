@@ -25,7 +25,7 @@ function GoogleCallback() {
             localStorage.setItem("google_id_token", id_token);
 
             axios
-                .post("http://127.0.0.1:8000/account/auth/google/", {
+                .post(`${window._env_.REACT_APP_API_URL}/account/auth/google/`, {
                     access_token,
                     id_token,
                 })

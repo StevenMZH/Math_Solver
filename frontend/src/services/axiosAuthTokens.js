@@ -2,10 +2,9 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
 const API_URL = window._env_.REACT_APP_API_URL;
-  console.log(API_URL)
 
 const axiosAuthTokens = axios.create({
-  baseURL: API_URL, // URL de la API
+  baseURL: window._env_.REACT_APP_API_URL, // URL de la API
   headers: {
     'Content-Type': 'application/json',
   }
@@ -13,7 +12,6 @@ const axiosAuthTokens = axios.create({
 
 // Verificar si el token ha expirado
 function isTokenExpired() {
-  console.log(API_URL)
   const token = localStorage.getItem('accessToken');
   if (token) {
     const { exp } = jwtDecode(token);
@@ -65,7 +63,7 @@ async function refreshAccessToken() {
   }
 
   try {
-    const response = await axios.post(`${API_URL}/account/token/refresh/`, {
+    const response = await axios.post(`${window._env_.REACT_APP_API_URL}/account/token/refresh/`, {
       refresh: refreshToken,
     });
     console.log(response.data.access);

@@ -2,7 +2,7 @@
 function GoogleAccessBtn() {
     const handleGoogleLogin = () => {
       const clientId = "966493847250-hglfvkd9dicq5eadghj7pteje00f3mrn.apps.googleusercontent.com";
-      const redirectUri = "http://localhost:5173/google-callback"; // Debe coincidir con lo registrado en Google Console
+      const redirectUri = `${window._env_.REACT_APP_URL}/google-callback`; // Debe coincidir con lo registrado en Google Console
       const scope = "openid profile email";
       const responseType = "token id_token";
       const state = "random_state_value"; // Para seguridad opcional

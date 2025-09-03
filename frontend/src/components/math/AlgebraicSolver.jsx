@@ -19,7 +19,7 @@ function AlgebraicSolver({setFailLoad}) {
 
         try {
             setLoading(true);
-            const response = await axios.post('http://127.0.0.1:8000/api/simplify/', { equation: input });
+            const response = await axios.post(`${window._env_.REACT_APP_API_URL}/api/simplify/`, { equation: input });
             setOutput(response.data.simplified_equation);
             setInputLatex(response.data.inputLatex);
             setFailLoad(false);

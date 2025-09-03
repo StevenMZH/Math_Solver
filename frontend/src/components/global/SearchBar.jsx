@@ -14,7 +14,7 @@ const SearchBar = () => {
         if (searchTerm.length > 0) {
             const delayDebounceFn = setTimeout(async () => {
                 try {
-                    const response = await axios.get(`http://127.0.0.1:8000/courses/search/`, {
+                    const response = await axios.get(`${window._env_.REACT_APP_API_URL}/courses/search/`, {
                         params: { q: searchTerm },
                     });
                     setResults(response.data);

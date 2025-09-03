@@ -9,7 +9,7 @@ export const useCourses = (lang = 'en') => {
     useEffect(() => {
         setLoading(true);
 
-        axios.get('http://127.0.0.1:8000/courses/courses/')
+        axios.get(`${window._env_.REACT_APP_API_URL}/courses/courses/`)
             .then(response => {
                 setCourses(response.data);
                 setLoading(false);

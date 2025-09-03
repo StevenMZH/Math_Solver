@@ -14,7 +14,7 @@ export function AccessForm() {
         setFormError(null);
 
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/account/check_user/${formEmail}/`);
+            const response = await axios.get(`${window._env_.REACT_APP_API_URL}/account/check_user/${formEmail}/`);
 
             if (response.data.exists) { setFormType("login"); } 
             else { setFormType("signup"); }

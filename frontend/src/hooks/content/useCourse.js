@@ -14,7 +14,7 @@ export const useCourse = (courseId) => {
         }
         setLoadingPage(true);
 
-        axios.get(`http://127.0.0.1:8000/courses/courses/${courseId}/`)
+        axios.get(`${window._env_.REACT_APP_API_URL}/courses/courses/${courseId}/`)
             .then(response => {
                 setCourse(response.data);
                 setLoadingPage(false);

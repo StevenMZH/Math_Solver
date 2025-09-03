@@ -1,7 +1,7 @@
 
 export function GithubAccessBtn () {
     const handleSocialLogin = (provider) => {
-        window.location.href = `http://127.0.0.1:8000/auth/social/login/${provider}/`;
+        window.location.href = `${window._env_.REACT_APP_API_URL}/auth/social/login/${provider}/`;
     };
     
     return (

@@ -10,7 +10,7 @@ export const useCourseLesson = (classId) => {
     useEffect(() => {
         const fetchClassData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/courses/courses/${classId}`);
+                const response = await axios.get(`${window._env_.REACT_APP_API_URL}/courses/courses/${classId}`);
                 setClassData(response.data);
             } catch (err) {
                 if (err.response && err.response.status === 404) {
