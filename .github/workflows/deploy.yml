@@ -46,8 +46,7 @@ jobs:
   #         echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env.prod
   #         echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env.prod
           
-  #         echo "window._env_ = { REACT_APP_URL: 'https://dev.eulerian-hades.purpleblue.site' };" > frontend/env-config.js
-  #         echo "window._env_ = { REACT_APP_API_URL: 'https://api.eulerian-hades.purpleblue.site' };" > frontend/env-config.js
+  #         echo "window._env_ = { REACT_APP_URL: 'https://dev.eulerian-hades.purpleblue.site', REACT_APP_API_URL: 'https://api.dev.eulerian-hades.purpleblue.site' };" > frontend/env-config.js
 
   #     - name: Build all images from docker-compose
   #       run: docker compose -f docker-compose.yml --env-file .env.dev build
@@ -117,15 +116,13 @@ jobs:
             echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env.prod
             echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env.prod
           
-            echo "window._env_ = { REACT_APP_URL: 'https://dev.eulerian-hades.purpleblue.site' };" > frontend/env-config.js
-            echo "window._env_ = { REACT_APP_API_URL: 'https://api.dev.eulerian-hades.purpleblue.site' };" > frontend/env-config.js
+            echo "window._env_ = { REACT_APP_URL: 'https://dev.eulerian-hades.purpleblue.site', REACT_APP_API_URL: 'https://api.dev.eulerian-hades.purpleblue.site' };" > frontend/env-config.js
 
             docker network create nginx-proxy-net || true
 
-            docker compose --env-file .env.dev run --rm backend python manage.py makemigrations
-            docker compose --env-file .env.dev run --rm backend python manage.py migrate
-
             docker compose --env-file .env.prod build frontend
+            docker compose --env-file .env.prod run --rm backend python manage.py makemigrations
+            docker compose --env-file .env.prod run --rm backend python manage.py migrate
             docker compose --env-file .env.prod up -d
 
   deploy-prod:
@@ -176,13 +173,11 @@ jobs:
             echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env.prod
             echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env.prod
 
-            echo "window._env_ = { REACT_APP_URL: 'https://eulerian-hades.purpleblue.site' };" > frontend/env-config.js
-            echo "window._env_ = { REACT_APP_API_URL: 'https://api.eulerian-hades.purpleblue.site' };" > frontend/env-config.js
+            echo "window._env_ = { REACT_APP_URL: 'https://eulerian-hades.purpleblue.site', REACT_APP_API_URL: 'https://api.eulerian-hades.purpleblue.site' };" > frontend/env-config.js
 
             docker network create nginx-proxy-net || true
-    
-            docker compose --env-file .env.prod run --rm backend python manage.py makemigrations
-            docker compose --env-file .env.prod run --rm backend python manage.py migrate
 
             docker compose --env-file .env.prod build frontend
+            docker compose --env-file .env.prod run --rm backend python manage.py makemigrations
+            docker compose --env-file .env.prod run --rm backend python manage.py migrate
             docker compose --env-file .env.prod up -d
