@@ -4,7 +4,7 @@ import { ClassCard, ClassCard2, ClassImage, ClassText, ClassVideo } from "../com
 import { NotFound_Message, FailLoad_Message } from "../components/assets/errorMessages";
 import LoadingScreen from "../components/assets/TransitionPages";
 import { useCourseLesson } from "../hooks/content/useCourseLesson";
-import { useAccountContext } from "../context/accountContext";
+import { useAccountContext } from "../context/AccountContext";
 import { useEffect, useState } from "react";
 import axiosAuthTokens from "../services/axiosAuthTokens";
 

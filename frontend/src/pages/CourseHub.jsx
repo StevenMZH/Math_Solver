@@ -2,7 +2,7 @@ import CoursePreview, { CoursePreview_wireframe } from "../components/courses/Co
 import { FailLoad_Message } from '../components/assets/errorMessages';
 import { Loading_floatingPanel } from '../components/assets/TransitionPages';
 import { useCourses } from '../hooks/content/useCourses';
-import { useAccountContext } from "../context/accountContext";
+import { useAccountContext } from "../context/AccountContext";
 
 export function CoursesHub( ) {
     const { language } = useAccountContext();

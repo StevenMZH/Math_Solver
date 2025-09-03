@@ -3,7 +3,7 @@ import LogoutBtn from '../components/ui/LogoutBtn';
 import Button_SideIcon from '../components/ui/Button_SideIcon';
 import UserStats from '../components/profile/UserStats';
 import useAccountData from '../hooks/accounts/useAccountData';
-import { useAccountContext } from '../context/accountContext';
+import { useAccountContext } from '../context/AccountContext';
 import AccountActivity from '../components/profile/AccountActivity';
 
 export function Profile() {
