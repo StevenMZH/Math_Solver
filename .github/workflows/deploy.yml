@@ -121,7 +121,8 @@ jobs:
             docker compose --env-file .env.dev run --rm backend python manage.py makemigrations
             docker compose --env-file .env.dev run --rm backend python manage.py migrate
 
-            docker compose --env-file .env.dev up -d --build
+            docker compose --env-file .env.prod build frontend
+            docker compose --env-file .env.prod up -d
 
   deploy-prod:
     name: Deploy to Production Server
@@ -177,4 +178,5 @@ jobs:
             docker compose --env-file .env.prod run --rm backend python manage.py makemigrations
             docker compose --env-file .env.prod run --rm backend python manage.py migrate
 
-            docker compose --env-file .env.prod up -d --build
+            docker compose --env-file .env.prod build frontend
+            docker compose --env-file .env.prod up -d
