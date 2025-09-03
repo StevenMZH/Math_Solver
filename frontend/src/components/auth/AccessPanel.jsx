@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Logo4 from "../header/logos/Logo4";
+import Logo4 from "../assets/logos/Logo4";
 import AccessForm from "./AccessForm";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";

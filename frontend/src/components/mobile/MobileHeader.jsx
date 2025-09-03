@@ -1,11 +1,9 @@
-import { useLocation } from 'react-router-dom';
 import { useState } from "react";
+import { useLocation } from 'react-router-dom';
 
-import Logo5 from "../header/logos/Logo5";
+import Logo5 from "../assets/logos/Logo5";
 
-import AccessPanel from '../access/AccessPanel';
 import MobileSearchBar from './MobileSearchBar';
-import TogglePalette from '../header/togglePalette';
 import { useAuthFormContext } from '../../context/AuthFormContext';
 
 
@@ -18,7 +16,7 @@ export function MobileHeader() {
         "/home": "Home",
         "/solver": "Solver",
         "/courses": "Courses Hub",
-        "/exercises": "Exercises Hub",
+        "/problems": "Problem Hub",
         "/profile": "Profile",
     };
 

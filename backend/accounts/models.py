@@ -80,6 +80,29 @@ class UserAccount(models.Model):
     def __str__(self):
         return f"Metadata of {self.user.username}"
 
+
+# class AccountActivity(models.Model):
+#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+#     account = models.ForeignKey('UserAccount', on_delete=models.CASCADE, related_name='progress_entries')
+    
+#     courses = models.ManyToOneRel('UserContentProgress', on_delete=models.CASCADE, related_name='courses_activity')
+#     lessons = models.ManyToOneRel('UserContentProgress', on_delete=models.CASCADE, related_name='lessons_activity')
+#     problem = models.ManyToOneRel('UserContentProgress', on_delete=models.CASCADE, related_name='problem_activity')
+
+#     completedCourses_counter = models.IntegerField(default=0)
+#     completedLesson_counter = models.IntegerField(default=0)
+#     completedProblem_counter = models.IntegerField(default=0)
+    
+#     class Meta:
+#         indexes = [
+#             models.Index(fields=['account']),
+#             models.Index(fields=['completedCourses_counter']),
+#             models.Index(fields=['completedLessons_counter']),
+#             models.Index(fields=['completedProblem_counter']),
+#         ]
+
+#     def __str__(self):
+#         return f"{self.account.user.username} Activity on {self.content_object.name['en']} ({self.content_type})"
     
 class UserContentProgress(models.Model):
     PROGRESS_STATUS = [
@@ -98,7 +121,10 @@ class UserContentProgress(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.CharField(max_length=64) # Same ID data type as the related content IDs
     content_object = GenericForeignKey('content_type', 'object_id')
+    
+    last_update = models.DateTimeField(null=True, blank=True)
     class Meta:
+        ordering = ['last_update']
         indexes = [
             models.Index(fields=['status']),
             models.Index(fields=['account']),
@@ -106,4 +132,4 @@ class UserContentProgress(models.Model):
         ]
 
     def __str__(self):
-        return f"Content Progress of {self.account.user.username}"
+        return f"{self.account.user.username} Activity on {self.content_object.name['en']} ({self.content_type})"

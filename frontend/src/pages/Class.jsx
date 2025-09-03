@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import { ClassCard, ClassCard2, ClassImage, ClassText, ClassVideo } from "../components/class/classAssets";
+import { ClassCard, ClassCard2, ClassImage, ClassText, ClassVideo } from "../components/lesson/classAssets";
 
 
 export function Class() {

@@ -19,18 +19,18 @@ export const useCourse = (courseId) => {
                 setCourse(response.data);
                 setLoadingPage(false);
                 setFailPageLoad(false);
-                console.log(response.data)
+                // console.log(response.data)
             })
             .catch(error => {
                 if (error.response && error.response.status === 404) {
                     setNotFoundError(true);
                     setLoadingPage(false);
                     setFailPageLoad(false);
-                    console.log(error);
+                    // console.log(error);
                 } else {
                     setLoadingPage(false);
                     setFailPageLoad(true);
-                    console.log(error);
+                    // console.log(error);
                 }
             });
     }, [courseId]);

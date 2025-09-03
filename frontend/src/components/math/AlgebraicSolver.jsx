@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Loading_floatingPanel } from '../assets/TransitionPages';
-import Logo6 from '../header/logos/Logo6';
+import Logo6 from '../assets/logos/Logo6';
 import { LoadingAnimXS } from '../assets/anims';
 
 function AlgebraicSolver({setFailLoad}) {

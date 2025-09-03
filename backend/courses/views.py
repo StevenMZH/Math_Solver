@@ -7,35 +7,24 @@ from django.db.models import Q
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
 
-from .serializers import (
-    PublicCourseSerializer, PrivateCourseSerializer,
-    PublicUnitSerializer, PrivateUnitSerializer,
-    PublicLessonSerializer, PrivateLessonSerializer
-)
+from django.core.exceptions import ValidationError
+from django.core.exceptions import PermissionDenied
+from django.core.exceptions import ObjectDoesNotExist
+
+from .serializers.courses import CourseHeader_serializer, CourseMeta_serializer, CourseContent_serializer, PrivateCourse_serializer
+from .serializers.units import PublicUnit_serializer, PrivateUnit_serializer
+from .serializers.lessons import LessonHeader_serializer, LessonContent_serializer, PrivateLesson_serializer
 from .models import Course, CourseUnit, CourseLesson
 
 # get_lesson (without the courseId)
-
-# get_courseList
-# get_lessonList
-
-# get_coursesFiltered
-# get_lessonsFiltered
-
-# Restringe public access to Course/Unit/Lesson CRUD excepts for gets
-
-# relational/Content models
-# get_lesson
-# post/put Course, Lesson
-# mongoDB
-
+# get/search filtered courses/lessons
 # get_recommended_content
 
 
 # Course/Unit/Lesson Gets
 class PublicCourseViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Course.objects.filter(indexable=True)
-    serializer_class = PublicCourseSerializer
+    serializer_class = CourseContent_serializer
     
 # @handle_exceptions
 # class PublicUnitViewSet(viewsets.ReadOnlyModelViewSet):
@@ -48,8 +37,6 @@ class PublicCourseViewSet(viewsets.ReadOnlyModelViewSet):
 #     serializer_class = PublicLessonSerializer
 
 
-from django.core.exceptions import ValidationError
-from django.core.exceptions import PermissionDenied
 
 def handle_exceptions(func):
     def wrapper(request, *args, **kwargs):
@@ -61,27 +48,28 @@ def handle_exceptions(func):
             return JsonResponse({"error": f"Validation error: {str(e)}"}, status=400)
         except PermissionDenied:
             return JsonResponse({"error": "Permission denied"}, status=403)
+        except ObjectDoesNotExist:
+            return JsonResponse({"error": "Object not found"}, status=404)
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=500)
     return wrapper
 
 
-# Course/Unit/Lesson CRUD
+# Admin Course/Unit/Lesson CRUD
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
-    serializer_class = PrivateCourseSerializer
+    serializer_class = PrivateCourse_serializer
     
 class UnitViewSet(viewsets.ModelViewSet):
     queryset = CourseUnit.objects.all()
-    serializer_class = PrivateUnitSerializer
+    serializer_class = PrivateUnit_serializer
     
 class LessonViewSet(viewsets.ModelViewSet):
     queryset = CourseLesson.objects.all()
-    serializer_class = PrivateLessonSerializer
+    serializer_class = PrivateLesson_serializer
 
-# -------------------------------
-# Vista Detallada Pública de una Lección
-# -------------------------------
+
+
 @handle_exceptions
 def get_classDetails(request, course_id, lesson_id):
     try:
@@ -91,7 +79,6 @@ def get_classDetails(request, course_id, lesson_id):
             "name": lesson.name,
             "type": lesson.type,
             "content": lesson.content_data,
-            "order": lesson.order,
         }
         return JsonResponse(data)
     except CourseLesson.DoesNotExist:
@@ -161,8 +148,8 @@ class SearchContentView(APIView):
             Q(name__icontains=query) | Q(keywords__icontains=query)
         )
 
-        course_data = PublicCourseSerializer(courses, many=True).data
-        class_course_data = PublicLessonSerializer(course_classes, many=True).data
+        course_data = CourseHeader_serializer(courses, many=True).data
+        class_course_data = LessonHeader_serializer(course_classes, many=True).data
 
         return Response({
             "courses": course_data,

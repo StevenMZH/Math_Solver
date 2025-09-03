@@ -40,7 +40,6 @@ function GoogleCallback() {
                     console.error("Error al autenticar con el backend", err);
                 });
 
-            navigate("/profile");
         } else {
             console.error("Token no encontrado en la URL");
         }

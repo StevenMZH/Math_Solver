@@ -12,6 +12,7 @@ export const useCourseLesson = (courseId, classId) => {
             try {
                 const response = await axios.get(`http://127.0.0.1:8000/courses/courses/${courseId}/${classId}`);
                 setClassData(response.data);
+                // console.log(response.data)
             } catch (err) {
                 if (err.response && err.response.status === 404) {
                     setNotFound_error(true);
@@ -24,6 +25,7 @@ export const useCourseLesson = (courseId, classId) => {
         };
 
         fetchClassData();
+
     }, [classId]);
 
     return [classData, loading, notFound_error, failLoad];

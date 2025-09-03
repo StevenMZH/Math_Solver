@@ -1,6 +1,6 @@
 import { useState, Suspense, lazy } from 'react';
 
-const AlgebraiSolver = lazy(() => import('../components/math/AlgebraicSolver'));
+const AlgebraicSolver = lazy(() => import('../components/math/AlgebraicSolver'));
 const FailLoad_Message = lazy(() => import('../components/assets/errorMessages').then(module => ({ default: module.FailLoad_Message })));
 
 export function Solver() {
@@ -16,7 +16,7 @@ export function Solver() {
 
             <div className="flex-start fullscreen page-content">
                 <Suspense fallback={<div></div>}>
-                    <AlgebraiSolver setFailLoad={setFailLoad} />
+                    <AlgebraicSolver setFailLoad={setFailLoad} />
                 </Suspense>
             </div>
 

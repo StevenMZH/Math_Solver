@@ -67,10 +67,9 @@ class CourseLesson(AbstractContent):
         ('practice', 'Practice'),
         ('test', 'Test'),
     ])
-    content_data = models.JSONField(blank=True, default=list)
+    content_data = models.JSONField(blank=True, default=dict)
     order = models.IntegerField()
-    units = models.ManyToManyField(CourseUnit, related_name='lessons') # foreign
-
+    unit = models.ForeignKey(CourseUnit, related_name='lessons', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['order']
@@ -95,4 +94,4 @@ class ContentMetrics(models.Model):
     content_object = GenericForeignKey('content_type', 'object_id')
 
     def __str__(self):
-        return f"Content Progress of {self.account.user.username}"
+        return f"Metrics of {self.account.user.username}"

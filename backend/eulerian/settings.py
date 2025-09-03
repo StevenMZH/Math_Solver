@@ -19,30 +19,22 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env(DEBUG=(bool, False))
+environ.Env.read_env(BASE_DIR / '.env.dev')
 
-env = environ.Env(
-    DEBUG=(bool, False)
-)
-
-environ.Env.read_env(BASE_DIR / '.env')
-
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
-
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+
+CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS")
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
+CORS_ALLOW_ALL_ORIGINS= bool(env.list("CORS_ALLOW_ALL_ORIGINS"))
+CORS_ALLOW_CREDENTIALS = True 
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -226,11 +218,6 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 }
 REST_USE_JWT = True
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None  # Permite abrir ventanas sin restricciones
-
-# CORS y CSRF configuración
-CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS')  # Orígenes permitidos para CORS
-CSRF_TRUSTED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS')  # Orígenes confiables para CSRF
-CORS_ALLOW_CREDENTIALS = True  # Permitir envío de cookies/sesiones
 
 
 # Cloud Storage

@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Suspense, lazy, useState } from "react";
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import GoogleCallback from './components/access/GoogleCallback';
-import AccessPanel from './components/access/AccessPanel';
+import GoogleCallback from './components/auth/GoogleCallback';
+import AccessPanel from './components/auth/AccessPanel';
 
 // Lazy loading de los componentes
 const Footer = lazy(() => import('./components/global/Footer'));
@@ -17,7 +16,6 @@ const CourseClass = lazy(() => import("./pages/CourseClass"));
 const Class = lazy(() => import("./pages/Class"));
 
 const Solver = lazy(() => import("./pages/Solver"));
-const Exercises = lazy(() => import("./pages/Exercises"));
 
 const UserProfile = lazy(() => import("./pages/Profile"));
 const ProtectedRoute = lazy(() => import("./components/global/ProtectedRoute"));

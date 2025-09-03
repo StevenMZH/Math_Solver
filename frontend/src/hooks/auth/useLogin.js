@@ -29,7 +29,7 @@ export const useLogin = () => {
                 email: formEmail,
                 password: formPassword
             });
-            console.log(response)
+            // console.log(response)
             if (response.data.access) {
                 localStorage.setItem("accessToken", response.data.access);
                 localStorage.setItem("refreshToken", response.data.refresh);

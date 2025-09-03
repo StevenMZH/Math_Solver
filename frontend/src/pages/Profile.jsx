@@ -1,15 +1,12 @@
-import CoursePreview from '../components/courses/CoursePreview';
 import CourseProfileLink from '../components/courses/CourseProfileLink';
-import ClassSearchLink from '../components/header/ClassSearchLink';
 import LogoutBtn from '../components/ui/LogoutBtn';
 import Button_SideIcon from '../components/ui/Button_SideIcon';
-import UserStats from '../components/user/UserStats';
-import PaletteSelector from '../components/header/PaletteSelector';
-import TogglePalette from '../components/header/togglePalette';
+import UserStats from '../components/profile/UserStats';
 import useAccountData from '../hooks/accounts/useAccountData';
 import { useAccountContext } from '../context/accountContext';
+import AccountActivity from '../components/profile/AccountActivity';
 
-export function Profile({streak=2}) {
+export function Profile() {
 
     const getStreakStyle = (streak) => {
         if (streak >= 30) { return "invert(80%) sepia(100%) saturate(500%) hue-rotate(250deg)"; } 
@@ -18,9 +15,6 @@ export function Profile({streak=2}) {
         else if (streak >= 1) { return "invert(70%) sepia(100%) saturate(400%) hue-rotate(300deg)"; } 
         else { return "invert(70%) sepia(100%) saturate(100%) hue-rotate(180deg)"; }
     };
-
-    let user = null;
-
 
     const { 
         username,
@@ -37,24 +31,27 @@ export function Profile({streak=2}) {
         longest_daily_streak,
         badges,
         points,
-        level
+        level,
+
+        language,
+        contentProgress
     } = useAccountContext();
     
-    const streakFilter = getStreakStyle(streak);
+    const streakFilter = getStreakStyle(daily_streak);
     const { accountData, loading, error } = useAccountData();
-    console.log(accountData);
+    // console.log(accountData);
 
     return (
         <div className='page gap-30'>
             <div className="box row fullheight center gap-10 profile-data">
                 <div className='box center fullwidth p10 gap-5 profile-data'>
-                    <img className='circleImage bigUserImage' src={profile_picture} alt="profile picture" 
-                    onError={(e) => { e.target.onerror = null; e.target.src = "/images/global/defaultUser.png"; }}/>
-                    
+                    {profile_picture ? (<img className='circleImage bigUserImage' src={profile_picture } alt="profile picture" />) : (
+                        <img className='circleImage bigUserImage' src="/images/global/defaultUser.png" alt="profile picture" />
+                    )}
                     <div className="box fullscreen start gap-10">
                         <div className="box">
-                            <label className='text-title2 font-LL'>{username}</label>
-                            <label className='text-subtitle font-S'>{email}</label>
+                            {username ? (<label className='text-title2 font-LL'>{username}</label>) : (<label className='text-title2 font-LL'>Username</label> )}
+                            {email ? (<label className='text-subtitle font-S'>{email}</label>) : (<label className='text-subtitle font-S'>username@email.com</label>)}
                         </div>
                     
                         <div className='start gap-5'>
@@ -64,7 +61,7 @@ export function Profile({streak=2}) {
                     </div>
                 </div>
 
-                <UserStats courses='3' classes='13' exercises='9' streak={streak}/>
+                <UserStats courses='3' classes='13' exercises='9' streak={daily_streak}/>
             </div>
 
 
@@ -80,7 +77,10 @@ export function Profile({streak=2}) {
                         <button className='button-square2' >Completed Exercise</button>
                     </div>
 
-                    <div className="box text-left gap-20 profile-courses">                    
+                    <div className="box text-left gap-20 profile-courses">  
+                            <AccountActivity
+                                contentProgress={contentProgress}
+                            />
                             <CourseProfileLink 
                                 name="Linear Algebra" 
                                 description="Learn about vectors, matrices, and linear transformations. Master the fundamentals of linear algebra with interactive exercises." 

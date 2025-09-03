@@ -3,14 +3,12 @@ import CourseUnit from '../components/courses/CourseUnit';
 import CourseProgress from '../components/courses/CourseProgress';
 import FormulaSheet from '../components/courses/FormulaSheet';
 import { FailLoad_Message, NotFound_Message } from '../components/assets/errorMessages';
-import LoadingScreen, { Loading_floatingPanel } from '../components/assets/TransitionPages';
-import { useCourse } from '../hooks/useCourse';
+import LoadingScreen from '../components/assets/TransitionPages';
+import { useCourse } from '../hooks/content/useCourse';
 
 export function Course() {
     const { courseId } = useParams(); // Obtener el courseId de la URL
     const [course, loadingPage, failPageLoad, notFound_error] = useCourse(courseId);
-    console.log(course)
-    console.log(failPageLoad)
 
     return (
         <>

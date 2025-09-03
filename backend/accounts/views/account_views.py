@@ -10,21 +10,13 @@ from rest_framework.permissions import IsAuthenticated
 from ..serializers import UserContentProgressSerializer, UpdateUser_Serializer
 from ..models import UserContentProgress
 
-# update_email
-# update_username
-# update_password
-# update_user 
+from courses.models import CourseLesson
 
-# create_metadata
-# update_session
 # update_badges
 # update_points
-# updates_progress
-# update_preferences
 # update_rol
-
 # delete_account
-# logout
+
 
 # account/
 class AccountView(APIView):
@@ -37,7 +29,7 @@ class AccountView(APIView):
         
         now = timezone.now().date()
         last = account.last_activity.date() if account.last_activity else None
-        if last and (now - last).days >= 1:
+        if last and (now - last).days >= 2:
             account.daily_streak = 0
             
         account.save()
@@ -118,7 +110,6 @@ class UserContentProgressView(APIView):
     def post(self, request):
         data = request.data.copy()
         account = request.user.account
-        data['account'] = account.id
 
         try:
             content_type = ContentType.objects.get(model=data['content_type'].lower())
@@ -128,14 +119,61 @@ class UserContentProgressView(APIView):
 
         serializer = UserContentProgressSerializer(data=data)
         if serializer.is_valid():
-            serializer.save()
+            content_progress = serializer.save(account=account)
 
-            account.daily_streak += 1
+            if not account.last_activity:
+                account.daily_streak = 1
+            elif account.last_activity.date() != timezone.now().date():
+                account.daily_streak += 1
+            
             account.last_activity = now()
+            
             if account.longest_daily_streak < account.daily_streak:
                 account.longest_daily_streak = account.daily_streak
             account.save()
-
+            
+            # Complex Querie: Move to fronted compare lessons & contentProcess
+            # Search for course completion
+            if content_type.model == 'courselesson':
+                check_courseCompletion(account, content_progress)
+                
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+
+    
+def check_courseCompletion(account, content_progress):
+    lesson = content_progress.content_object  
+    unit = lesson.unit
+
+    if unit:
+        course = unit.course
+
+        total_lessons = CourseLesson.objects.filter(unit__course=course).count()
+        completed_lessons = UserContentProgress.objects.filter(
+            account=account,
+            content_type=ContentType.objects.get(model='courselesson'),
+            object_id__in=CourseLesson.objects.filter(unit__course=course)
+        ).count()
+
+        if total_lessons == completed_lessons:
+            # Marcar curso como completado
+            course_ct = ContentType.objects.get(model='course')
+            course_progress, created = UserContentProgress.objects.get_or_create(
+                account=account,
+                content_type=course_ct,
+                object_id=course.id,
+                defaults={'status': 'completed'}
+            )
+            if not created:
+                course_progress.status = 'completed'
+                course_progress.save()
+                
+        # Eliminar progreso de las lecciones (Sirve para el conteo despues miramos)
+        # UserContentProgress.objects.filter(
+        #     account=account,
+        #     content_type=ContentType.objects.get(model='courselesson'),
+        #     object_id__in=CourseLesson.objects.filter(course=course).values_list('id', flat=True)
+        # ).delete()
+
+    
+    

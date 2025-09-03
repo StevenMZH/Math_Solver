@@ -44,7 +44,7 @@ export function applyFormatting(text) {
 export function ClassText({ text }) {
     return (
         <div className="panelContainer segment-margin text-focus textAsset">
-            {parseText(text)}
+            <p className='text-focus'>{text}</p>
         </div>
     );
 }

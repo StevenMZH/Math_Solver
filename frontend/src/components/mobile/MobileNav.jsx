@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import AccessPanel from '../access/AccessPanel';
 import { useAuthFormContext } from '../../context/AuthFormContext';
 
 export function MobileNav() {

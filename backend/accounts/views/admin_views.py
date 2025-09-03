@@ -6,10 +6,10 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_201_CREATED
 
 from accounts.models import User, UserAccount
-from ..serializers import UserSerializer
+from ..serializers import UpdateUser_Serializer 
 
 class UserView(viewsets.ModelViewSet):
-    serializer_class = UserSerializer
+    serializer_class = UpdateUser_Serializer
     queryset = User.objects.all()
 
     def get_object(self):

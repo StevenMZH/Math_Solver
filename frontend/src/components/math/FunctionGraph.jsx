@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const GeoGebraComponent = () => {
+const FunctionGraph = () => {
   useEffect(() => {
     // Crear el script para cargar GeoGebra
     const script = document.createElement('script');
@@ -43,4 +43,4 @@ const GeoGebraComponent = () => {
   );
 };
 
-export default GeoGebraComponent;
+export default FunctionGraph;

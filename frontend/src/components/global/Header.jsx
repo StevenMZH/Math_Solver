@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import Logo4 from "../header/logos/Logo4";
-import Logo5 from "../header/logos/Logo5";
+import Logo4 from "../assets/logos/Logo4";
+import Logo5 from "../assets/logos/Logo5";
 import PaletteSelector from '../header/PaletteSelector';
-import AccessPanel from '../access/AccessPanel';
 import Nav from '../header/Nav';
 import SearchBar from './SearchBar';
 import { useAuthFormContext } from '../../context/AuthFormContext';
@@ -32,7 +31,7 @@ export function AppHeader() {
                 {token && (
                     <div className="flexCenter profilePicture-container">
                         <Link to="/profile">
-                            <img className='circleImage profilePicture' src='/public/images/nav/defaultUser.png' alt="defaultUserImage" />
+                            <img className='circleImage profilePicture' src='/images/nav/defaultUser.png' alt="defaultUserImage" />
                         </Link>
                     </div>
 

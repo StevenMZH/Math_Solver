@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import Logo5 from '../components/header/logos/Logo5';
+import Logo5 from '../components/assets/logos/Logo5';
 import Button_SideIcon from '../components/ui/Button_SideIcon';
-import AccessPanel from '../components/access/AccessPanel';
+import AccessPanel from '../components/auth/AccessPanel';
 import { useAuthFormContext } from '../context/AuthFormContext';
 
 

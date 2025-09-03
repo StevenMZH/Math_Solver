@@ -1,0 +1,180 @@
+name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build-and-test:
+    name: Build & Test All Docker Images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Create network nginx-proxy-net
+        run: docker network create nginx-proxy-net || true
+
+      - name: Create .env.dev file
+        run: |
+          echo "SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env.prod
+          echo "DEBUG=${{ secrets.DJANGO_DEBUG }}" >> .env.prod
+          echo "ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}" >> .env.prod
+          echo "CORS_ALLOWED_ORIGINS=${{ secrets.CORS_ALLOWED_ORIGINS }}" >> .env.prod
+          echo "CSRF_TRUSTED_ORIGINS=${{ secrets.CSRF_TRUSTED_ORIGINS }}" >> .env.prod
+
+          echo "DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}" >> .env.prod
+          echo "DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }}" >> .env.prod
+          echo "DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}" >> .env.prod
+
+          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB}}" >> .env.prod
+          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER}}" >> .env.prod
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD}}" >> .env.prod
+          echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST}}" >> .env.prod
+          echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT}}" >> .env.prod
+
+          echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> .env.prod
+          echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env.prod
+          echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env.prod
+          
+
+      - name: Build all images from docker-compose
+        run: docker compose -f docker-compose.yml --env-file .env.dev build
+
+      - name: Run containers in detached mode
+        run: docker compose -f docker-compose.yml --env-file .env.dev up -d
+
+      #- name: Wait for services to be ready
+      #  run: sleep 20
+
+      # Test backend
+      #- name: Test backend health
+      #  run: curl -f http://localhost:8000 || (docker compose logs && exit 1)
+
+      # Test frontend
+      #- name: Test frontend health
+      #  run: curl -f http://localhost || (docker compose logs && exit 1)
+
+      - name: Stop containers
+        run: docker compose -f docker-compose.yml --env-file .env.dev down
+
+  deploy-dev:
+    name: Deploy to Development Server
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Copy files to dev server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.DEV_HOST }}
+          username: ${{ secrets.DEV_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "."
+          target: "~/eulerian-hades-dev"
+
+
+      - name: Deploy on dev server
+        uses: appleboy/ssh-action@v1.2.1
+        with:
+          host: ${{ secrets.DEV_HOST }}
+          username: ${{ secrets.DEV_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd eulerian-hades-dev
+            
+            echo "SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env.prod
+            echo "DEBUG=${{ secrets.DJANGO_DEBUG }}" >> .env.prod
+            echo "ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}" >> .env.prod
+            echo "CORS_ALLOWED_ORIGINS=${{ secrets.CORS_ALLOWED_ORIGINS }}" >> .env.prod
+            echo "CSRF_TRUSTED_ORIGINS=${{ secrets.CSRF_TRUSTED_ORIGINS }}" >> .env.prod
+
+            echo "DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}" >> .env.prod
+            echo "DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }}" >> .env.prod
+            echo "DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}" >> .env.prod
+
+            echo "POSTGRES_DB=${{ secrets.POSTGRES_DB}}" >> .env.prod
+            echo "POSTGRES_USER=${{ secrets.POSTGRES_USER}}" >> .env.prod
+            echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD}}" >> .env.prod
+            echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST}}" >> .env.prod
+            echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT}}" >> .env.prod
+
+            echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> .env.prod
+            echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env.prod
+            echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env.prod
+          
+
+            docker network create nginx-proxy-net || true
+
+            docker compose --env-file .env.dev run --rm backend python manage.py makemigrations
+            docker compose --env-file .env.dev run --rm backend python manage.py migrate
+
+            docker compose --env-file .env.dev up -d --build
+
+  deploy-prod:
+    name: Deploy to Production Server
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Copy files to prod server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "."
+          target: "~/eulerian-hades"
+
+
+      - name: Deploy on prod server
+        uses: appleboy/ssh-action@v1.2.1
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd eulerian-hades
+
+            echo "SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env.prod
+            echo "DEBUG=${{ secrets.DJANGO_DEBUG }}" >> .env.prod
+            echo "ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}" >> .env.prod
+            echo "CORS_ALLOWED_ORIGINS=${{ secrets.CORS_ALLOWED_ORIGINS }}" >> .env.prod
+            echo "CSRF_TRUSTED_ORIGINS=${{ secrets.CSRF_TRUSTED_ORIGINS }}" >> .env.prod
+
+            echo "DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}" >> .env.prod
+            echo "DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }}" >> .env.prod
+            echo "DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}" >> .env.prod
+
+            echo "POSTGRES_DB=${{ secrets.POSTGRES_DB}}" >> .env.prod
+            echo "POSTGRES_USER=${{ secrets.POSTGRES_USER}}" >> .env.prod
+            echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD}}" >> .env.prod
+            echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST}}" >> .env.prod
+            echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT}}" >> .env.prod
+
+            echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> .env.prod
+            echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env.prod
+            echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env.prod
+          
+
+            docker network create nginx-proxy-net || true
+    
+            docker compose --env-file .env.prod run --rm backend python manage.py makemigrations
+            docker compose --env-file .env.prod run --rm backend python manage.py migrate
+
+            docker compose --env-file .env.prod up -d --build

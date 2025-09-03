@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import AlgebraicSolver from '../components/math/AlgebraicSolver';
+import FunctionGraph from '../components/math/FunctionGraph';
 
 
 export function InDev() {
@@ -14,7 +16,10 @@ export function InDev() {
                 </div>
                 
                 <Link to="/" className='button-square text-title'>Home</Link>
+
+                
             </div>
+
 
             <style>{`
                 .footer div, .footer p{

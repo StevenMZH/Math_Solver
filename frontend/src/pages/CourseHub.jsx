@@ -1,7 +1,7 @@
 import CoursePreview, { CoursePreview_wireframe } from "../components/courses/CoursePreview";
 import { FailLoad_Message } from '../components/assets/errorMessages';
 import { Loading_floatingPanel } from '../components/assets/TransitionPages';
-import { useCourses } from '../hooks/useCourses';
+import { useCourses } from '../hooks/content/useCourses';
 import { useAccountContext } from "../context/accountContext";
 
 export function CoursesHub( ) {

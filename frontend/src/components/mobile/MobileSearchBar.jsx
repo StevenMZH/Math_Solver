@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import ClassSearchLink from '../header/ClassSearchLink';
 import CourseSearchLink from '../header/CourseSearchLink';
+import { useAccountContext } from '../../context/accountContext';
 
 const SearchBar = ({setSearching}) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [results, setResults] = useState(null);
     const searchBarRef = useRef(null);
-    let lang = 'en'
+    const {language} = useAccountContext();
 
     useEffect(() => {
         if (searchTerm.length > 0) {
@@ -71,7 +72,7 @@ const SearchBar = ({setSearching}) => {
                                 <CourseSearchLink
                                     key={course.id}
                                     id={course.id}
-                                    name={course.name[lang]}
+                                    name={course.name[language]}
                                     type={course.field}
                                     setSearchTerm={setSearchTerm}
                                     setSearching={setSearching}
@@ -87,8 +88,8 @@ const SearchBar = ({setSearching}) => {
                                 <ClassSearchLink
                                     key={courseClass.id}
                                     id={courseClass.id}
-                                    name={courseClass.name}
-                                    type={courseClass.class_type}
+                                    name={courseClass.name[language]}
+                                    type={courseClass.type}
                                     setSearchTerm={setSearchTerm}
                                     setSearching={setSearching}
                                 />

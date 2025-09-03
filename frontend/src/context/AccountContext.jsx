@@ -34,7 +34,7 @@ export const AccountProvider = ({ children }) => {
     // Content
     const [contentProgress, setContentProgress] = useState(null);
 
-    console.log()
+    // console.log(accountData)
 
     useEffect(() => {
         if (accountData) {
@@ -42,7 +42,7 @@ export const AccountProvider = ({ children }) => {
             setEmail(accountData.email);
             setFirst_name(accountData.first_name);
             setLast_name(accountData.last_name);
-            setProfile_picture(accountData.profile_picture || '/images/defaultUser.png');
+            setProfile_picture(accountData.profile_picture || '/images/global/defaultUser.png');
             setBirth_date(accountData.birth_date);
             setDate_joined(accountData.date_joined);
 

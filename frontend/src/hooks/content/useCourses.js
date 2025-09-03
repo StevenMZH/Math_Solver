@@ -13,6 +13,7 @@ export const useCourses = (lang = 'en') => {
             .then(response => {
                 setCourses(response.data);
                 setLoading(false);
+                // console.log(response.data)
             })
             .catch(error => {
                 console.error("Hubo un error al obtener los cursos:", error);
