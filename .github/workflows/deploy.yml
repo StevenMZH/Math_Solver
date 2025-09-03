@@ -46,7 +46,7 @@ jobs:
           echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env.prod
           echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env.prod
           
-          echo "window._env_ = { REACT_APP_API_URL: 'https://api.eulerian-hades.purpleblue.site' };" > env-config.prod.js
+          echo "window._env_ = { REACT_APP_API_URL: 'https://api.eulerian-hades.purpleblue.site' };" > frontend/env-config.prod.js
 
       - name: Build all images from docker-compose
         run: docker compose -f docker-compose.yml --env-file .env.dev build
@@ -116,7 +116,7 @@ jobs:
             echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env.prod
             echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env.prod
           
-            echo "window._env_ = { REACT_APP_API_URL: 'https://api.dev.eulerian-hades.purpleblue.site' };" > env-config.prod.js
+            echo "window._env_ = { REACT_APP_API_URL: 'https://api.dev.eulerian-hades.purpleblue.site' };" > frontend/env-config.prod.js
 
             docker network create nginx-proxy-net || true
 
@@ -174,7 +174,7 @@ jobs:
             echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env.prod
             echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env.prod
 
-            echo "window._env_ = { REACT_APP_API_URL: 'https://api.eulerian-hades.purpleblue.site' };" > env-config.prod.js
+            echo "window._env_ = { REACT_APP_API_URL: 'https://api.eulerian-hades.purpleblue.site' };" > frontend/env-config.prod.js
 
             docker network create nginx-proxy-net || true
     
