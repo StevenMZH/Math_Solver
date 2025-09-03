@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axiosAuthTokens from '../../services/axiosAuthTokens';
-import { useAccountContext } from '../../context/accountContext';
+import { useAccountContext } from '../../context/AccountContext';
 
 const useUpdatePreferences = ({language, theme, notifications}) => {
   const [loading, setLoading] = useState(true);
