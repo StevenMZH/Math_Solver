@@ -9,18 +9,18 @@ export function MobileNav() {
     return (
         <div className="MobileNav">
             
-            <Link to="/solver" className='nav-a'> <img className='nav-img icon1' src='/public/images/nav/solver.png' alt="Solver" /> <label className='text-subtitle'>Solver</label> </Link>
-            <Link to="/courses" className='nav-a'> <img className='nav-img icon2' src='/public/images/nav/courses.png' alt="Courses" /> <label className='text-subtitle'>Courses</label> </Link>
-            <Link to="/exercises" className='nav-a'> <img className='nav-img icon3' src='/public/images/nav/exercises.png' alt="Exercises" /> <label className='text-subtitle'>Exercises</label> </Link>
+            <Link to="/solver" className='nav-a'> <img className='nav-img icon1' src='/images/nav/solver.png' alt="Solver" /> <label className='text-subtitle'>Solver</label> </Link>
+            <Link to="/courses" className='nav-a'> <img className='nav-img icon2' src='/images/nav/courses.png' alt="Courses" /> <label className='text-subtitle'>Courses</label> </Link>
+            <Link to="/exercises" className='nav-a'> <img className='nav-img icon3' src='/images/nav/exercises.png' alt="Exercises" /> <label className='text-subtitle'>Exercises</label> </Link>
 
             {!token ? (
                 <button className='nav-a' onClick={() => setIsAuthFormVisible(true)}> 
-                    <img className='nav-img icon4' src='/public/images/nav/profile.png' alt="Profile" /> 
+                    <img className='nav-img icon4' src='/images/nav/profile.png' alt="Profile" /> 
                     <label className='text-subtitle'>Profile</label>
                 </button>
             ) : (  
                 <Link to="/profile" className='nav-a'> 
-                    <img className='nav-img icon4' src='/public/images/nav/profile.png' alt="Profile" /> 
+                    <img className='nav-img icon4' src='/images/nav/profile.png' alt="Profile" /> 
                     <label className='text-subtitle'>Profile</label> 
                 </Link> 
             )}    

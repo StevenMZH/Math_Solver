@@ -8,7 +8,7 @@ export function InDev() {
         <div className="page-center">
 
             <div className="center column fullwidth error-message">
-                <img src="./public/images/pages/dev.png" alt="Page unde development" />
+                <img src="/images/pages/dev.png" alt="Page unde development" />
                 
                 <div className="text-title2 message-container">
                     <label className="text-center font-H1" id="error-type">Under Development</label>

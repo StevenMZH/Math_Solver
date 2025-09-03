@@ -51,7 +51,7 @@ export function MobileHeader() {
 
                     <div className='flexCenter nav-right'>
                         <button className="flexCenter searchButton"  onClick={() => setSearching(true)}>
-                            <img className='icon-button' src='/public/images/global/search.png' alt="search" />
+                            <img className='icon-button' src='/images/global/search.png' alt="search" />
                         </button>
 
                         {!token && (

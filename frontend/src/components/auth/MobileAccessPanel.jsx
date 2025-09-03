@@ -23,7 +23,7 @@ export function MobileAccessPanel() {
                 <div className={`panelContainer login ${showTransition ? 'slice-transition' : ''}`}>
                     <div className="floating-panel login-exit">
                         <button onClick={() => { resetAuthForm }}> 
-                            <img src="./public/images/global/exit.png" alt="exit-login"/> 
+                            <img src="/images/global/exit.png" alt="exit-login"/> 
                         </button>
                     </div>
                     

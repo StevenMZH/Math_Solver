@@ -44,7 +44,7 @@ const SearchBar = ({setSearching}) => {
     return (
         <div className="flexCenter mobileSearchBar-container" ref={searchBarRef}>
             <button className="return"  onClick={() => setSearching(false)} >
-                <img className='icon-button' src='/public/images/global/back.png' alt="search" />
+                <img className='icon-button' src='/images/global/back.png' alt="search" />
             </button>
 
             <div className="flexCenter searchContainer">
@@ -57,7 +57,7 @@ const SearchBar = ({setSearching}) => {
                 />
                 <div className="button-container">
                     <button type="submit" className="searchButton">
-                        <img className='icon-button' src='/public/images/global/search.png' alt="search" />
+                        <img className='icon-button' src="/images/global/search.png' alt="search" />
                     </button>
                 </div>
             </div>

@@ -6,10 +6,10 @@ export const courseFields = {
 };
 
 export const courseFields_imgs = {
-    math: { src: "./public/images/courses/integral.svg", alt: "Math" },
-    physics: { src: "./public/images/courses/physics.png", alt: "Physics" },
-    cs: { src: "./public/images/courses/cs.png", alt: "Computer Science" },
-    electronics: { src: "./public/images/courses/electronics.png", alt: "Electronics" },
+    math: { src: "/images/courses/integral.svg", alt: "Math" },
+    physics: { src: "/images/courses/physics.png", alt: "Physics" },
+    cs: { src: "/images/courses/cs.png", alt: "Computer Science" },
+    electronics: { src: "/images/courses/electronics.png", alt: "Electronics" },
 };
-export const defaultImage = { src: "./public/images/defaultImage.png", alt: "" };
+export const defaultImage = { src: "/images/defaultImage.png", alt: "" };
 

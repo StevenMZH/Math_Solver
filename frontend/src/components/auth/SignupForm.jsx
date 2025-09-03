@@ -33,7 +33,7 @@ export function SignupForm() {
             <div className="buttons">
                 <button className="button-square text-title" type="submit">Sign Up</button>
                 <button className="panel-return button-square" type="button" onClick={initAuthForm}>
-                    <img className="img-themes" src="./public/images/global/return.png" alt="return" />
+                    <img className="img-themes" src="/images/global/return.png" alt="return" />
                 </button>
             </div>
         </form>

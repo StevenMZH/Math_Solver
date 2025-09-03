@@ -48,7 +48,7 @@ function AlgebraicSolver({setFailLoad}) {
             {output && (
                 <div className="panel center">
                     <button className='box-floating m10 button-alpha' onClick={() => navigator.clipboard.writeText(output)}> 
-                        <img className='img-size20 img-themes' src="/public/images/global/copy.png" alt="copy" /> 
+                        <img className='img-size20 img-themes' src="/images/global/copy.png" alt="copy" /> 
                     </button>
                     
                     <div className='scrollBar-x'>
@@ -65,7 +65,7 @@ function AlgebraicSolver({setFailLoad}) {
                     <div className="fullwidth end">
                         <input type="text" name="math_problem" className='inputBar' placeholder="Type equation here" value={input} onChange={(e) => setInput(e.target.value)} />
                         <button type="submit" className='submitButton' data-lang-key="Algebra_Calculus.send">
-                            <img className='searchIcon' src='./public/images/global/search.png' alt="search" />
+                            <img className='searchIcon' src='/images/global/search.png' alt="search" />
                         </button>
                         {!start && loading &&<LoadingAnimXS/>}
                     </div>

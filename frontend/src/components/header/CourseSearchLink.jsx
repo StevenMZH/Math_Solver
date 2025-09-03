@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 
 export function CourseSearchLink({ id, name, type, setSearchTerm, setSearching }) {
     const topicImages = {
-        math: { src: "/public/images/courses/integral.svg", alt: "Math" },
-        physics: { src: "/public/images/courses/physics.png", alt: "Physics" },
-        cs: { src: "/public/images/courses/cs.png", alt: "Computer Science" },
-        electronics: { src: "/public/images/courses/electronics.png", alt: "Electronics" },
+        math: { src: "/images/courses/integral.svg", alt: "Math" },
+        physics: { src: "/images/courses/physics.png", alt: "Physics" },
+        cs: { src: "/images/courses/cs.png", alt: "Computer Science" },
+        electronics: { src: "/images/courses/electronics.png", alt: "Electronics" },
     };
     const topicNames = {
         math: "Math",
@@ -13,7 +13,7 @@ export function CourseSearchLink({ id, name, type, setSearchTerm, setSearching }
         cs: "CS",
         electronics: "Electronics",
     };
-    const defaultImage = { src: "/public/images/defaultImage.png", alt: "" };
+    const defaultImage = { src: "/images/defaultImage.png", alt: "" };
     const topicImage = topicImages[type] || defaultImage;
 
     const rootStyles = getComputedStyle(document.documentElement);

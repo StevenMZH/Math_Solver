@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 
 export function ClassSearchLink({ id, name, type, setSearchTerm, setSearching }) {
     const topicImages = {
-        "theory": { src: "/public/images/classes/theory.png", alt: "theory" },
-        "practice": { src: "/public/images/classes/defaultImage.png", alt: "Practice" },
-        "test": { src: "/public/images/classes/defaultImage.png", alt: "Test" },
+        "theory": { src: "/images/classes/theory.png", alt: "theory" },
+        "practice": { src: "/images/classes/defaultImage.png", alt: "Practice" },
+        "test": { src: "/images/classes/defaultImage.png", alt: "Test" },
     };
-    const defaultImage = { src: "/public/images/defaultImage.png", alt: "" };
+    const defaultImage = { src: "/images/defaultImage.png", alt: "" };
     const topicImage = topicImages[type] || defaultImage;
 
     return (
