@@ -1,4 +1,4 @@
-import { AccountProvider } from "./context/accountContext";
+import { AccountProvider } from "./context/AccountContext";
 import { AuthProvider } from "./context/AuthFormContext";
 
 const AppProviders = ({ children }) => {
