@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import ClassSearchLink from '../header/ClassSearchLink';
 import CourseSearchLink from '../header/CourseSearchLink';
-import { useAccountContext } from '../../context/accountContext';
+import { useAccountContext } from '../../context/AccountContext';
 
 const SearchBar = () => {
     const [searchTerm, setSearchTerm] = useState('');

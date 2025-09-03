@@ -1,4 +1,4 @@
-import { useAccountContext } from "../../context/accountContext";
+import { useAccountContext } from "../../context/AccountContext";
 import CourseClass_link from "./ClassLink";
 
     export function CourseUnit({ courseId, num, name, classes }) {

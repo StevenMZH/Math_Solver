@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useAccountContext } from '../../context/accountContext';
+import { useAccountContext } from '../../context/AccountContext';
 
 export function ClassLink({ courseId, classId, name, type }) {
     const topicImages = {

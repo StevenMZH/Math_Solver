@@ -1,4 +1,4 @@
-import { useAccountContext } from '../../context/accountContext';
+import { useAccountContext } from '../../context/AccountContext';
 import CourseProfileLink from '../courses/CourseProfileLink';
 
 export function AccountActivity({ contentProgress }) {
